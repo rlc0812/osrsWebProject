@@ -1,0 +1,255 @@
+.no-border {
+    border: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+    border-width: 0;
+}
+
+.hidden{
+       display:none;
+    }
+
+.jadPic{
+  max-width:180px;
+  height: 120px;
+  float:right;
+}
+.hitsplatPic{
+  max-width:80px;
+  height: 80px;
+}
+
+.form-horizontal {
+	padding: 15px;
+	border: solid;
+
+}
+
+.table-dark {
+	color: white;
+	padding: 20px;
+}
+
+table.dataTable tbody tr {
+	background-color: unset; !important
+}
+
+.nopadding {
+	padding: 0px;!important
+	margin: 0px;!important
+}
+
+.card{
+	background-color: #631c98;!important
+	color: white;!important
+	border: solid 3px;!important
+}
+
+.break-table{
+	table-layout: fixed;
+	word-wrap: break-word;
+	height:450px;
+}
+.btn-primary{
+	color: black;!important
+	padding-left: 50px;!important
+	border: solid;!important
+	text-align:left;!important
+	
+}
+body {
+    padding-bottom: 120px;
+    background-color: white;
+}
+
+.list-group, .list-group {
+	text-align: center;
+	
+}
+.size25px {
+	height:25px;
+}
+.maxHeightIcon{
+	max-height: 24px;
+}
+
+.breakWord{
+	word-wrap: break-word;!important
+	overflow: hidden;
+	max-width: 400px;
+	width: 50%;
+}
+
+.sameLine {
+	white-space: nowrap;
+}
+
+.statCellColor{
+	background-color: #384047;!important
+	display: inline-block;
+	text-align: center;
+}
+
+.whiteBlueTintBg{
+    background-color: #d3d7e2;!important
+}
+
+.blueBg{
+    background-color: #929db7;!important
+}
+.silverBg{
+    background-color: silver;!important
+}
+.whiteBg{
+    background-color: white;!important
+}
+.grayBg{
+    background-color: gray;!important
+}
+.attackHeader{
+	background-color: #7b0e0e;
+	color: #e7ec14;
+	border-bottom: 2px solid black; 
+
+}
+.blueText{
+	color: #007bff;
+}
+
+.border-primary {
+	border-width: 20px;!important
+}
+
+.whiteText {
+	color: white;
+}
+
+h1 {
+	text-decoration: underline;
+	color: black;
+}
+
+.btn-secondary {
+	position: relative;!important
+}
+
+.list-group-item{
+	background-color: #b8daff;
+	font-size: 20px;
+	color: black;
+}
+.list-group-item:hover{
+	background-color: #404040;
+	font-size: 22px;
+	color: white;
+}
+
+table {
+  border: solid;!important
+  color: black;!important
+}
+
+li {
+    cursor: pointer;
+}
+.noWrap{
+	white-space: nowrap;
+}
+th{
+text-decoration: underline;
+font-weight: bold;
+}
+.sortbar {
+text-decoration: underline;
+font-weight: bold;
+display: inline-block;
+vertical-align: text-top;
+padding-top: 10px;
+
+white-space: nowrap;
+}
+.sortbutton {
+font-size: 25px;
+cursor: pointer;
+display: inline-block;
+vertical-align: text-top;
+padding-top: 7px;
+padding-left: 0px;
+padding-right: 0px;
+padding-bottom: 0px;
+margin: 0;
+position: relative;
+
+white-space: nowrap;
+}
+.noWrap {
+white-space: nowrap;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -50px;
+}
+.footer,
+.push {
+  height: 80px;
+}
+
+.navbar, .footer{
+	background-color: #a9b7d1;!important
+	color: black;!important
+
+}
+nav {
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+.table-responsive {
+	overflow-x: auto;
+}
+.navbar-expand-md .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: white; /*Sets the text hover color on navbar*/
+}
+
+.navbar-expand-md .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+        a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: white; /*BACKGROUND color for active*/
+    background-color: #66c2ff;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+}
+
+.navbar-nav > li > a {
+    color: black; /*Change active text color here*/
+}
+
+.navbar-header{
+	color: white;
+}
+
+.navbar-toggler-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.left {
+	float: left;
+}
+
+#bannerimage {
+  width: 100%;
+  height: 135px;
+  background-image: url("images/runescapeBG.png");
+  background-position: center;
+}
