@@ -1,0 +1,6 @@
+# Ignore these folders
+
+
+#Ignore these files
+config.php
+connect.inc

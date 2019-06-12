@@ -1,0 +1,308 @@
+</th></tr>
+<tr>
+<td><a href="/wiki/White_unicorn_mask" title="White unicorn mask">White unicorn mask</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Wise_old_man%27s_santa_hat" title="Wise old man's santa hat">Wise old man's santa hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Wizard_hat" title="Wizard hat">Wizard hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +2
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +2
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Woodcutting_hood" title="Woodcutting hood">Woodcutting hood</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Woodsman_hat" title="Woodsman hat">Woodsman hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Woolly_hat" title="Woolly hat">Woolly hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Wrath_tiara" title="Wrath tiara">Wrath tiara</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Xerician_hat" title="Xerician hat">Xerician hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +3
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +3
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Yellow_hat" title="Yellow hat">Yellow hat</a>
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +3
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +3
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> +0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +0
+</td></tr>
+<tr>
+<td><a href="/wiki/Yellow_partyhat" title="Yellow partyhat">Yellow partyhat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Yeoman_hat" title="Yeoman hat">Yeoman hat</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Zamorak_coif" title="Zamorak coif">Zamorak coif</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> -1
+</td><td style="text-align: right;"> +7
+</td><td style="text-align: right;"> +4
+</td><td style="text-align: right;"> +7
+</td><td style="text-align: right;"> +10
+</td><td style="text-align: right;"> +4
+</td><td style="text-align: right;"> +8
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +1
+</td></tr>
+<tr>
+<td><a href="/wiki/Zamorak_full_helm" title="Zamorak full helm">Zamorak full helm</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> -6
+</td><td style="text-align: right;"> -2
+</td><td style="text-align: right;"> +30
+</td><td style="text-align: right;"> +32
+</td><td style="text-align: right;"> +27
+</td><td style="text-align: right;"> -1
+</td><td style="text-align: right;"> +30
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +1
+</td></tr>
+<tr>
+<td><a href="/wiki/Zamorak_halo" title="Zamorak halo">Zamorak halo</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +11
+</td><td style="text-align: right;"> +12
+</td><td style="text-align: right;"> +10
+</td><td style="text-align: right;"> +11
+</td><td style="text-align: right;"> -1
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +3
+</td></tr>
+<tr>
+<td><a href="/wiki/Zamorak_max_hood" title="Zamorak max hood">Zamorak max hood</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Zamorak_mitre" title="Zamorak mitre">Zamorak mitre</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +4
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +4
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> +5
+</td></tr>
+<tr>
+<td><a href="/wiki/Zombie_mask" title="Zombie mask">Zombie mask</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr>
+<tr>
+<td><a href="/wiki/Zuriel%27s_hood" title="Zuriel's hood">Zuriel's hood</a>
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 8
+</td><td style="text-align: right;"> -2
+</td><td style="text-align: right;"> 20
+</td><td style="text-align: right;"> 16
+</td><td style="text-align: right;"> 22
+</td><td style="text-align: right;"> 8
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td><td style="text-align: right;"> 0
+</td></tr></table>
+
