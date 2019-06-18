@@ -147,7 +147,7 @@ if(isset($_SESSION['u_userID'])){
 </div>
 <div class="container blueBg border border-dark mt-5 p-2">
 	<div class="row pt-5">
-		<div class="col">
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
 				<img src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 				<map name="equipmentMap">
@@ -164,21 +164,20 @@ if(isset($_SESSION['u_userID'])){
 					<area shape="rect" coords="224,316,292,384" alt="Ring">
 				</map>
 			</div>
+
 		</div>
 
-		<div class="col text-right">
-			<div class="container-fluid text-center">
-				<table class="table-responsive no-border">
-					<tr>
-						<td><div style="height: 100px; overflow:auto;"><label for="strengthLevel">Strength Level </label></div></td>
-						<td><div style="height: 100px; overflow:auto;"><input type="text" class="text-center w-100" id="strengthLevel" placeholder="Enter strength"></div></td>
-						<div>
-					</tr>
-					<tr>
-						<td><div style="height: 100px; overflow:auto;">
-							<label for="itemName">Boosts</label></div>
-						</td>
-						<td><div style="height: 100px; overflow:auto;">
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+			<div class="container text-center">
+						
+						<div style="height: 107px; overflow:auto;">
+						<label for="strengthLevel">Strength Level </label>
+							<input type="text" class="text-center w-100" id="strengthLevel" placeholder="Enter strength"></div>
+					
+					
+
+							<div style="height: 107px; overflow:auto;">
+							<label for="itemName">Boosts</label>
 							<select name="itemName" class="w-100">
 								<option>Select boost</option>
 								<option>Strength potion</option>
@@ -192,13 +191,12 @@ if(isset($_SESSION['u_userID'])){
 								<option>Overload potion</option>
 								<option>Overload potion(+)</option>
 							</select><br></div>
-						</td>
-					</tr>
-					<tr>
-						<td><div style="height: 100px; overflow:auto;">
-						<label for="prayer">Prayers</label></div>
-						</td>
-						<td><div style="height: 100px; overflow:auto;">
+						
+					
+					
+						
+						<div style="height: 107px; overflow:auto;">
+						<label for="prayer">Prayers</label>
 						<select name="prayer" class="w-100">
 							<option>Select prayer</option>
 							<option>Burst of Strength</option>
@@ -207,13 +205,13 @@ if(isset($_SESSION['u_userID'])){
 							<option>Chivalry</option>
 							<option>Piety</option>
 						</select><br></div>
-						</td>
-					</tr>
-					<tr>
-						<td><div style="height: 100px; overflow:auto;">
-						<label for="attackStyle">Attack Style</label></div>
-						</td>
-						<td><div style="height: 100px; overflow:auto;">
+						
+					
+					
+						
+
+						<div style="height: 107px; overflow:auto;">
+						<label for="attackStyle">Attack Style</label>
 						<select name="attackStyle" class="w-100">
 							<option>Select style</option>
 							<option>Accurate</option>
@@ -221,15 +219,15 @@ if(isset($_SESSION['u_userID'])){
 							<option>Controlled</option>
 							<option>Defensive</option>
 						</select><br></div>
-						</td>
-					</tr>
-				</table>
+						
+					
+			
 			</div>
 		</div>
 
-		<div class="col text-center">
+		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
-				<select name="itemName" class="mb-2">
+				<select name="itemName" class="mb-4">
 						<option>Select item slot from left.</option>
 				</select><br>
 					<img src="images/slot_images/Head_slot.png"><span id="headSlot">None</span><br>
@@ -245,10 +243,15 @@ if(isset($_SESSION['u_userID'])){
 					<img src="images/slot_images/Ring_slot.png"><span id="ringSlot">None</span><br>
 			</div>
 		</div>
-	</div>
+</div>	
+			<div class="container"><button type="button" class="btn-primary pl-5 pr-5">Calculate!</button><br></div>
 
-	<button type="button" class="btn-primary text-center">Calculate!</button><br>
-</div>
+
+
+
+
+
+
 
 <div class="container-fluid pb-4 text-center">
 	<a onclick ="scrollToTop();" href="#">Go to top</a>
