@@ -97,11 +97,11 @@ if(isset($_SESSION['u_userID'])){
 	$char3 = $statTableArray[2];
 	$char4 = $statTableArray[3];
 	if(($char1==NULL)&&($char2==NULL)&&($char3==NULL)&&($char4==NULL)){
-	  echo '<h3 class="pt-4 pl-4">You must register a character in home to be able to use the diary calculator</h3>';
+	  echo '<h3 class="pt-4 pl-4">You must register a character in order to select strength level by account.</h3>';
 	} else {
 			echo'
 			<div class ="container-fluid text-center pl-5 pt-5">
-			<h3>Please select a character to check diary requirements</h3>
+			<h3>Please select a character to get strength level</h3>
 			';
 			if($char1!==NULL){
 				echo'
@@ -147,9 +147,12 @@ if(isset($_SESSION['u_userID'])){
 </div>
 <div class="container blueBg border border-dark mt-5 p-2">
 	<div class="row pt-5">
-		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
-				<img src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
+			<select name="itemName" class="mb-4 mr-3">
+						<option>Select an item slot</option>
+				</select><br>
+				<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 				<map name="equipmentMap">
 					<area shape="rect" coords="112,0,180,68" alt="Head">
 					<area shape="rect" coords="30,78,98,146" alt="Cape">
@@ -167,18 +170,18 @@ if(isset($_SESSION['u_userID'])){
 
 		</div>
 
-		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-			<div class="container text-center">
+		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			<div class="container text-center pr-5">
 						
-						<div style="height: 107px; overflow:auto;">
-						<label for="strengthLevel">Strength Level </label>
-							<input type="text" class="text-center w-100" id="strengthLevel" placeholder="Enter strength"></div>
+						<div style="height: 128px; overflow:auto;">
+						<label for="strengthLevel">Strength Level </label></br>
+							<input type="text" class="text-center w-50" id="strengthLevel" placeholder="Enter strength"></div>
 					
 					
 
-							<div style="height: 107px; overflow:auto;">
-							<label for="itemName">Boosts</label>
-							<select name="itemName" class="w-100">
+							<div style="height: 128px; overflow:auto;">
+							<label for="itemName">Boosts</label></br>
+							<select name="itemName" class="w-50 text-center">
 								<option>Select boost</option>
 								<option>Strength potion</option>
 								<option>Super strength potion</option>
@@ -195,9 +198,9 @@ if(isset($_SESSION['u_userID'])){
 					
 					
 						
-						<div style="height: 107px; overflow:auto;">
-						<label for="prayer">Prayers</label>
-						<select name="prayer" class="w-100">
+						<div style="height: 128px; overflow:auto;">
+						<label for="prayer">Prayers</label><br>
+						<select name="prayer" class="w-50 text-center">
 							<option>Select prayer</option>
 							<option>Burst of Strength</option>
 							<option>Superhuman Strength</option>
@@ -210,9 +213,9 @@ if(isset($_SESSION['u_userID'])){
 					
 						
 
-						<div style="height: 107px; overflow:auto;">
-						<label for="attackStyle">Attack Style</label>
-						<select name="attackStyle" class="w-100">
+						<div style="height: 128px; overflow:auto;">
+						<label for="attackStyle">Attack Style</label></br>
+						<select name="attackStyle" class="w-50 text-center">
 							<option>Select style</option>
 							<option>Accurate</option>
 							<option>Aggressive</option>
@@ -225,15 +228,12 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 		</div>
 
-		<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
-				<select name="itemName" class="mb-4">
-						<option>Select item slot from left.</option>
-				</select><br>
+				<h4>Current Gear</h4>
 					<img src="images/slot_images/Head_slot.png"><span id="headSlot">None</span><br>
 					<img src="images/slot_images/Cape_slot.png"><span id="capeSlot">None</span><br>
 					<img src="images/slot_images/Neck_slot.png"><span id="neckSlot">None</span><br>
-					<img src="images/slot_images/Ammunition_slot.png"><span id="ammoSlot">None</span><br>
 					<img src="images/slot_images/Weapon_slot.png"><span id="weaponSlot">None</span><br>
 					<img src="images/slot_images/Body_slot.png"><span id="bodySlot">None</span><br>
 					<img src="images/slot_images/Shield_slot.png"><span id="shieldSlot">None</span><br>
@@ -241,21 +241,13 @@ if(isset($_SESSION['u_userID'])){
 					<img src="images/slot_images/Hands_slot.png"><span id="handsSlot">None</span><br>
 					<img src="images/slot_images/Feet_slot.png"><span id="feetSlot">None</span><br>
 					<img src="images/slot_images/Ring_slot.png"><span id="ringSlot">None</span><br>
+					<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus">0</p></div>
 			</div>
+			<div class="container text-center"><button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br></div>
 		</div>
+
 </div>	
-			<div class="container"><button type="button" class="btn-primary pl-5 pr-5">Calculate!</button><br></div>
 
-
-
-
-
-
-
-
-<div class="container-fluid pb-4 text-center">
-	<a onclick ="scrollToTop();" href="#">Go to top</a>
-</div>
 
 <script type="text/javascript">
 
