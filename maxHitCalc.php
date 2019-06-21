@@ -1,5 +1,6 @@
 <?php
 session_start();
+//include('maxHitScripts/getSlotItems.php');
 ?>
 
 <!DOCTYPE html>
@@ -149,22 +150,22 @@ if(isset($_SESSION['u_userID'])){
 	<div class="row pt-5">
 		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
-			<select name="itemName" class="mb-4 mr-3">
+			<select name="itemSlotField" id="itemSlotField" class="mb-4 mr-3">
 						<option>Select an item slot</option>
-				</select><br>
+				</select><button class="btn-primary hidden" id="confirmButton">Confirm Item</button><br>
 				<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 				<map name="equipmentMap">
-					<area shape="rect" coords="112,0,180,68" alt="Head">
-					<area shape="rect" coords="30,78,98,146" alt="Cape">
-					<area shape="rect" coords="112,78,180,146" alt="Neck">
+					<area shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head');">
+					<area shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape');">
+					<area shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck');">
 					<area shape="rect" coords="194,78,262,146" alt="Ammunition">
-					<area shape="rect" coords="0,156,68,224" alt="Weapon">
-					<area shape="rect" coords="112,156,180,224" alt="Body">
-					<area shape="rect" coords="224,156,292,224" alt="Shield">
-					<area shape="rect" coords="112,236,180,304" alt="Legs">
-					<area shape="rect" coords="0,316,68,384" alt="Hands">
-					<area shape="rect" coords="112,316,180,384" alt="Feet">
-					<area shape="rect" coords="224,316,292,384" alt="Ring">
+					<area shape="rect" coords="0,156,68,224" alt="Weapon" onclick="populateSlot('Weapon');">
+					<area shape="rect" coords="112,156,180,224" alt="Body" onclick="populateSlot('Body');">
+					<area shape="rect" coords="224,156,292,224" alt="Shield" onclick="populateSlot('Shield');">
+					<area shape="rect" coords="112,236,180,304" alt="Legs" onclick="populateSlot('Legs');">
+					<area shape="rect" coords="0,316,68,384" alt="Hands" onclick="populateSlot('Hands');">
+					<area shape="rect" coords="112,316,180,384" alt="Feet" onclick="populateSlot('Feet');">
+					<area shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring');">
 				</map>
 			</div>
 
@@ -231,17 +232,17 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
 				<h4>Current Gear</h4>
-					<img src="images/slot_images/Head_slot.png"><span id="headSlot">None</span><br>
-					<img src="images/slot_images/Cape_slot.png"><span id="capeSlot">None</span><br>
-					<img src="images/slot_images/Neck_slot.png"><span id="neckSlot">None</span><br>
-					<img src="images/slot_images/Weapon_slot.png"><span id="weaponSlot">None</span><br>
-					<img src="images/slot_images/Body_slot.png"><span id="bodySlot">None</span><br>
-					<img src="images/slot_images/Shield_slot.png"><span id="shieldSlot">None</span><br>
-					<img src="images/slot_images/Legs_slot.png"><span id="legsSlot">None</span><br>
-					<img src="images/slot_images/Hands_slot.png"><span id="handsSlot">None</span><br>
-					<img src="images/slot_images/Feet_slot.png"><span id="feetSlot">None</span><br>
-					<img src="images/slot_images/Ring_slot.png"><span id="ringSlot">None</span><br>
-					<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus">0</p></div>
+					<img src="images/slot_images/Head_slot.png" id="headSlotImage"><span id="headSlot" value="0">None</span><br>
+					<img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><span id="capeSlot" value="0">None</span><br>
+					<img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><span id="neckSlot" value="0">None</span><br>
+					<img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><span id="weaponSlot" value="0">None</span><br>
+					<img src="images/slot_images/Body_slot.png" id="bodySlotImage"><span id="bodySlot" value="0">None</span><br>
+					<img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"><span id="shieldSlot" value="0">None</span><br>
+					<img src="images/slot_images/Legs_slot.png" id="legsSlotImage"><span id="legsSlot" value="0">None</span><br>
+					<img src="images/slot_images/Hands_slot.png" id="handsSlotImage"><span id="handsSlot" value="0">None</span><br>
+					<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><span id="feetSlot" value="0">None</span><br>
+					<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><span id="ringSlot" value="0">None</span><br>
+					<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus" value="0">0</p></div>
 			</div>
 			<div class="container text-center"><button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br></div>
 		</div>
@@ -295,24 +296,47 @@ function getRequirements(diary) {
        				 alert(thrownError);
 			}
 		});
-	addActive(diary);
 	}
 
-function scrollToTop()
-{
-	$(document).ready(function(){
-		$('html,body').animate({scrollTop: 0}, 'slow');
+function populateSlot(itemSlot) {
+	data = {itemSlot: itemSlot};
+	updateField = '#itemSlotField';
+		$.ajax({
+			type: "POST",
+			url: "maxHitScripts/getSlotItems.php",
+			data: data,
+			cache: false,
 
-	});
-}
-function scrollToElement(elementId)
-{
-	$(document).ready(function(){
-		$('html,body').animate({
-		scrollTop: $("#"+elementId).offset().top},
-		'slow');
-	});
-}
+			success: function(data) {
+			$(updateField).html(data);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				       alert(xhr.status);
+       				 alert(thrownError);
+			}
+		});
+	showElement('#confirmButton');
+	updateTotalStrength('#headSlot','#capeSlot','#neckSlot','#weaponSlot','#bodySlot','#shieldSlot','#legsSlot','#handsSlot','#feetSlot','#ringSlot');
+	}
+
+function updateTotalStrength(headSlot,capeSlot,neckSlot,weaponSlot,bodySlot,shieldSlot,legsSlot,handsSlot,feetSlot,ringSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
+	data = {headSlot: headSlot,capeSlot: capeSlot,neckSlot: neckSlot,weaponSlot: weaponSlot,bodySlot: bodySlot,shieldSlot: shieldSlot,legsSlot: legsSlot,handsSlot: handsSlot,feetSlot: feetSlot,ringSlot: ringSlot};
+	updateField = '#currentStrengthBonus';
+		$.ajax({
+			type: "POST",
+			url: "maxHitScripts/updateTotalStrength.php",
+			data: data,
+			cache: false,
+
+			success: function(data) {
+			$(updateField).html(data);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				       alert(xhr.status);
+       				 alert(thrownError);
+			}
+		});
+	}
 
 function addActive(diary){	
 	$('#table'+diary).removeClass('hidden');
@@ -334,12 +358,10 @@ function hideElement(elementId)
 	$( "#showbutton"+elementId).show();
 
 }
-function showElement(elementId)
+function showElement(element)
 {
-	$( "#table"+elementId).show();
-
-	$( "#showbutton"+elementId).hide();
-	$( "#hidebutton"+elementId).show();
+	$(element).removeClass('hidden');
+	$(element).show();
 }
 </script>
 
