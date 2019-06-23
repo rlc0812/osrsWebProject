@@ -150,22 +150,28 @@ if(isset($_SESSION['u_userID'])){
 	<div class="row pt-5">
 		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
-			<select name="itemSlotField" id="itemSlotField" class="mb-4 mr-3">
-						<option>Select an item slot</option>
-				</select><button class="btn-primary hidden" id="confirmButton">Confirm Item</button><br>
+			
+
+
+			<h4 class="mr-3">Click images to select an Item Slot</h4>
+			<div name="itemSlotField" id="itemSlotField" class="mr-3">
+			</div>
+			<div id="selectMenu2" name="selectMenu2" class="mr-3 w-60"></div>
+
+			<!--<button class="btn-primary hidden pt-0 mt-1 mr-2 mb-4" id="confirmButton">Confirm</button><br>-->
 				<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 				<map name="equipmentMap">
-					<area shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head');">
-					<area shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape');">
-					<area shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck');">
+					<area shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');">
+					<area shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape','#itemSlotField');">
+					<area shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck','#itemSlotField');">
 					<area shape="rect" coords="194,78,262,146" alt="Ammunition">
-					<area shape="rect" coords="0,156,68,224" alt="Weapon" onclick="populateSlot('Weapon');">
-					<area shape="rect" coords="112,156,180,224" alt="Body" onclick="populateSlot('Body');">
-					<area shape="rect" coords="224,156,292,224" alt="Shield" onclick="populateSlot('Shield');">
-					<area shape="rect" coords="112,236,180,304" alt="Legs" onclick="populateSlot('Legs');">
-					<area shape="rect" coords="0,316,68,384" alt="Hands" onclick="populateSlot('Hands');">
-					<area shape="rect" coords="112,316,180,384" alt="Feet" onclick="populateSlot('Feet');">
-					<area shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring');">
+					<area shape="rect" coords="0,156,68,224" alt="Weapon" onclick="populateSlot('WeaponMenu','#itemSlotField');">
+					<area shape="rect" coords="112,156,180,224" alt="Body" onclick="populateSlot('Body','#itemSlotField');">
+					<area shape="rect" coords="224,156,292,224" alt="Shield" onclick="populateSlot('Shield','#itemSlotField');">
+					<area shape="rect" coords="112,236,180,304" alt="Legs" onclick="populateSlot('Legs','#itemSlotField');">
+					<area shape="rect" coords="0,316,68,384" alt="Hands" onclick="populateSlot('Hands','#itemSlotField');">
+					<area shape="rect" coords="112,316,180,384" alt="Feet" onclick="populateSlot('Feet','#itemSlotField');">
+					<area shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring','#itemSlotField');">
 				</map>
 			</div>
 
@@ -175,13 +181,13 @@ if(isset($_SESSION['u_userID'])){
 			<div class="container text-center pr-5">
 						
 						<div style="height: 128px; overflow:auto;">
-						<label for="strengthLevel">Strength Level </label></br>
+						<label for="strengthLevel">Strength Level </label><br>
 							<input type="text" class="text-center w-50" id="strengthLevel" placeholder="Enter strength"></div>
 					
 					
 
 							<div style="height: 128px; overflow:auto;">
-							<label for="itemName">Boosts</label></br>
+							<label for="itemName">Boosts</label><br>
 							<select name="itemName" class="w-50 text-center">
 								<option>Select boost</option>
 								<option>Strength potion</option>
@@ -215,7 +221,7 @@ if(isset($_SESSION['u_userID'])){
 						
 
 						<div style="height: 128px; overflow:auto;">
-						<label for="attackStyle">Attack Style</label></br>
+						<label for="attackStyle">Attack Style</label><br>
 						<select name="attackStyle" class="w-50 text-center">
 							<option>Select style</option>
 							<option>Accurate</option>
@@ -232,16 +238,16 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
 				<h4>Current Gear</h4>
-					<img src="images/slot_images/Head_slot.png" id="headSlotImage"><span id="headSlot" value="0">None</span><br>
-					<img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><span id="capeSlot" value="0">None</span><br>
-					<img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><span id="neckSlot" value="0">None</span><br>
-					<img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><span id="weaponSlot" value="0">None</span><br>
-					<img src="images/slot_images/Body_slot.png" id="bodySlotImage"><span id="bodySlot" value="0">None</span><br>
-					<img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"><span id="shieldSlot" value="0">None</span><br>
-					<img src="images/slot_images/Legs_slot.png" id="legsSlotImage"><span id="legsSlot" value="0">None</span><br>
-					<img src="images/slot_images/Hands_slot.png" id="handsSlotImage"><span id="handsSlot" value="0">None</span><br>
-					<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><span id="feetSlot" value="0">None</span><br>
-					<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><span id="ringSlot" value="0">None</span><br>
+					<img src="images/slot_images/Head_slot.png" id="headSlotImage"><span id="HeadSlot" value="0">None</span><br>
+					<img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><span id="CapeSlot" value="0">None</span><br>
+					<img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><span id="NeckSlot" value="0">None</span><br>
+					<img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><span id="WeaponSlot" value="0">None</span><br>
+					<img src="images/slot_images/Body_slot.png" id="bodySlotImage"><span id="BodySlot" value="0">None</span><br>
+					<img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"><span id="ShieldSlot" value="0">None</span><br>
+					<img src="images/slot_images/Legs_slot.png" id="legsSlotImage"><span id="LegsSlot" value="0">None</span><br>
+					<img src="images/slot_images/Hands_slot.png" id="handsSlotImage"><span id="HandsSlot" value="0">None</span><br>
+					<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><span id="FeetSlot" value="0">None</span><br>
+					<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><span id="RingSlot" value="0">None</span><br>
 					<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus" value="0">0</p></div>
 			</div>
 			<div class="container text-center"><button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br></div>
@@ -249,6 +255,10 @@ if(isset($_SESSION['u_userID'])){
 
 </div>	
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
@@ -298,9 +308,9 @@ function getRequirements(diary) {
 		});
 	}
 
-function populateSlot(itemSlot) {
+function populateSlot(itemSlot,updateField) {
 	data = {itemSlot: itemSlot};
-	updateField = '#itemSlotField';
+	//updateField = '#itemSlotField';
 		$.ajax({
 			type: "POST",
 			url: "maxHitScripts/getSlotItems.php",
@@ -315,28 +325,30 @@ function populateSlot(itemSlot) {
        				 alert(thrownError);
 			}
 		});
-	showElement('#confirmButton');
-	updateTotalStrength('#headSlot','#capeSlot','#neckSlot','#weaponSlot','#bodySlot','#shieldSlot','#legsSlot','#handsSlot','#feetSlot','#ringSlot');
+	if(itemSlot=='WeaponMenu'){
+
+	}
+	else{
+		showElement('#confirmButton');
+		//updateTotalStrength('#headSlot','#capeSlot','#neckSlot','#weaponSlot','#bodySlot','#shieldSlot','#legsSlot','#handsSlot','#feetSlot','#ringSlot');
+	}
 	}
 
-function updateTotalStrength(headSlot,capeSlot,neckSlot,weaponSlot,bodySlot,shieldSlot,legsSlot,handsSlot,feetSlot,ringSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
-	data = {headSlot: headSlot,capeSlot: capeSlot,neckSlot: neckSlot,weaponSlot: weaponSlot,bodySlot: bodySlot,shieldSlot: shieldSlot,legsSlot: legsSlot,handsSlot: handsSlot,feetSlot: feetSlot,ringSlot: ringSlot};
-	updateField = '#currentStrengthBonus';
-		$.ajax({
-			type: "POST",
-			url: "maxHitScripts/updateTotalStrength.php",
-			data: data,
-			cache: false,
+function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
 
-			success: function(data) {
-			$(updateField).html(data);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				       alert(xhr.status);
-       				 alert(thrownError);
-			}
-		});
+	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
+
+	if(document.getElementById(itemSlot+'Placeholder')){//This slot has already been selected so we need to subtract the prior strength value
+		strengthToSubtract = document.getElementById(itemSlot+'Placeholder').innerHTML;
+		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+		totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 	}
+	else{
+		//alert('It does not exist');
+	}
+	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
+	document.getElementById('currentStrengthBonus').innerHTML=totalStrength;
+}
 
 function addActive(diary){	
 	$('#table'+diary).removeClass('hidden');
@@ -364,11 +376,6 @@ function showElement(element)
 	$(element).show();
 }
 </script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 </html>
