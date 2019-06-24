@@ -6,7 +6,7 @@ function updateSelectedItem()
     $itemSlot = $_POST['itemSlot'];
     $strengthBonus = $_POST['strengthBonus'];
 
-    echo '<br><div id="'.$itemSlot.'Placeholder" value="'.$strengthBonus.'">'.$itemName.': +'.$strengthBonus.'</div>';
+    echo '<div id="'.$itemSlot.'Placeholder" value="'.$strengthBonus.'">'.$itemName.': +'.$strengthBonus.'</div>';
 
 }
 

@@ -16,8 +16,8 @@ if(isset($_POST['itemSlot'])){
 	elseif($itemSlot == 'Head'){
 		echo '<option id="Head">Select item: Head</option>';
 		getStrengthBonus($itemSlot);
-		echo '<option value="0">Slayer helmet</option>';
-		echo '<option value="0">Void melee helm</option>';	
+		echo '<option id="Slayer helmet" value="0">Slayer helmet</option>';
+		echo '<option id="Void melee helm" value="0">Void melee helm</option>';	
 	}
 	elseif($itemSlot == 'Cape'){
 		echo '<option>Select item: Cape</option>';
@@ -25,8 +25,8 @@ if(isset($_POST['itemSlot'])){
 	}
 	elseif($itemSlot == 'Neck'){
 		echo '<option>Select item: Neck</option>';
-		echo '<option value="0">Salve amulet</option>';
-		echo '<option value="0">Salve amulet (e)</option>';
+		echo '<option id="Salve amulet" value="0">Salve amulet</option>';
+		echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
 		getStrengthBonus($itemSlot);
 		
 	}
@@ -125,8 +125,13 @@ echo '</select>';
 		$('#selectOption2').remove();
 	}
 
-	function selectedItemChanges(itemName,strengthBonus,itemSlot) {
-		var updateField = '#'+itemSlot+'Slot';//Need to gray out shield if 2h weapon used
+	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
+		if (itemSlot=='2h-weapon'){
+			var updateField = '#WeaponSlot';
+		}
+		else{
+			var updateField = '#'+itemSlot+'Slot';
+		}
 		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
 			$.ajax({
 				type: "POST",

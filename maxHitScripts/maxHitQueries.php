@@ -40,7 +40,7 @@ function getLevels($username){
 	$username = trim($username);
 
 	//Retrieve Account Data
-	$stmt=$conn->prepare("SELECT ('username','attack','defence','strength','hitpoints','ranged','prayer','magic') FROM level where username = ?"); 
+	$stmt=$conn->prepare("SELECT username,attack,defence,strength,hitpoints,ranged,prayer,magic FROM level where username = ?"); 
 	$stmt->bind_param('s',$username);
 	$stmt->execute();
 	//$result=$stmt->get_result();
@@ -49,9 +49,13 @@ function getLevels($username){
 	while ($stmt->fetch()) {
 		$levels = array('username'=>$username, 'attack'=>$atk, 'defence'=>$def, 'strength'=>$str ,'hitpoints'=>$hp, 'ranged'=>$range, 'prayer'=>$pray ,'magic'=>$mage);
 	}
-
-	return($levels);
+	echo '<input type="text" class="text-center w-75" id="strengthLevel" value="'.$str.'" placeholder="Enter strength">';
+	//return($levels);
 }
 
+if(isset($_POST['characterName'])){
+	$char =($_POST['characterName']);
+	getLevels($char);
+}
 
 ?>

@@ -137,7 +137,7 @@ if(isset($_SESSION['u_userID'])){
 				';
 			}
 			echo'
-			<button type="button" class="btn-primary">Get Strength</button>
+			<button type="button" class="btn-primary" onclick="getCharacterStrength();">Get Strength</button>
 			</div>	
 			';
 		}
@@ -177,18 +177,19 @@ if(isset($_SESSION['u_userID'])){
 
 		</div>
 
-		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-			<div class="container text-center pr-5">
+		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+			<div class="container text-center">
 						
 						<div style="height: 128px; overflow:auto;">
 						<label for="strengthLevel">Strength Level </label><br>
-							<input type="text" class="text-center w-50" id="strengthLevel" placeholder="Enter strength"></div>
-					
+							<div id="strengthLevelDiv">
+							<input type="text" class="text-center w-75" id="strengthLevel" placeholder="Enter strength"></div>
+							</div>
 					
 
 							<div style="height: 128px; overflow:auto;">
 							<label for="itemName">Boosts</label><br>
-							<select name="itemName" class="w-50 text-center">
+							<select name="itemName" class="w-75 text-center">
 								<option>Select boost</option>
 								<option>Strength potion</option>
 								<option>Super strength potion</option>
@@ -207,7 +208,7 @@ if(isset($_SESSION['u_userID'])){
 						
 						<div style="height: 128px; overflow:auto;">
 						<label for="prayer">Prayers</label><br>
-						<select name="prayer" class="w-50 text-center">
+						<select name="prayer" class="w-75 text-center">
 							<option>Select prayer</option>
 							<option>Burst of Strength</option>
 							<option>Superhuman Strength</option>
@@ -222,7 +223,7 @@ if(isset($_SESSION['u_userID'])){
 
 						<div style="height: 128px; overflow:auto;">
 						<label for="attackStyle">Attack Style</label><br>
-						<select name="attackStyle" class="w-50 text-center">
+						<select name="attackStyle" class="w-75 text-center">
 							<option>Select style</option>
 							<option>Accurate</option>
 							<option>Aggressive</option>
@@ -235,22 +236,32 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 		</div>
 
-		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
 			<div class="container-fluid text-center">
 				<h4>Current Gear</h4>
-					<img src="images/slot_images/Head_slot.png" id="headSlotImage"><span id="HeadSlot" value="0">None</span><br>
-					<img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><span id="CapeSlot" value="0">None</span><br>
-					<img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><span id="NeckSlot" value="0">None</span><br>
-					<img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><span id="WeaponSlot" value="0">None</span><br>
-					<img src="images/slot_images/Body_slot.png" id="bodySlotImage"><span id="BodySlot" value="0">None</span><br>
-					<img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"><span id="ShieldSlot" value="0">None</span><br>
-					<img src="images/slot_images/Legs_slot.png" id="legsSlotImage"><span id="LegsSlot" value="0">None</span><br>
-					<img src="images/slot_images/Hands_slot.png" id="handsSlotImage"><span id="HandsSlot" value="0">None</span><br>
-					<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><span id="FeetSlot" value="0">None</span><br>
-					<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><span id="RingSlot" value="0">None</span><br>
-					<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus" value="0">0</p></div>
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<img src="images/slot_images/Head_slot.png" id="headSlotImage"><br><div id="HeadSlot" value="0">None</div><br>
+						<img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><br><div id="CapeSlot" value="0">None</div><br>
+						<img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><br><div id="NeckSlot" value="0">None</div><br>
+						<img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><br><div id="WeaponSlot" value="0">None</div><br>
+						<img src="images/slot_images/Body_slot.png" id="bodySlotImage"><br><div id="BodySlot" value="0">None</div><br>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"><div id="ShieldSlot" value="0">None</div><br>
+						<img src="images/slot_images/Legs_slot.png" id="legsSlotImage"><div id="LegsSlot" value="0">None</div><br>
+						<img src="images/slot_images/Hands_slot.png" id="handsSlotImage"><div id="HandsSlot" value="0">None</div><br>
+						<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><div id="FeetSlot" value="0">None</div><br>
+						<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><div id="RingSlot" value="0">None</div><br>
+					</div>
+				</div>
+				
 			</div>
-			<div class="container text-center"><button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br></div>
+			<div class="container text-center">
+				<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus" value="0">0</p></div>
+				<button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br>
+			</div>
 		</div>
 
 </div>	
@@ -325,18 +336,80 @@ function populateSlot(itemSlot,updateField) {
        				 alert(thrownError);
 			}
 		});
-	if(itemSlot=='WeaponMenu'){
+	}
 
+function getCharacterStrength() {
+	if (document.getElementById('radioChar1').checked) {
+		var characterName = document.getElementById('radioChar1').value;
 	}
-	else{
-		showElement('#confirmButton');
-		//updateTotalStrength('#headSlot','#capeSlot','#neckSlot','#weaponSlot','#bodySlot','#shieldSlot','#legsSlot','#handsSlot','#feetSlot','#ringSlot');
+	else if (document.getElementById('radioChar2').checked) {
+		var characterName = document.getElementById('radioChar2').value;
 	}
+	else if (document.getElementById('radioChar3').checked) {
+		var characterName = document.getElementById('radioChar3').value;
+	}
+	else if (document.getElementById('radioChar4').checked) {
+		var characterName = document.getElementById('radioChar4').value;
+	}
+	
+	data = {characterName: characterName};
+	updateField = '#strengthLevelDiv';
+		$.ajax({
+			type: "POST",
+			url: "maxHitScripts/maxHitQueries.php",
+			data: data,
+			cache: false,
+
+			success: function(data) {
+			$(updateField).html(data);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				       alert(xhr.status);
+       				 alert(thrownError);
+			}
+		});
 	}
 
 function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
-
 	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
+
+	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon cann
+	{
+		if(document.getElementById('WeaponPlaceholder')){
+			strengthToSubtract = document.getElementById('WeaponPlaceholder').innerHTML;
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
+		}
+		if(document.getElementById('ShieldPlaceholder')){
+			subtractShieldBonus = document.getElementById('ShieldPlaceholder').innerHTML;
+			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(subtractShieldBonus);
+		}
+		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
+		$('#ShieldSlot').addClass('text-danger');
+	}
+
+	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
+	{
+		$('#ShieldSlot').removeClass('text-danger');
+		if(document.getElementById('2h-weaponPlaceholder')){
+			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
+			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
+			$('#WeaponSlot').text('None');
+		}
+	}
+	if(itemSlot=='Weapon')
+	{
+		$('#ShieldSlot').removeClass('text-danger');
+		if(document.getElementById('2h-weaponPlaceholder')){
+			strengthToSubtract = document.getElementById('2h-weaponPlaceholder').innerHTML;
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
+			$('#ShieldSlot').text('None');
+		}
+	}
+
 
 	if(document.getElementById(itemSlot+'Placeholder')){//This slot has already been selected so we need to subtract the prior strength value
 		strengthToSubtract = document.getElementById(itemSlot+'Placeholder').innerHTML;
