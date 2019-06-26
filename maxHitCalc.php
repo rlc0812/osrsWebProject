@@ -177,64 +177,6 @@ if(isset($_SESSION['u_userID'])){
 
 		</div>
 
-		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
-			<div class="container text-center">
-						
-						<div style="height: 128px; overflow:auto;">
-						<label for="strengthLevel">Strength Level </label><br>
-							<div id="strengthLevelDiv">
-							<input type="text" class="text-center w-75" id="strengthLevel" placeholder="Enter strength"></div>
-							</div>
-					
-
-							<div style="height: 128px; overflow:auto;">
-							<label for="itemName">Boosts</label><br>
-							<select name="itemName" class="w-75 text-center">
-								<option>Select boost</option>
-								<option>Strength potion</option>
-								<option>Super strength potion</option>
-								<option>Dragon battleaxe special</option>
-								<option>Combat potion</option>
-								<option>Super combat potion</option>
-								<option>Zamorak brew</option>
-								<option>Dragon battleaxe special</option>
-								<option>Overload potion(-)</option>
-								<option>Overload potion</option>
-								<option>Overload potion(+)</option>
-							</select><br></div>
-						
-					
-					
-						
-						<div style="height: 128px; overflow:auto;">
-						<label for="prayer">Prayers</label><br>
-						<select name="prayer" class="w-75 text-center">
-							<option>Select prayer</option>
-							<option>Burst of Strength</option>
-							<option>Superhuman Strength</option>
-							<option>Ultimate Strength</option>
-							<option>Chivalry</option>
-							<option>Piety</option>
-						</select><br></div>
-						
-					
-					
-						
-
-						<div style="height: 128px; overflow:auto;">
-						<label for="attackStyle">Attack Style</label><br>
-						<select name="attackStyle" class="w-75 text-center">
-							<option>Select style</option>
-							<option>Accurate</option>
-							<option>Aggressive</option>
-							<option>Controlled</option>
-							<option>Defensive</option>
-						</select><br></div>
-						
-					
-			
-			</div>
-		</div>
 
 		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
 
@@ -260,10 +202,72 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 			<div class="container text-center">
 				<div class="mt-1"><p class="d-inline">Current strength bonus: </p><p class="d-inline text-danger" id="currentStrengthBonus" value="0">0</p></div>
-				<button type="button" class= "btn-primary pl-5 pr-5">Calculate hit!</button><br>
+				<button type="button" class= "btn-primary pl-5 pr-5" onclick="calculateMaxHit();">Calculate hit!</button><br>
 			</div>
 		</div>
 
+		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+			<div class="container text-center">
+						
+						<div style="height: 128px; overflow:auto;">
+						<label for="strengthLevel">Strength Level </label><br>
+							<div id="strengthLevelDiv">
+							<input type="text" class="text-center w-75" id="strengthLevel" placeholder="Enter strength"></div>
+							<div class="text-danger" id="strengthLevelMessage"></div>
+							</div>
+					
+
+							<div style="height: 128px; overflow:auto;">
+							<label for="itemName">Boosts</label><br>
+							<select name="itemName" id="boost" class="w-75 text-center">
+								<option>Select boost</option>
+								<option>Strength potion</option>
+								<option>Super strength potion</option>
+								<option>Dragon battleaxe special</option>
+								<option>Combat potion</option>
+								<option>Super combat potion</option>
+								<option>Zamorak brew</option>
+								<option>Dragon battleaxe special</option>
+								<option>Overload potion(-)</option>
+								<option>Overload potion</option>
+								<option>Overload potion(+)</option>
+							</select><br></div>
+						
+					
+					
+						
+						<div style="height: 128px; overflow:auto;">
+						<label for="prayer">Prayers</label><br>
+						<select name="prayer" id="prayer" class="w-75 text-center">
+							<option>Select prayer</option>
+							<option>Burst of Strength</option>
+							<option>Superhuman Strength</option>
+							<option>Ultimate Strength</option>
+							<option>Chivalry</option>
+							<option>Piety</option>
+						</select><br></div>
+						
+					
+					
+						
+
+						<div style="height: 128px; overflow:auto;">
+						<label for="attackStyle">Attack Style</label><br>
+						<select name="attackStyle" id="attackStyle" class="w-75 text-center">
+							<option>Select style</option>
+							<option>Accurate</option>
+							<option>Aggressive</option>
+							<option>Controlled</option>
+							<option>Defensive</option>
+						</select>
+						<br>
+						<div class="text-danger hidden" id="attackStyleMessage">Please select an attack style</div>
+						</div>
+						
+					
+			
+			</div>
+		</div>
 </div>	
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -370,10 +374,87 @@ function getCharacterStrength() {
 		});
 	}
 
+function calculateMaxHit(){
+
+	strengthBonus = document.getElementById('currentStrengthBonus').innerHTML;
+	strengthLevel = document.getElementById('strengthLevel').value;
+	boost = document.getElementById('boost').value;
+	prayer = document.getElementById('prayer').value;
+	attackStyle = document.getElementById('attackStyle').value;
+
+	strengthLevelBool = false;
+	attackStyleBool = false;
+
+	if(strengthLevel==''){
+		document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
+	}
+	else
+	{
+		if(isNaN(strengthLevel)){
+			document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
+		}	
+		else
+		{
+			if((strengthLevel > 0)&&(strengthLevel < 100)){//Valid Strength level
+				document.getElementById('strengthLevelMessage').innerHTML = "";
+				strengthLevelBool = true;
+			}
+			else{
+				document.getElementById('strengthLevelMessage').innerHTML = 'Strength must be between 1-99';
+			}
+		}
+	}
+
+	//Calculate potion bonus
+	if(boost=="Select boost"){
+	
+	}
+	else if((boost=="Strength potion")||(boost=="Combat potion")){
+
+	}
+	else if((boost=="Super strength potion")||(boost=="Super combat potion")){
+
+	}
+	else if(boost=="Dragon battleaxe special"){
+
+	}
+	else if(boost=="Zamorak brew"){
+
+	}
+	else if(boost=="Overload potion(-)"){
+
+	}
+	else if(boost=="Overload potion"){
+
+	}
+	else if(boost=="Overload potion(+)"){
+
+	}
+
+
+	if(attackStyle =="Select style"){
+		$('#attackStyleMessage').removeClass('hidden');
+	}
+	else{
+		$('#attackStyleMessage').addClass('hidden');
+		attackStyleBool = true;
+	}
+
+	if((attackStyleBool)&&(strengthLevelBool))//Good to calculate the max hit
+	{
+		//Calculate effective strength
+		effectiveStrength = (strengthLevel+)
+		//Calculate the base damage
+
+		//Calculate bonus damage
+	}
+
+}
+
 function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
 	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
 
-	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon cann
+	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon
 	{
 		if(document.getElementById('WeaponPlaceholder')){
 			strengthToSubtract = document.getElementById('WeaponPlaceholder').innerHTML;
