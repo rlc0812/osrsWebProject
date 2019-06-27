@@ -223,13 +223,13 @@ if(isset($_SESSION['u_userID'])){
 								<option>Select boost</option>
 								<option>Strength potion</option>
 								<option>Super strength potion</option>
-								<option>Dragon battleaxe special</option>
 								<option>Combat potion</option>
 								<option>Super combat potion</option>
 								<option>Zamorak brew</option>
 								<option>Dragon battleaxe special</option>
+								<option>Overload potion(Nightmare Zone)</option>
 								<option>Overload potion(-)</option>
-								<option>Overload potion</option>
+								<option>Overload potion(Chambers of Xeric)</option>
 								<option>Overload potion(+)</option>
 							</select><br></div>
 						
@@ -398,39 +398,39 @@ function calculateMaxHit(){
 			if((strengthLevel > 0)&&(strengthLevel < 100)){//Valid Strength level
 				document.getElementById('strengthLevelMessage').innerHTML = "";
 				strengthLevelBool = true;
+
+				//Calculate potion bonus
+					if(boost=="Select boost"){
+						boost = parseFloat(0);
+					}
+					else if((boost=="Strength potion")||(boost=="Combat potion")){
+						boost = parseFloat(strengthLevel*0.10)+parseFloat(3);
+					}
+					else if((boost=="Super strength potion")||(boost=="Super combat potion")||(boost=="Overload potion(Nightmare Zone)")){
+						boost = parseFloat(strengthLevel*0.15)+parseFloat(5);
+					}
+					else if(boost=="Zamorak brew"){
+						boost = parseFloat(strengthLevel*0.12)+parseFloat(2);
+					}
+					else if(boost=="Overload potion(-)"){
+						boost = parseFloat(strengthLevel*0.10)+parseFloat(4);
+					}
+					else if(boost=="Overload potion(Chambers of Xeric)"){
+						boost = parseFloat(strengthLevel*0.13)+parseFloat(5);
+					}
+					else if(boost=="Overload potion(+)"){
+						boost = parseFloat(strengthLevel*0.16)+parseFloat(6);
+					}
+					alert('Boost is: '+ boost);
+					boost = Math.floor(boost);
+					alert('Boost is: '+ boost);
+
 			}
 			else{
 				document.getElementById('strengthLevelMessage').innerHTML = 'Strength must be between 1-99';
 			}
 		}
 	}
-
-	//Calculate potion bonus
-	if(boost=="Select boost"){
-	
-	}
-	else if((boost=="Strength potion")||(boost=="Combat potion")){
-
-	}
-	else if((boost=="Super strength potion")||(boost=="Super combat potion")){
-
-	}
-	else if(boost=="Dragon battleaxe special"){
-
-	}
-	else if(boost=="Zamorak brew"){
-
-	}
-	else if(boost=="Overload potion(-)"){
-
-	}
-	else if(boost=="Overload potion"){
-
-	}
-	else if(boost=="Overload potion(+)"){
-
-	}
-
 
 	if(attackStyle =="Select style"){
 		$('#attackStyleMessage').removeClass('hidden');
@@ -443,7 +443,8 @@ function calculateMaxHit(){
 	if((attackStyleBool)&&(strengthLevelBool))//Good to calculate the max hit
 	{
 		//Calculate effective strength
-		effectiveStrength = (strengthLevel+)
+		effectiveStrength = (strengthLevel+boost);
+		
 		//Calculate the base damage
 
 		//Calculate bonus damage
