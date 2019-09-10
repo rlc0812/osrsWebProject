@@ -3,68 +3,68 @@ if(isset($_POST['itemSlot'])){
 	include ('getItemStrength.php');
 	$itemSlot = $_POST['itemSlot'];
 	if ($itemSlot == 'WeaponMenu'){
-		echo '<select class="w-60" id="selectOption1">';
+		echo '<div class="container-fluid w-60">';
+			echo '<input type="radio" value="Weapon" name="selectOption1">One handed weapon ';
+			echo '<input type="radio" value="Two_handed_weapon" name="selectOption1">Two handed weapon';
+			echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
+		echo '</div>';
 	}
 	else{
 		echo '<select class="w-60" id="selectOption2">';
-	}
-	if($itemSlot == 'WeaponMenu'){
-		echo '<option>Select: Weapon type</option>';
-		echo '<option value="Weapon">Single handed weapon</option>';
-		echo '<option value="Two_handed_weapon">Two handed weapon</option>';
-	}
-	elseif($itemSlot == 'Head'){
-		echo '<option id="Head">Select item: Head</option>';
-		getStrengthBonus($itemSlot);
-		echo '<option id="Slayer helmet" value="0">Slayer helmet</option>';
-		echo '<option id="Void melee helm" value="0">Void melee helm</option>';	
-	}
-	elseif($itemSlot == 'Cape'){
-		echo '<option>Select item: Cape</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Neck'){
-		echo '<option>Select item: Neck</option>';
-		echo '<option id="Salve amulet" value="0">Salve amulet</option>';
-		echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
-		getStrengthBonus($itemSlot);
-		
-	}
-	elseif($itemSlot == 'Weapon'){
-		echo '<option>Select item: Weapon</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Two_handed_weapon'){
-		echo '<option>Select item: 2h-weapon</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Body'){
-		echo '<option>Select item: Body</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Shield'){
-		echo '<option>Select item: Shield</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Legs'){
-		echo '<option>Select item: Legs</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Hands'){
-		echo '<option>Select item: Hands</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Feet'){
-		echo '<option>Select item: Feet</option>';
-		getStrengthBonus($itemSlot);
-	}
-	elseif($itemSlot == 'Ring'){
-		echo '<option>Select item: Ring</option>';
-		getStrengthBonus($itemSlot);
+		if($itemSlot == 'Head'){
+			echo '<option id="Head">Select item: Head</option>';
+			getStrengthBonus($itemSlot);
+			echo '<option id="Slayer helmet" value="0">Slayer helmet</option>';
+			echo '<option id="Void melee helm" value="0">Void melee helm</option>';	
+		}
+		elseif($itemSlot == 'Cape'){
+			echo '<option>Select item: Cape</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Neck'){
+			echo '<option>Select item: Neck</option>';
+			echo '<option id="Salve amulet" value="0">Salve amulet</option>';
+			echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
+			getStrengthBonus($itemSlot);
+			
+		}
+		elseif($itemSlot == 'Weapon'){
+			echo '<option>Select item: Weapon</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Two_handed_weapon'){
+			echo '<option>Select item: 2h-weapon</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Body'){
+			echo '<option>Select item: Body</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Shield'){
+			echo '<option>Select item: Shield</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Legs'){
+			echo '<option>Select item: Legs</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Hands'){
+			echo '<option>Select item: Hands</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Feet'){
+			echo '<option>Select item: Feet</option>';
+			getStrengthBonus($itemSlot);
+		}
+		elseif($itemSlot == 'Ring'){
+			echo '<option>Select item: Ring</option>';
+			getStrengthBonus($itemSlot);
+		}
+
+	echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
+	echo '</select>';
 	}
 }
-echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
-echo '</select>';
 //For each slot will make a mysql query where strength > 0 and display all options in dropdown with value as the strength bonus so that we can get the str bonus by value getElementById('').value;
 
 
@@ -75,7 +75,7 @@ echo '</select>';
 
 	$(document).ready(function () {
 		$(function(){
-			$("#selectOption1").change(function () {
+			$('input[type=radio][name=selectOption1]').change(function () {
 				var slot = this.value;
 				if(slot==='Weapon'){
 					populateSlot(slot,'#selectMenu2');

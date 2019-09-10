@@ -88,7 +88,7 @@ if(isset($_SESSION['u_userID'])){
 	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
 }
 ?>
-<h1 class="pt-1 text-center">Max Hit Calculator</h1>
+<h2 class="pt-3 text-center">Max Hit Calculator</h2>
 <?php
 if(isset($_SESSION['u_userID'])){
 	include('maxHitScripts/maxHitQueries.php');
@@ -146,22 +146,19 @@ if(isset($_SESSION['u_userID'])){
 
 </div>
 </div>
-<div class="container blueBg border border-dark mt-5 p-2">
+<div class="container blueBg border border-dark mt-3 mb-5 p-2">
 	<div class="row pt-5">
 		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
 			
 
 
-			<h4 class="mr-3">Click images to select an Item Slot</h4>
-			<div name="itemSlotField" id="itemSlotField" class="mr-3">
-			</div>
-			<div id="selectMenu2" name="selectMenu2" class="mr-3 w-60"></div>
+			<h4 class="mr-3">Click images to select item</h4>
 
-			<!--<button class="btn-primary hidden pt-0 mt-1 mr-2 mb-4" id="confirmButton">Confirm</button><br>-->
+
 				<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 				<map name="equipmentMap">
-					<area shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');">
+					<area shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');" id="headMap">
 					<area shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape','#itemSlotField');">
 					<area shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck','#itemSlotField');">
 					<area shape="rect" coords="194,78,262,146" alt="Ammunition">
@@ -174,7 +171,11 @@ if(isset($_SESSION['u_userID'])){
 					<area shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring','#itemSlotField');">
 				</map>
 			</div>
-
+			<div class="container-fluid text-center">
+				<div name="itemSlotField" id="itemSlotField" class="mr-3">
+				</div>
+				<div id="selectMenu2" name="selectMenu2" class="mr-3"></div>
+			</div>
 		</div>
 
 
@@ -220,13 +221,12 @@ if(isset($_SESSION['u_userID'])){
 							<div style="height: 128px; overflow:auto;">
 							<label for="itemName">Boosts</label><br>
 							<select name="itemName" id="boost" class="w-75 text-center">
-								<option>Select boost</option>
+								<option>None</option>
 								<option>Strength potion</option>
 								<option>Super strength potion</option>
 								<option>Combat potion</option>
 								<option>Super combat potion</option>
 								<option>Zamorak brew</option>
-								<option>Dragon battleaxe special</option>
 								<option>Overload potion(Nightmare Zone)</option>
 								<option>Overload potion(-)</option>
 								<option>Overload potion(Chambers of Xeric)</option>
@@ -239,7 +239,7 @@ if(isset($_SESSION['u_userID'])){
 						<div style="height: 128px; overflow:auto;">
 						<label for="prayer">Prayers</label><br>
 						<select name="prayer" id="prayer" class="w-75 text-center">
-							<option>Select prayer</option>
+							<option>None</option>
 							<option>Burst of Strength</option>
 							<option>Superhuman Strength</option>
 							<option>Ultimate Strength</option>
@@ -376,14 +376,15 @@ function getCharacterStrength() {
 
 function calculateMaxHit(){
 
-	strengthBonus = document.getElementById('currentStrengthBonus').innerHTML;
-	strengthLevel = document.getElementById('strengthLevel').value;
+	strengthBonus = parseInt(document.getElementById('currentStrengthBonus').innerHTML);
+	strengthLevel = parseInt(document.getElementById('strengthLevel').value);
 	boost = document.getElementById('boost').value;
 	prayer = document.getElementById('prayer').value;
 	attackStyle = document.getElementById('attackStyle').value;
-
+	setBonus = parseFloat('1.00');
 	strengthLevelBool = false;
 	attackStyleBool = false;
+	specialAttack = parseFloat('1.00');
 
 	if(strengthLevel==''){
 		document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
@@ -398,33 +399,6 @@ function calculateMaxHit(){
 			if((strengthLevel > 0)&&(strengthLevel < 100)){//Valid Strength level
 				document.getElementById('strengthLevelMessage').innerHTML = "";
 				strengthLevelBool = true;
-
-				//Calculate potion bonus
-					if(boost=="Select boost"){
-						boost = parseFloat(0);
-					}
-					else if((boost=="Strength potion")||(boost=="Combat potion")){
-						boost = parseFloat(strengthLevel*0.10)+parseFloat(3);
-					}
-					else if((boost=="Super strength potion")||(boost=="Super combat potion")||(boost=="Overload potion(Nightmare Zone)")){
-						boost = parseFloat(strengthLevel*0.15)+parseFloat(5);
-					}
-					else if(boost=="Zamorak brew"){
-						boost = parseFloat(strengthLevel*0.12)+parseFloat(2);
-					}
-					else if(boost=="Overload potion(-)"){
-						boost = parseFloat(strengthLevel*0.10)+parseFloat(4);
-					}
-					else if(boost=="Overload potion(Chambers of Xeric)"){
-						boost = parseFloat(strengthLevel*0.13)+parseFloat(5);
-					}
-					else if(boost=="Overload potion(+)"){
-						boost = parseFloat(strengthLevel*0.16)+parseFloat(6);
-					}
-					alert('Boost is: '+ boost);
-					boost = Math.floor(boost);
-					alert('Boost is: '+ boost);
-
 			}
 			else{
 				document.getElementById('strengthLevelMessage').innerHTML = 'Strength must be between 1-99';
@@ -438,16 +412,83 @@ function calculateMaxHit(){
 	else{
 		$('#attackStyleMessage').addClass('hidden');
 		attackStyleBool = true;
+		
 	}
 
 	if((attackStyleBool)&&(strengthLevelBool))//Good to calculate the max hit
-	{
-		//Calculate effective strength
-		effectiveStrength = (strengthLevel+boost);
-		
-		//Calculate the base damage
+	{		
+		//Calculate potion bonus
+		if(boost=="None"){
+			boost = parseFloat('0.00');
+		}
+		else if((boost=="Strength potion")||(boost=="Combat potion")){
+			boost = parseFloat(strengthLevel*0.10)+parseFloat(3);
+		}
+		else if((boost=="Super strength potion")||(boost=="Super combat potion")||(boost=="Overload potion(Nightmare Zone)")){
+			boost = parseFloat(strengthLevel*0.15)+parseFloat(5);
+		}
+		else if(boost=="Zamorak brew"){
+		boost = parseFloat(strengthLevel*0.12)+parseFloat(2);
+		}
+		else if(boost=="Overload potion(-)"){
+			boost = parseFloat(strengthLevel*0.10)+parseFloat(4);
+		}
+		else if(boost=="Overload potion(Chambers of Xeric)"){
+			boost = parseFloat(strengthLevel*0.13)+parseFloat(5);
+		}
+		else if(boost=="Overload potion(+)"){
+			boost = parseFloat(strengthLevel*0.16)+parseFloat(6);
+		}
+		//alert('Boost is: '+ boost);
+			boost = parseInt(Math.floor(boost));
+		//alert('Rounded down boost is: '+ boost);
 
-		//Calculate bonus damage
+		switch(attackStyle){//Convert attackStyle to integer value
+			case 'Accurate':
+			attackStyle = parseInt('0');
+			break;
+			case 'Aggressive':
+			attackStyle = parseInt('3');
+			break;
+			case 'Controlled':
+			attackStyle = parseInt('1');
+			break;
+			case 'Defensive':
+			attackStyle = parseInt('0');
+			break;
+		}
+
+		switch(prayer){//Convert prayer bonus to integer value
+			case 'None':
+			prayer = parseFloat('1.00');
+			break;
+			case 'Burst of Strength':
+			prayer = parseFloat('1.05');
+			break;
+			case 'Superhuman Strength':
+			prayer = parseFloat('1.10');
+			break;
+			case 'Ultimate Strength':
+			prayer = parseFloat('1.15');
+			break;
+			case 'Chivalry':
+			prayer = parseFloat('1.18');
+			break;
+			case 'Piety':
+			prayer = parseFloat('1.23');
+			break;
+		}		
+
+		//Calculate effective strength
+		effectiveStrength = parseFloat(Math.floor((strengthLevel+boost)*prayer*setBonus)+attackStyle);
+		alert('EffectiveStrength:'+effectiveStrength);
+		//Calculate the base damage
+		baseDamage= 1.3+(effectiveStrength/10)+(strengthBonus/80)+((effectiveStrength*strengthBonus)/640);
+		
+		maxHit= Math.floor(baseDamage);
+		alert(maxHit);
+		//Calculate bonus damage if using as special attack
+		//maxHit = Math.floor(baseDamage*specialAttack);
 	}
 
 }
@@ -502,7 +543,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 		//alert('It does not exist');
 	}
 	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
-	document.getElementById('currentStrengthBonus').innerHTML=totalStrength;
+	document.getElementById('currentStrengthBonus').innerHTML=totalStrength; 
 }
 
 function addActive(diary){	
