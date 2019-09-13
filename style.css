@@ -1,3 +1,23 @@
+/*For max hit icon on maxHitCalc page*/
+.icon{
+	position: relative;
+	width: 40px;
+	bottom: 3px;
+}
+
+.maxHitText1Digit{
+	position: relative;
+	right: 29px;
+	bottom: 2px;
+}
+
+.maxHitText2Digit{
+	position: relative;
+	right: 34px;
+	bottom: 2px;
+}
+/**************************************/
+
 .no-border {
     border: 0;
     box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
