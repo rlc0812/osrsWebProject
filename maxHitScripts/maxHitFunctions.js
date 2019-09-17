@@ -209,7 +209,18 @@ function calculateMaxHit(){
 		document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
 		//Calculate bonus damage if using as special attack
 		//maxHit = Math.floor(baseDamage*specialAttack);
+
+		if(maxHit>=10){
+			$('#currentMaxHit').removeClass('maxHitText1Digit');
+			$('#currentMaxHit').addClass('maxHitText2Digit');
+		}
+		else{
+			$('#currentMaxHit').removeClass('maxHitText2Digit');
+			$('#currentMaxHit').addClass('maxHitText1Digit');
+		}
+		showElement('#maxHit');
 	}
+	
 
 }
 

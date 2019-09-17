@@ -146,7 +146,7 @@ if(isset($_SESSION['u_userID'])){
 
 </div>
 </div>
-<div class="container blueBg border border-dark mt-3 mb-5 p-2">
+<div class="container blueBg border border-dark mt-3 mb-3">
 	<div class="row pt-5">
 		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
 			<div class="container-fluid text-center">
@@ -263,24 +263,24 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 		</div>
 
-	<div class="container-fluid pt-5 pb-3 border-top">
+	<div class="container border-top border-dark p-4">
 		<div class="row">
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="container text-center">
+				<div class="container-fluid text-center h-100 justify-content-center">
 					<div>
-						<p class="d-inline">Total strength bonus: </p>
-						<div class="d-inline text-danger" id="currentStrengthBonus" value="0">0</div>
+						<h3 class="d-inline">Total strength bonus: </h3>
+						<h3 class="d-inline text-danger" id="currentStrengthBonus" value="0">0</h3>
 					</div>
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="container text-center">
+				<div class="container-fluid text-center">
 						<button type="button" class= "btn-primary pl-5 pr-5 pt-2 pb-2" onclick="calculateMaxHit();">Calculate hit!</button><br>
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="container text-center">
-						<div>
+				<div class="container-fluid text-center">
+						<div class="hidden" id="maxHit">
 						<h3 class="d-inline">Max melee hit:</h3> 
 						<img class="icon" src="images/Red_hitsplat.png">
 						<div class="d-inline maxHitText1Digit text-light" id="currentMaxHit">1</div>
