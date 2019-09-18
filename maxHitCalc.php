@@ -285,6 +285,9 @@ if(isset($_SESSION['u_userID'])){
 						<img class="icon" src="images/Red_hitsplat.png">
 						<div class="d-inline maxHitText1Digit text-light" id="currentMaxHit">1</div>
 						</div>
+
+						<div id="maxHitSpec">
+						</div>
 				</div>
 			</div>
 

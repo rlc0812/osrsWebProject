@@ -12,7 +12,7 @@ function getStrengthBonus($itemSlot){
     $stmt->execute();
     $stmt->bind_result($itemName,$itemSlot,$meleeStrength);
 
-	while ($stmt->fetch()) {
+    while ($stmt->fetch()) {
         $itemName = str_replace('_',' ',$itemName);
         echo '<option id="'.$itemName.'" value="'.$meleeStrength.'">'.$itemName.'</option>';
     }

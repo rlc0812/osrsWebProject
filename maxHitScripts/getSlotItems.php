@@ -13,6 +13,7 @@ if(isset($_POST['itemSlot'])){
 		echo '<select class="w-60" id="selectOption2">';
 		if($itemSlot == 'Head'){
 			echo '<option id="Head">Select item: Head</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 			echo '<option id="Slayer helmet" value="0">Slayer helmet</option>';
 			echo '<option id="Void melee helm" value="0">Void melee helm</option>';	

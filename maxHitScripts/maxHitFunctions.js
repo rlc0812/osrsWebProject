@@ -95,6 +95,24 @@ function getCharacterStrength() {
 		});
 	}
 
+function getSpecialAttack(weapon,maxHit) {
+	data = {weapon: weapon, maxHit : maxHit};
+		$.ajax({
+			type: "POST",
+			url: "maxHitScripts/specialAttacks.php",
+			data: data,
+			cache: false,
+
+			success: function(data) {
+			$('#maxHitSpec').html(data);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				       alert(xhr.status);
+       				 alert(thrownError);
+			}
+		});
+	}
+
 function calculateMaxHit(){
 
 	strengthBonus = parseInt(document.getElementById('currentStrengthBonus').innerHTML);
@@ -207,8 +225,6 @@ function calculateMaxHit(){
 		baseDamage= 1.3+(effectiveStrength/10)+(strengthBonus/80)+((effectiveStrength*strengthBonus)/640);
 		maxHit= Math.floor(baseDamage);
 		document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
-		//Calculate bonus damage if using as special attack
-		//maxHit = Math.floor(baseDamage*specialAttack);
 
 		if(maxHit>=10){
 			$('#currentMaxHit').removeClass('maxHitText1Digit');
@@ -221,6 +237,14 @@ function calculateMaxHit(){
 		showElement('#maxHit');
 	}
 	
+	if($('#WeaponPlaceholder').length == 0){//Calculate special attack max hit
+		alert('there is no weapon');
+	}
+	else{
+		var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
+		weapon= weapon.substr(0, weapon.indexOf(':'));
+		getSpecialAttack(weapon,maxHit);
+	}
 
 }
 
