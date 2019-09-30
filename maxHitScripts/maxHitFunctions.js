@@ -61,6 +61,8 @@ function populateSlot(itemSlot,updateField) {
        				 alert(thrownError);
 			}
 		});
+		$('#maxHitSpec').hide();
+		$('#maxHitSpec').hide();
 	}
 
 function getCharacterStrength() {
@@ -95,8 +97,8 @@ function getCharacterStrength() {
 		});
 	}
 
-function getSpecialAttack(weapon,maxHit) {
-	data = {weapon: weapon, maxHit : maxHit};
+function getSpecialAttack(weapon,maxHit,prayerMissing) {
+	data = {weapon: weapon, maxHit : maxHit, prayerMissing : prayerMissing};
 		$.ajax({
 			type: "POST",
 			url: "maxHitScripts/specialAttacks.php",
@@ -124,6 +126,7 @@ function calculateMaxHit(){
 	strengthLevelBool = false;
 	attackStyleBool = false;
 	specialAttack = parseFloat('1.00');
+	prayerMissing = document.getElementById('prayerMissing').value;	
 
 	if(strengthLevel==''){
 		document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
@@ -235,15 +238,21 @@ function calculateMaxHit(){
 			$('#currentMaxHit').addClass('maxHitText1Digit');
 		}
 		showElement('#maxHit');
+		showElement('#maxHitSpec');
 	}
 	
-	if($('#WeaponPlaceholder').length == 0){//Calculate special attack max hit
-		alert('there is no weapon');
+	if(($('#WeaponPlaceholder').length == 0)&&($('#2h-weaponPlaceholder').length == 0)){//Calculate special attack max hit
+		//alert('there is no weapon');
 	}
 	else{
-		var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
+		if($('#WeaponPlaceholder').length > 0){
+			var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
+		}
+		if($('#2h-weaponPlaceholder').length > 0){
+			var weapon=document.getElementById('2h-weaponPlaceholder').innerHTML;
+		}
 		weapon= weapon.substr(0, weapon.indexOf(':'));
-		getSpecialAttack(weapon,maxHit);
+		getSpecialAttack(weapon,maxHit,prayerMissing);
 	}
 
 }
@@ -265,6 +274,8 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 		}
 		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
 		$('#ShieldSlot').addClass('text-danger');
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
 	}
 
 	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
@@ -276,6 +287,8 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
 			$('#WeaponSlot').text('None');
 		}
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
 	}
 	if(itemSlot=='Weapon')
 	{
@@ -286,6 +299,8 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 			$('#ShieldSlot').text('None');
 		}
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
 	}
 
 

@@ -235,7 +235,12 @@ if(isset($_SESSION['u_userID'])){
 						<div class="text-danger hidden" id="attackStyleMessage">Please select an attack style</div>
 						</div>
 						
-					
+						<div id="prayerDiv" class="hidden" style="height: 128px; overflow:auto;">
+						<label for="prayerMissing">Prayer Missing </label><br>
+							<div id="strengthLevelDiv">
+							<input type="text" class="text-center w-75" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
+							<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
+							</div>
 			
 			</div>
 		</div>
@@ -259,6 +264,7 @@ if(isset($_SESSION['u_userID'])){
 						<img src="images/slot_images/Feet_slot.png" id="feetSlotImage"><div id="FeetSlot" value="0">None</div><br>
 						<img src="images/slot_images/Ring_slot.png" id="ringSlotImage"><div id="RingSlot" value="0">None</div><br>
 					</div>
+
 				</div>
 			</div>
 		</div>

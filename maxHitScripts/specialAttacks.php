@@ -105,25 +105,116 @@
 	$spec=array("specialName"=>"Spear Wall","energyCost"=>"50","description"=>"An attack that damages up to 16 targets within 8 tiles surrounding the player. Outside of multicombat zones, only one target is damaged. In addition, the user becomes immune to melee attacks for 8 ticks (4.8 seconds).","damageIncrease"=>"1.00");
 	$specialAttack["Vesta's spear"]=$spec;
 
+/*if (isset($_POST['weapon'], $_POST['maxHit'])){
+
+	$weapon = $_POST['weapon'];
+	$maxHit = $_POST['maxHit'];
+	$prayerMissing = $_POST['prayerMissing'];
+
+	if(array_key_exists($weapon,$specialAttack)){
+
+		if($weapon=='Abyssal bludgeon'){//Special cases
+			if((!(is_numeric($prayerMissing))) || ($prayerMissing < 0) || ($prayerMissing=='')){
+				$prayerMissing=0;
+			}		
+			if($prayerMissing > 99){
+				$prayerMissing=99;
+			}
+			echo 'Missing <div class="text-danger d-inline">'.$prayerMissing.'</div> prayer points.</br>';
+			$maxHit=floor($maxHit*(1.00+(0.005*$prayerMissing)));
+			echo '<h3 id="currentSpec" class="d-inline">'.$specialAttack[$weapon]["specialName"].':</h3>
+			<img class="icon" src="images/Red_hitsplat.png">';
+			if($maxHit<='10'){
+				echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			}
+			else{
+				echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			}
+		}
+		//elseif($weapon=='Dragon dagger'){
+			
+		//}
+		else{
+			$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
+			echo '<h3 id="currentSpec" class="d-inline">'.$specialAttack[$weapon]["specialName"].':</h3>
+			<img class="icon" src="images/Red_hitsplat.png">';
+			if($maxHit<='10'){
+				echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			}
+			else{
+				echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			}
+		}
+
+	}
+	else{
+		echo 'This weapon has no special attack';
+	}
+	
+}*/
 if (isset($_POST['weapon'], $_POST['maxHit'])){
 
 	$weapon = $_POST['weapon'];
 	$maxHit = $_POST['maxHit'];
+	$prayerMissing = $_POST['prayerMissing'];
+	$specName = $specialAttack[$weapon]["specialName"];
 	if(array_key_exists($weapon,$specialAttack)){
-		$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
-		echo '<h3 id="currentSpec" class="d-inline">'.$specialAttack[$weapon]["specialName"].' max hit:</h3>
-		<img class="icon" src="images/Red_hitsplat.png">';
-		if($maxHit<=10){
-			echo '<div class="d-inline maxHitText1Digit text-light" id="currentMaxHitSpec">'.$maxHit.'</div>';
+
+		if($weapon=='Abyssal bludgeon'){//Special cases
+			if((!(is_numeric($prayerMissing))) || ($prayerMissing < 0) || ($prayerMissing=='')){
+				$prayerMissing=0;
+			}		
+			if($prayerMissing > 99){
+				$prayerMissing=99;
+			}
+			echo 'Missing <div class="text-danger d-inline">'.$prayerMissing.'</div> prayer points.</br>';
+			$maxHit=floor($maxHit*(1.00+(0.005*$prayerMissing)));
+			displayHit($maxHit,$specName,'normal');
+		}
+		elseif($weapon=='Dragon dagger'){
+			$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
+			displayHit($maxHit,$specName,$weapon);
+
 		}
 		else{
-			echo '<div class="d-inline maxHitText2Digit text-light" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
+			displayHit($maxHit,$specName,'normal');
 		}
+
 	}
 	else{
 		echo 'This weapon has no special attack';
 	}
 	
 }
+
+function displayHit($maxHit,$specName,$weapon){
+	echo '<h3 id="currentSpec" class="d-inline">'.$specName.':</h3>';
+	if($weapon=='normal'){
+		echo' <img class="icon" src="images/Red_hitsplat.png">';
+		if($maxHit<='10'){
+			echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+		}
+		else{
+			echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+		}
+	}
+	if($weapon=='Dragon dagger'){
+		echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">';
+		echo' <img class="icon" src="images/Red_hitsplat.png">';
+		if($maxHit<='10'){
+echo $maxHit;
+			echo' <img class="icon" src="images/Red_hitsplat.png">';
+			echo $maxHit.'</div>';
+		}
+		else{
+			echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+			echo' <img class="icon" src="images/Red_hitsplat.png">';
+			echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+		}
+	}
+
+}
+
 
 ?>

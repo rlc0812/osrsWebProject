@@ -4,7 +4,7 @@ if(isset($_POST['itemSlot'])){
 	$itemSlot = $_POST['itemSlot'];
 	if ($itemSlot == 'WeaponMenu'){
 		echo '<div class="container-fluid w-60">';
-			echo '<input type="radio" value="Weapon" name="selectOption1">One handed weapon ';
+			echo '<input type="radio" value="Weapon" name="selectOption1">One handed weapon </br>';
 			echo '<input type="radio" value="Two_handed_weapon" name="selectOption1">Two handed weapon';
 			echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
 		echo '</div>';
@@ -95,13 +95,12 @@ if(isset($_POST['itemSlot'])){
 				var itemName = $(this).children(":selected").attr("id");
 				var itemSlot = $(this).children('option:first').val();
 				itemSlot = itemSlot.substring(itemSlot.indexOf(":")+2);
-				//alert(strengthBonus);
-				//alert(itemName);
-				//alert(itemSlot);
 				$('#itemSlotField').empty();
 				$('#selectMenu2').empty();
-				
 				selectedItemChanges(itemName,strengthBonus,itemSlot);
+				if(itemName=='Abyssal bludgeon'){
+					$('#prayerDiv').show();
+				}
 			});
 		});
 	});
