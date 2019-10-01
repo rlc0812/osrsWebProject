@@ -39,6 +39,7 @@ if(isset($_POST['itemSlot'])){
 		}
 		elseif($itemSlot == 'Body'){
 			echo '<option>Select item: Body</option>';
+			echo '<option id="Void knight top" value="0">Void knight top</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Shield'){
@@ -47,10 +48,12 @@ if(isset($_POST['itemSlot'])){
 		}
 		elseif($itemSlot == 'Legs'){
 			echo '<option>Select item: Legs</option>';
+			echo '<option id="Void knight robe" value="0">Void knight robe</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Hands'){
 			echo '<option>Select item: Hands</option>';
+			echo '<option id="Void knight gloves" value="0">Void knight gloves</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Feet'){

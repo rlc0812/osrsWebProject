@@ -115,13 +115,151 @@ function getSpecialAttack(weapon,maxHit,prayerMissing) {
 		});
 	}
 
+
+function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
+	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
+
+	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon
+	{
+		if(document.getElementById('WeaponPlaceholder')){
+			strengthToSubtract = document.getElementById('WeaponPlaceholder').innerHTML;
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
+		}
+		if(document.getElementById('ShieldPlaceholder')){
+			subtractShieldBonus = document.getElementById('ShieldPlaceholder').innerHTML;
+			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(subtractShieldBonus);
+		}
+		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
+		$('#ShieldSlot').addClass('text-danger');
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
+	}
+
+	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
+	{
+		$('#ShieldSlot').removeClass('text-danger');
+		if(document.getElementById('2h-weaponPlaceholder')){
+			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
+			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
+			$('#WeaponSlot').text('None');
+		}
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
+	}
+	if(itemSlot=='Weapon')
+	{
+		$('#ShieldSlot').removeClass('text-danger');
+		if(document.getElementById('2h-weaponPlaceholder')){
+			strengthToSubtract = document.getElementById('2h-weaponPlaceholder').innerHTML;
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
+			$('#ShieldSlot').text('None');
+		}
+		$('#prayerMissing').val("");
+		$('#prayerDiv').hide();
+	}
+
+
+	if(document.getElementById(itemSlot+'Placeholder')){//This slot has already been selected so we need to subtract the prior strength value
+		strengthToSubtract = document.getElementById(itemSlot+'Placeholder').innerHTML;
+		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+		totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
+	}
+	else{
+		//alert('It does not exist');
+	}
+	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
+	document.getElementById('currentStrengthBonus').innerHTML=totalStrength; 
+}
+
+function addActive(diary){	
+	$('#table'+diary).removeClass('hidden');
+	$('#'+diary).addClass('active');
+	$('#'+diary).attr("onclick","hide(this.id)");
+}
+
+function hide(diary){
+	$('#table'+diary).addClass('hidden');
+	$('#'+diary).removeClass('active');
+	$('#'+diary).attr("onclick","getRequirements(this.id)");
+}
+
+function hideElement(elementId)
+{
+	$( "#table"+elementId).hide();
+
+	$( "#hidebutton"+elementId).hide();
+	$( "#showbutton"+elementId).show();
+
+}
+function showElement(element)
+{
+	$(element).removeClass('hidden');
+	$(element).show();
+}
+
 function calculateMaxHit(){
 
-	strengthBonus = parseInt(document.getElementById('currentStrengthBonus').innerHTML);
-	strengthLevel = parseInt(document.getElementById('strengthLevel').value);
-	boost = document.getElementById('boost').value;
-	prayer = document.getElementById('prayer').value;
-	attackStyle = document.getElementById('attackStyle').value;
+	var strengthBonus = parseInt(document.getElementById('currentStrengthBonus').innerHTML);
+	var strengthLevel = parseInt(document.getElementById('strengthLevel').value);
+	var boost = document.getElementById('boost').value;
+	var prayer = document.getElementById('prayer').value;
+	var attackStyle = document.getElementById('attackStyle').value;
+
+	
+	/*var testSlot = document.getElementById('HeadPlaceHolder');
+	if(document.getElementById('HeadPlaceHolder')){
+		var helm = document.getElementById('HeadPlaceholder').innerHTML;
+	alert(helm);
+	}
+	else{
+	//alert(testSlot);
+		var helm = 'None';
+	}
+	if(helm==='Slayer helmet: +0'){
+		setBonus = parseFloat('1.1667');
+	}
+	else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
+	{
+		testSlot=documentGetElementById('HandsPlaceHolder');
+		if(testSlot){
+			var gloves = document.getElementById('HandsPlaceholder').innerHTML;
+		}
+		else{
+			var gloves = 'None';
+		}
+
+		testSlot=documentGetElementById('BodyPlaceHolder');
+		if(testSlot){
+			var top = document.getElementById('BodyPlaceholder').innerHTML;
+		}
+		else{
+			var top = 'None';
+		}
+
+		testSlot=documentGetElementById('LegsPlaceHolder');
+		if(testSlot){
+			var bottom = document.getElementById('LegsPlaceholder').innerHTML;
+		}
+		else{
+			var bottom = 'None';
+		}
+
+		if((gloves==='Void knight gloves: +0')&&(top==='Void knight top: +0')&&(bottom==='Void knight robe: +0'))
+		{
+			setBonus = parseFloat('1.10');			
+		}
+		else{
+			setBonus = parseFloat('1.00');
+		}
+		alert(setBonus);
+	}
+	else{
+		setBonus = parseFloat('1.00');
+	}*/
 	setBonus = parseFloat('1.00');
 	strengthLevelBool = false;
 	attackStyleBool = false;
@@ -255,90 +393,5 @@ function calculateMaxHit(){
 		getSpecialAttack(weapon,maxHit,prayerMissing);
 	}
 
-}
-
-function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
-	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
-
-	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon
-	{
-		if(document.getElementById('WeaponPlaceholder')){
-			strengthToSubtract = document.getElementById('WeaponPlaceholder').innerHTML;
-			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
-			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
-		}
-		if(document.getElementById('ShieldPlaceholder')){
-			subtractShieldBonus = document.getElementById('ShieldPlaceholder').innerHTML;
-			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(":")+3);
-			totalStrength = parseInt(totalStrength) - parseInt(subtractShieldBonus);
-		}
-		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
-		$('#ShieldSlot').addClass('text-danger');
-		$('#prayerMissing').val("");
-		$('#prayerDiv').hide();
-	}
-
-	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
-	{
-		$('#ShieldSlot').removeClass('text-danger');
-		if(document.getElementById('2h-weaponPlaceholder')){
-			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
-			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
-			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
-			$('#WeaponSlot').text('None');
-		}
-		$('#prayerMissing').val("");
-		$('#prayerDiv').hide();
-	}
-	if(itemSlot=='Weapon')
-	{
-		$('#ShieldSlot').removeClass('text-danger');
-		if(document.getElementById('2h-weaponPlaceholder')){
-			strengthToSubtract = document.getElementById('2h-weaponPlaceholder').innerHTML;
-			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
-			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
-			$('#ShieldSlot').text('None');
-		}
-		$('#prayerMissing').val("");
-		$('#prayerDiv').hide();
-	}
-
-
-	if(document.getElementById(itemSlot+'Placeholder')){//This slot has already been selected so we need to subtract the prior strength value
-		strengthToSubtract = document.getElementById(itemSlot+'Placeholder').innerHTML;
-		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
-		totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
-	}
-	else{
-		//alert('It does not exist');
-	}
-	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
-	document.getElementById('currentStrengthBonus').innerHTML=totalStrength; 
-}
-
-function addActive(diary){	
-	$('#table'+diary).removeClass('hidden');
-	$('#'+diary).addClass('active');
-	$('#'+diary).attr("onclick","hide(this.id)");
-}
-
-function hide(diary){
-	$('#table'+diary).addClass('hidden');
-	$('#'+diary).removeClass('active');
-	$('#'+diary).attr("onclick","getRequirements(this.id)");
-}
-
-function hideElement(elementId)
-{
-	$( "#table"+elementId).hide();
-
-	$( "#hidebutton"+elementId).hide();
-	$( "#showbutton"+elementId).show();
-
-}
-function showElement(element)
-{
-	$(element).removeClass('hidden');
-	$(element).show();
 }
 
