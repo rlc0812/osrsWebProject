@@ -141,6 +141,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 	{
 		$('#ShieldSlot').removeClass('text-danger');
 		if(document.getElementById('2h-weaponPlaceholder')){
+			//var test = document.getElementById('2h-weaponPlaceholder');
 			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
 			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
@@ -208,63 +209,11 @@ function calculateMaxHit(){
 	var boost = document.getElementById('boost').value;
 	var prayer = document.getElementById('prayer').value;
 	var attackStyle = document.getElementById('attackStyle').value;
-
-	
-	/*var testSlot = document.getElementById('HeadPlaceHolder');
-	if(document.getElementById('HeadPlaceHolder')){
-		var helm = document.getElementById('HeadPlaceholder').innerHTML;
-	alert(helm);
-	}
-	else{
-	//alert(testSlot);
-		var helm = 'None';
-	}
-	if(helm==='Slayer helmet: +0'){
-		setBonus = parseFloat('1.1667');
-	}
-	else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
-	{
-		testSlot=documentGetElementById('HandsPlaceHolder');
-		if(testSlot){
-			var gloves = document.getElementById('HandsPlaceholder').innerHTML;
-		}
-		else{
-			var gloves = 'None';
-		}
-
-		testSlot=documentGetElementById('BodyPlaceHolder');
-		if(testSlot){
-			var top = document.getElementById('BodyPlaceholder').innerHTML;
-		}
-		else{
-			var top = 'None';
-		}
-
-		testSlot=documentGetElementById('LegsPlaceHolder');
-		if(testSlot){
-			var bottom = document.getElementById('LegsPlaceholder').innerHTML;
-		}
-		else{
-			var bottom = 'None';
-		}
-
-		if((gloves==='Void knight gloves: +0')&&(top==='Void knight top: +0')&&(bottom==='Void knight robe: +0'))
-		{
-			setBonus = parseFloat('1.10');			
-		}
-		else{
-			setBonus = parseFloat('1.00');
-		}
-		alert(setBonus);
-	}
-	else{
-		setBonus = parseFloat('1.00');
-	}*/
-	setBonus = parseFloat('1.00');
-	strengthLevelBool = false;
-	attackStyleBool = false;
-	specialAttack = parseFloat('1.00');
-	prayerMissing = document.getElementById('prayerMissing').value;	
+	var setBonus = parseFloat('1.00');
+	var strengthLevelBool = false;
+	var attackStyleBool = false;
+	var specialAttack = parseFloat('1.00');
+	var prayerMissing = document.getElementById('prayerMissing').value;	
 
 	if(strengthLevel==''){
 		document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
@@ -359,6 +308,53 @@ function calculateMaxHit(){
 			break;
 		}		
 
+	//Calculate set bonus if any
+	if($('#HeadPlaceholder').length > 0){//If the div exists
+		var helm = document.getElementById('HeadPlaceholder').innerHTML;
+	}
+	else{
+		var helm = 'None';
+	}
+
+	if(helm==='Slayer helmet: +0'){
+		setBonus = parseFloat('1.1667');
+	}
+	else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
+	{
+		if($('#HandsPlaceholder').length > 0){//If the div exists
+			var gloves = document.getElementById('HandsPlaceholder').innerHTML;
+		}
+		else{
+			var gloves = 'None';
+		}
+
+		if($('#BodyPlaceholder').length > 0){//If the div exists
+			var body = document.getElementById('BodyPlaceholder').innerHTML;
+		}
+		else{
+			var body = 'None';
+		}
+;
+		if($('#LegsPlaceholder').length > 0){//If the div exists
+			var legs = document.getElementById('LegsPlaceholder').innerHTML;
+		}
+		else{
+			var legs = 'None';
+		}
+
+		if((gloves==='Void knight gloves: +0')&&((body==='Void knight top: +0')||('Elite void top: +0'))&&((legs==='Void knight robe: +0')||(legs==='Elite void robe: +0')))
+		{
+			setBonus = parseFloat('1.10');			
+		}
+		else{
+			setBonus = parseFloat('1.00');
+		}
+	}
+	else{
+		setBonus = parseFloat('1.00');
+	}
+	alert('Set Bonus is: '+setBonus);
+
 		//Calculate effective strength
 		effectiveStrength = parseFloat(Math.floor((strengthLevel+boost)*prayer*setBonus)+attackStyle);
 
@@ -378,7 +374,7 @@ function calculateMaxHit(){
 		showElement('#maxHit');
 		showElement('#maxHitSpec');
 	}
-	
+
 	if(($('#WeaponPlaceholder').length == 0)&&($('#2h-weaponPlaceholder').length == 0)){//Calculate special attack max hit
 		//alert('there is no weapon');
 	}
