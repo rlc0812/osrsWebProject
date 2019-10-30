@@ -111,6 +111,7 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 	$maxHit = $_POST['maxHit'];
 	$prayerMissing = $_POST['prayerMissing'];
 	$specName = $specialAttack[$weapon]["specialName"];
+	$enemyType = $_POST['enemyType'];
 	if(array_key_exists($weapon,$specialAttack)){
 
 		if($weapon=='Abyssal bludgeon'){//Special cases

@@ -277,6 +277,14 @@ if(isset($_SESSION['u_userID'])){
 						<h3 class="d-inline">Total strength bonus: </h3>
 						<h3 class="d-inline text-danger" id="currentStrengthBonus" value="0">0</h3>
 					</div>
+						<div style="overflow:auto;" class="pt-3">
+						<label for="enemyType">Select Enemy Type</label><br>
+						<select name="enemyType" id="enemyType" class="w-75 text-center">
+							<option selected="selected">No type</option>
+							<option id="undead">Undead</option>
+							<option id="slayerTask">Slayer Task</option>
+						</select>
+						<br></div>
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">

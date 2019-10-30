@@ -26,6 +26,7 @@ if(isset($_POST['itemSlot'])){
 			echo '<option>Select item: Neck</option>';
 			echo '<option id="Salve amulet" value="0">Salve amulet</option>';
 			echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
+			echo '<option id="Salve amulet (ei)" value="0">Salve amulet (ei)</option>';
 			getStrengthBonus($itemSlot);
 			
 		}
@@ -82,12 +83,13 @@ if(isset($_POST['itemSlot'])){
 	$(document).ready(function () {
 		$(function(){
 			$('input[type=radio][name=selectOption1]').change(function () {
-				var slot = this.value;
-				if(slot==='Weapon'){
-					populateSlot(slot,'#selectMenu2');
+				var itemSlot = this.value;
+				if(itemSlot==='Weapon'){
+					populateSlot(itemSlot,'#selectMenu2');
 				}
-				if(slot==='Two_handed_weapon'){
-					populateSlot(slot,'#selectMenu2');
+
+				if(itemSlot==='Two_handed_weapon'){
+					populateSlot(itemSlot,'#selectMenu2');
 				}
 			});
 		});
@@ -103,8 +105,28 @@ if(isset($_POST['itemSlot'])){
 				$('#itemSlotField').empty();
 				$('#selectMenu2').empty();
 				selectedItemChanges(itemName,strengthBonus,itemSlot);
+
+				//Special cases for item dropdown selection
 				if(itemName=='Abyssal bludgeon'){
 					$('#prayerDiv').show();
+				}
+
+				if(itemSlot==='Neck'){
+					if((itemName=='Salve amulet')||(itemName=='Salve amulet (e)')||(itemName=='Salve amulet (ei)')){
+						$('#undead').prop('disabled', false);
+					}
+					else{
+						$('#undead').prop('disabled', true);
+					}
+				}
+
+				if(itemSlot==='Head'){
+					if((itemName=='Slayer helmet')||(itemName=='Slayer helmet (i)')){
+						$('#slayerTask').prop('disabled', false);
+					}
+					else{
+						$('#slayerTask').prop('disabled', true);
+					}
 				}
 			});
 		});
