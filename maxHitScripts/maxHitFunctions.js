@@ -278,9 +278,7 @@ function calculateMaxHit(){
 		else if(boost=="Overload potion(+)"){
 			boost = parseFloat(strengthLevel*0.16)+parseFloat(6);
 		}
-		//alert('Boost is: '+ boost);
-			boost = parseInt(Math.floor(boost));
-		//alert('Rounded down boost is: '+ boost);
+		boost = parseInt(Math.floor(boost));
 
 		switch(attackStyle){//Convert attackStyle to integer value
 			case 'Accurate':
@@ -378,25 +376,23 @@ function calculateMaxHit(){
 		}
 	}
 	else{
-		otherBonus = parseFloat('1.10');
+		otherBonus = parseFloat('1.00');
 	}
-	alert('Set Bonus is: ' +otherBonus);
-	alert('Undead Bonus is: ' +salveBonus);
-	alert('Slayer Bonus is: ' +slayerBonus);
 
 		//Calculate effective strength
+		effectiveStrength = Math.floor((strengthLevel+boost)*prayer);
+		effectiveStrength += attackStyle;
+		effectiveStrength += 8;
+		effectiveStrength = Math.floor(effectiveStrength*otherBonus);
 
-			effectiveStrength = parseFloat(Math.floor((strengthLevel+boost)*prayer);
-			effectiveStrength += attackStyle;
-			effectiveStrength = parseFloat(Math.floor(effectiveStrength*otherBonus);
-		}
-
-		
 		//Calculate the base damage
-		baseDamage= 1.3+(parseFloat(effectiveStrength/10))+(parseFloat(strengthBonus/80))+(parseFloat((effectiveStrength*strengthBonus)/640));
-		maxHit= Math.floor(baseDamage);
-
-alert(baseDamage);
+		maxHit = Math.floor(0.5 + effectiveStrength * (strengthBonus + 64)/640);
+		if(enemyType=="Undead"){
+			maxHit = Math.floor(maxHit * salveBonus);
+		}
+		if(enemyType=="Slayer Task"){
+			maxHit = Math.floor(maxHit * slayerBonus);
+		}
 		document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
 
 		if(maxHit>=10){
