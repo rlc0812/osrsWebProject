@@ -32,6 +32,7 @@ if(isset($_POST['itemSlot'])){
 		}
 		elseif($itemSlot == 'Weapon'){
 			echo '<option>Select item: Weapon</option>';
+			echo '<option id="Dragon hunter lance" value="70">Dragon hunter lance</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Two_handed_weapon'){

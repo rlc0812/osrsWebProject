@@ -111,7 +111,7 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 	$maxHit = $_POST['maxHit'];
 	$prayerMissing = $_POST['prayerMissing'];
 	$specName = $specialAttack[$weapon]["specialName"];
-	$enemyType = $_POST['enemyType'];
+	$enemyType = strtolower($_POST['enemyType']);
 	if(array_key_exists($weapon,$specialAttack)){
 
 		if($weapon=='Abyssal bludgeon'){//Special cases
@@ -123,37 +123,52 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 			}
 			echo 'Missing <div class="text-danger d-inline">'.$prayerMissing.'</div> prayer points.</br>';
 			$maxHit=floor($maxHit*(1.00+(0.005*$prayerMissing)));
-			displayHit($maxHit,$specName,'normal');
+			displayHit($maxHit,$specName,$weapon);
 		}
 		elseif(($weapon=='Dragon dagger')||($weapon=='Dragon claws')||($weapon==='Dragon halberd')||($weapon==='Crystal halberd')){
 			$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
 			displayHit($maxHit,$specName,$weapon);
 
 		}
+		elseif($weapon=='Granite hammer'){
+			$maxHit=floor($maxHit+5.00);
+			displayHit($maxHit,$specName,$weapon);
+		}
 		else{
 			$maxHit=floor($maxHit*$specialAttack[$weapon]["damageIncrease"]);
-			displayHit($maxHit,$specName,'normal');
+			displayHit($maxHit,$specName,$weapon);
 		}
 
 	}
 	else{
 		echo 'This weapon has no special attack';
+	}/*
+	if($weapon=='Dragon hunter lance'){
+		if($enemyType=='undead'){
+			echo 'When fighting an '.'<img src="images/spell_icons/Crumble_Undead_icon.png">'.$enemyType.' dragon';
+		}
+		elseif($enemyType=='slayer task'){
+			echo 'When fighting a dragon '.$enemyType;
+		}
+		else{
+			echo 'When fighting a dragon';
+		}
 	}
+	else{
+		if($enemyType=='undead'){
+			echo 'When fighting '.$enemyType;
+		}
+		elseif($enemyType=='slayer task'){
+			echo 'When fighting a '$enemyType;
+		}
+	}*/
 	
 }
 
 function displayHit($maxHit,$specName,$weapon){
 	echo '<h3 id="currentSpec" class="d-inline">'.$specName.':</h3>';
-	if($weapon==='normal'){
-		echo' <img class="icon" src="images/Red_hitsplat.png">';
-		if($maxHit<='10'){
-			echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
-		}
-		else{
-			echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
-		}
-	}
-	elseif(($weapon==='Dragon dagger')||($weapon==='Dragon halberd')||($weapon==='Crystal halberd')){
+
+	if(($weapon==='Dragon dagger')||($weapon==='Dragon halberd')||($weapon==='Crystal halberd')){
 		echo' <img class="icon" src="images/Red_hitsplat.png">';
 		if($maxHit<'10'){	
 			echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
@@ -203,6 +218,15 @@ function displayHit($maxHit,$specName,$weapon){
 				echo' <img class="icon" src="images/Red_hitsplat.png">';
 				echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
 			}
+	}
+	else{
+		echo' <img class="icon" src="images/Red_hitsplat.png">';
+		if($maxHit<='10'){
+			echo '<div class="d-inline maxHitText1Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+		}
+		else{
+			echo '<div class="d-inline maxHitText2Digit text-light ml-1" id="currentMaxHitSpec">'.$maxHit.'</div>';
+		}
 	}
 
 }

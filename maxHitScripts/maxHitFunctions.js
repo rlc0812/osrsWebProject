@@ -316,112 +316,113 @@ function calculateMaxHit(){
 			break;
 		}		
 
-	//Calculate set bonus if any
+		if(($('#WeaponPlaceholder').length == 0)&&($('#2h-weaponPlaceholder').length == 0)){//Calculate special attack max hit
+			//alert('there is no weapon');
+		}
+		else{
+			if($('#WeaponPlaceholder').length > 0){
+				var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
+			}
+			if($('#2h-weaponPlaceholder').length > 0){
+				var weapon=document.getElementById('2h-weaponPlaceholder').innerHTML;
+			}
+			if(weapon=='Dragon hunter lance: +70'){
+				otherBonus+=0.20;
+			}
+			//Need special case for Dharok set, Berserker neck with obby armor and obby weapon
 
-	if($('#NeckPlaceholder').length > 0){//If the div exists
-		var neck = document.getElementById('NeckPlaceholder').innerHTML;
-	}
-	else{
-		var neck = 'None';
-	}
+		}	
 	
-	if((neck==="Salve amulet (e): +0")||(neck==="Salve amulet (ei): +0"))
-	{	
-		salveBonus= parseFloat('1.20');
-	}
-	else if(neck==="Salve amulet: +0"){
-		salveBonus = parseFloat('1.15')
-	}
+		//Calculate set bonus if any
 
-	//Helmet percent bonus
-	if($('#HeadPlaceholder').length > 0){//If the div exists
-		var helm = document.getElementById('HeadPlaceholder').innerHTML;
-	}
-	else{
-		var helm = 'None';
-	}
-
-	if(helm==='Slayer helmet: +0'){
-		slayerBonus = parseFloat('1.1667');	
-	}
-	else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
-	{
-		if($('#HandsPlaceholder').length > 0){//If the div exists
-			var gloves = document.getElementById('HandsPlaceholder').innerHTML; 
+		if($('#NeckPlaceholder').length > 0){//If the div exists
+			var neck = document.getElementById('NeckPlaceholder').innerHTML;
 		}
 		else{
-			var gloves = 'None';
+			var neck = 'None';
 		}
-
-		if($('#BodyPlaceholder').length > 0){//If the div exists
-			var body = document.getElementById('BodyPlaceholder').innerHTML;
-		}
-		else{
-			var body = 'None';
-		}
-
-		if($('#LegsPlaceholder').length > 0){//If the div exists
-			var legs = document.getElementById('LegsPlaceholder').innerHTML;
-		}
-		else{
-			var legs = 'None';
-		}
-
-		if((gloves==='Void knight gloves: +0')&&((body==='Void knight top: +0')||(body==='Elite void top: +0'))&&((legs==='Void knight robe: +0')||(legs==='Elite void robe: +0')))
+		
+		if((neck==="Salve amulet (e): +0")||(neck==="Salve amulet (ei): +0"))
 		{	
-			otherBonus = parseFloat('1.10');
+			salveBonus= parseFloat('1.20');
+		}
+		else if(neck==="Salve amulet: +0"){
+			salveBonus = parseFloat('1.15')
+		}
+
+		//Helmet percent bonus
+		if($('#HeadPlaceholder').length > 0){//If the div exists
+			var helm = document.getElementById('HeadPlaceholder').innerHTML;
 		}
 		else{
-			otherBonus = parseFloat('1.00');
+			var helm = 'None';
 		}
-	}
-	else{
-		otherBonus = parseFloat('1.00');
+
+		if(helm==='Slayer helmet: +0'){
+			slayerBonus = parseFloat('1.1667');	
+		}
+		else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
+		{
+			if($('#HandsPlaceholder').length > 0){//If the div exists
+				var gloves = document.getElementById('HandsPlaceholder').innerHTML; 
+			}
+			else{
+				var gloves = 'None';
+			}
+
+			if($('#BodyPlaceholder').length > 0){//If the div exists
+				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			}
+			else{
+				var body = 'None';
+			}
+
+			if($('#LegsPlaceholder').length > 0){//If the div exists
+				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			}
+			else{
+				var legs = 'None';
+			}
+
+			if((gloves==='Void knight gloves: +0')&&((body==='Void knight top: +0')||(body==='Elite void top: +0'))&&((legs==='Void knight robe: +0')||(legs==='Elite void robe: +0')))
+			{	
+				otherBonus +=parseFloat(0.10);
+			}
+		}
+			//Calculate effective strength
+			effectiveStrength = Math.floor((strengthLevel+boost)*prayer);
+			effectiveStrength += attackStyle;
+			effectiveStrength += 8;
+			effectiveStrength = Math.floor(effectiveStrength*otherBonus);
+
+			//Calculate the base damage
+			maxHit = Math.floor(0.5 + effectiveStrength * (strengthBonus + 64)/640);
+			if(enemyType=="Undead"){
+				maxHit = Math.floor(maxHit * salveBonus);
+			}
+			if(enemyType=="Slayer Task"){
+				maxHit = Math.floor(maxHit * slayerBonus);
+			}
+			document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
+
+			if(maxHit>=10){
+				$('#currentMaxHit').removeClass('maxHitText1Digit');
+				$('#currentMaxHit').addClass('maxHitText2Digit');
+			}
+			else{
+				$('#currentMaxHit').removeClass('maxHitText2Digit');
+				$('#currentMaxHit').addClass('maxHitText1Digit');
+			}
+			showElement('#maxHit');
+			showElement('#maxHitSpec');
+
+			if(weapon){//If weapon is selected calc weapon spec
+				weapon = weapon.substr(0, weapon.indexOf(':'));
+				getSpecialAttack(weapon,maxHit,prayerMissing,enemyType);
+			}
+
 	}
 
-		//Calculate effective strength
-		effectiveStrength = Math.floor((strengthLevel+boost)*prayer);
-		effectiveStrength += attackStyle;
-		effectiveStrength += 8;
-		effectiveStrength = Math.floor(effectiveStrength*otherBonus);
-
-		//Calculate the base damage
-		maxHit = Math.floor(0.5 + effectiveStrength * (strengthBonus + 64)/640);
-		if(enemyType=="Undead"){
-			maxHit = Math.floor(maxHit * salveBonus);
-		}
-		if(enemyType=="Slayer Task"){
-			maxHit = Math.floor(maxHit * slayerBonus);
-		}
-		document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
-
-		if(maxHit>=10){
-			$('#currentMaxHit').removeClass('maxHitText1Digit');
-			$('#currentMaxHit').addClass('maxHitText2Digit');
-		}
-		else{
-			$('#currentMaxHit').removeClass('maxHitText2Digit');
-			$('#currentMaxHit').addClass('maxHitText1Digit');
-		}
-		showElement('#maxHit');
-		showElement('#maxHitSpec');
-	}
-
-	if(($('#WeaponPlaceholder').length == 0)&&($('#2h-weaponPlaceholder').length == 0)){//Calculate special attack max hit
-		//alert('there is no weapon');
-	}
-	else{
-		if($('#WeaponPlaceholder').length > 0){
-			var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
-		}
-		if($('#2h-weaponPlaceholder').length > 0){
-			var weapon=document.getElementById('2h-weaponPlaceholder').innerHTML;
-		}
-		//Need special case for Dharok set, Berserker neck with obby armor and obby weapon
-
-		weapon= weapon.substr(0, weapon.indexOf(':'));
-		getSpecialAttack(weapon,maxHit,prayerMissing,enemyType);
-	}
 
 }
 
