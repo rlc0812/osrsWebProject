@@ -78,6 +78,10 @@ if(isset($_POST['itemSlot'])){
 
 
 ?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
@@ -100,8 +104,8 @@ if(isset($_POST['itemSlot'])){
 		$(function(){
 			$("#selectOption2").change(function () {
 				var strengthBonus = this.value;
-				var itemName = $(this).children(":selected").attr("id");
-				var itemSlot = $(this).children('option:first').val();
+				itemName = $(this).children(":selected").attr("id");
+				itemSlot = $(this).children('option:first').val();
 				itemSlot = itemSlot.substring(itemSlot.indexOf(":")+2);
 				$('#itemSlotField').empty();
 				$('#selectMenu2').empty();
@@ -134,7 +138,7 @@ if(isset($_POST['itemSlot'])){
 	});
 
 	function populateSlot(itemSlot,updateField) {//Gets the items by slot from the DB and assigns them to the dropdown selected
-		$('#selectMenu2').empty();
+		//$('#selectMenu2').empty();
 		data = {itemSlot: itemSlot};
 			$.ajax({
 				type: "POST",
@@ -150,7 +154,7 @@ if(isset($_POST['itemSlot'])){
 						alert(thrownError);
 				}
 			});
-		$('#selectOption2').remove();
+		//$('#selectOption2').empty();
 	}
 
 	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated

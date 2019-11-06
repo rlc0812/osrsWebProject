@@ -1,4 +1,3 @@
-
 //Disable drop down values for monster type
 $('#undead').prop('disabled', true);
 $('#slayerTask').prop('disabled', true);
@@ -123,7 +122,6 @@ function getSpecialAttack(weapon,maxHit,prayerMissing,enemyType) {
 
 function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
 	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
-
 	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon
 	{
 		if(document.getElementById('WeaponPlaceholder')){
@@ -149,6 +147,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			//var test = document.getElementById('2h-weaponPlaceholder');
 			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
 			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
+
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
 			$('#WeaponSlot').text('None');
 		}
@@ -329,6 +328,33 @@ function calculateMaxHit(){
 			if(weapon=='Dragon hunter lance: +70'){
 				otherBonus+=0.20;
 			}
+			weapon = weapon.substr(0, weapon.indexOf(':'));
+
+			
+			if(weapon=='Dragon hunter lance'){
+				if(enemyType=='Undead'){
+					enemyText='When fighting an undead dragon';
+				}
+				else if(enemyType=='Slayer Task'){
+					enemyText='When fighting a dragon slayer assignment';
+				}
+				else{
+					enemyText='When fighting a dragon';
+				}
+			}
+			else{
+				if(enemyType=='Undead'){
+					enemyText='When fighting undead enemies';
+				}
+				else if(enemyType=='Slayer Task'){
+					enemyText='When fighting a slayer assignment.';
+				}
+				else{
+					enemyText="";
+				}
+			}
+			document.getElementById('enemyText').innerHTML=enemyText;
+
 			//Need special case for Dharok set, Berserker neck with obby armor and obby weapon
 
 		}	
@@ -394,7 +420,6 @@ function calculateMaxHit(){
 			effectiveStrength += attackStyle;
 			effectiveStrength += 8;
 			effectiveStrength = Math.floor(effectiveStrength*otherBonus);
-
 			//Calculate the base damage
 			maxHit = Math.floor(0.5 + effectiveStrength * (strengthBonus + 64)/640);
 			if(enemyType=="Undead"){
@@ -417,7 +442,6 @@ function calculateMaxHit(){
 			showElement('#maxHitSpec');
 
 			if(weapon){//If weapon is selected calc weapon spec
-				weapon = weapon.substr(0, weapon.indexOf(':'));
 				getSpecialAttack(weapon,maxHit,prayerMissing,enemyType);
 			}
 
@@ -426,6 +450,68 @@ function calculateMaxHit(){
 
 }
 
+
+//Item Sets
+$(document).ready(function () {//Grabs the values for the selected set to be assigned to the associated slots by calling selectedItemChanges
+	$(function(){
+		$("#sets").change(function () {
+		var set = this.value;
+		if(set=='Void'){
+			selectedItemChanges('Void melee helm','0','Head');
+			selectedItemChanges('Void knight gloves','0','Hands');
+			selectedItemChanges('Void knight top','0','Body');
+			selectedItemChanges('Void knight robe','0','Legs');
+		}
+		if(set=='Elite Void'){
+			selectedItemChanges('Void melee helm','0','Head');
+			selectedItemChanges('Void knight gloves','0','Hands');
+			selectedItemChanges('Elite void top','0','Body');
+			selectedItemChanges('Elite void robe','0','Legs');
+		}
+		if(set=='Obsidian'){
+			selectedItemChanges('Obsidian helmet','3','Head');
+			selectedItemChanges('Obsidian platebody','3','Body');
+			selectedItemChanges('Obsidian platelegs','1','Legs');
+		}
+		if(set=="Dharok's"){
+			selectedItemChanges("Dharok's helm",'0','Head');
+			selectedItemChanges("Dharok's platebody",'0','Body');
+			selectedItemChanges("Dharok's platelegs",'0','Legs');
+			selectedItemChanges("Dharok's greataxe",'105','2h-weapon');
+		}
+
+		});
+	});
+});
+//
+
+////////////////////////////////////////////////////////////////////////////////////////////////Get Slot Items.php
+
+
+	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
+		if (itemSlot=='2h-weapon'){
+			var updateField = '#WeaponSlot';
+		}
+		else{
+			var updateField = '#'+itemSlot+'Slot';
+		}
+		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/updateSelectedItem.php",
+				data: data,
+				cache: false,
+
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+				}
+			});
+			updateTotalStrength(strengthBonus,itemSlot);
+	}
 
 
 

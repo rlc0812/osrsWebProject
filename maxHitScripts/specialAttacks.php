@@ -112,6 +112,7 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 	$prayerMissing = $_POST['prayerMissing'];
 	$specName = $specialAttack[$weapon]["specialName"];
 	$enemyType = strtolower($_POST['enemyType']);
+z
 	if(array_key_exists($weapon,$specialAttack)){
 
 		if($weapon=='Abyssal bludgeon'){//Special cases
@@ -142,26 +143,7 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 	}
 	else{
 		echo 'This weapon has no special attack';
-	}/*
-	if($weapon=='Dragon hunter lance'){
-		if($enemyType=='undead'){
-			echo 'When fighting an '.'<img src="images/spell_icons/Crumble_Undead_icon.png">'.$enemyType.' dragon';
-		}
-		elseif($enemyType=='slayer task'){
-			echo 'When fighting a dragon '.$enemyType;
-		}
-		else{
-			echo 'When fighting a dragon';
-		}
 	}
-	else{
-		if($enemyType=='undead'){
-			echo 'When fighting '.$enemyType;
-		}
-		elseif($enemyType=='slayer task'){
-			echo 'When fighting a '$enemyType;
-		}
-	}*/
 	
 }
 

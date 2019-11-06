@@ -181,7 +181,7 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
 			<div class="container text-center">
 						
-						<div style="height: 128px; overflow:auto;">
+						<div style="height: 102px; overflow:auto;">
 						<label for="strengthLevel">Strength Level </label><br>
 							<div id="strengthLevelDiv">
 							<input type="text" class="text-center w-75" id="strengthLevel" placeholder="Enter strength"></div>
@@ -189,7 +189,7 @@ if(isset($_SESSION['u_userID'])){
 							</div>
 					
 
-							<div style="height: 128px; overflow:auto;">
+							<div style="height: 102px; overflow:auto;">
 							<label for="itemName">Boosts</label><br>
 							<select name="itemName" id="boost" class="w-75 text-center">
 								<option>None</option>
@@ -207,7 +207,7 @@ if(isset($_SESSION['u_userID'])){
 					
 					
 						
-						<div style="height: 128px; overflow:auto;">
+						<div style="height: 102px; overflow:auto;">
 						<label for="prayer">Prayers</label><br>
 						<select name="prayer" id="prayer" class="w-75 text-center">
 							<option>None</option>
@@ -222,7 +222,7 @@ if(isset($_SESSION['u_userID'])){
 					
 						
 
-						<div style="height: 128px; overflow:auto;">
+						<div style="height: 102px; overflow:auto;">
 						<label for="attackStyle">Attack Style</label><br>
 						<select name="attackStyle" id="attackStyle" class="w-75 text-center">
 							<option>Select style</option>
@@ -241,6 +241,17 @@ if(isset($_SESSION['u_userID'])){
 							<input type="text" class="text-center w-75" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
 							<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
 							</div>
+
+
+						<div style="height: 100px; overflow:auto;">
+						<label for="sets">Sets</label><br>
+						<select name="sets" id="sets" class="w-75 text-center">
+							<option selected="selected" id="none">Select item set</option>
+							<option id="void">Void</option>
+							<option id="eliteVoid">Elite Void</option>
+							<option id="obsidian">Obsidian</option>
+							<option id="dharok">Dharok's</option>
+						</select><br></div>
 			
 			</div>
 		</div>
@@ -294,6 +305,7 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
 				<div class="container-fluid text-center">
+						<div class="d-inline" id="enemyText"></div>
 						<div class="hidden" id="maxHit">
 						<h3 class="d-inline">Max melee hit:</h3> 
 						<img class="icon" src="images/Red_hitsplat.png">
@@ -319,6 +331,3 @@ if(isset($_SESSION['u_userID'])){
 
 </body>
 </html>
-
-
-
