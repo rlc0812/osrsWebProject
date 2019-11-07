@@ -173,6 +173,10 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 		$maxHit=floor($maxHit*$dharokBonus);
 		displayHit($maxHit,"With Dharok's set effect",$weapon);
 	}
+	else if($weapon=="Viggora's chainmace"){
+		$maxHit=floor($maxHit*1.50);
+		displayHit($maxHit,'With 1.5x fighting NPCs in the wilderness',$weapon);
+	}
 	else{
 		echo 'This weapon has no special attack';
 	}
