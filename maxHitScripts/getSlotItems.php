@@ -100,41 +100,55 @@ if(isset($_POST['itemSlot'])){
 		});
 	});
 
-	$(document).ready(function () {//Grabs the values for the selected item to be assigned to the slot next to the image by calling selectedItemChanges
-		$(function(){
-			$("#selectOption2").change(function () {
-				var strengthBonus = this.value;
-				itemName = $(this).children(":selected").attr("id");
-				itemSlot = $(this).children('option:first').val();
-				itemSlot = itemSlot.substring(itemSlot.indexOf(":")+2);
-				$('#itemSlotField').empty();
-				$('#selectMenu2').empty();
-				selectedItemChanges(itemName,strengthBonus,itemSlot);
 
-				//Special cases for item dropdown selection
-				if(itemName=='Abyssal bludgeon'){
-					$('#prayerDiv').show();
+	$("#selectOption2").change(function () {
+		var strengthBonus = this.value;
+		itemName = $(this).children(":selected").attr("id");
+		itemSlot = $(this).children('option:first').val();
+		itemSlot = itemSlot.substring(itemSlot.indexOf(":")+2);
+		$('#itemSlotField').empty();
+		$('#selectMenu2').empty();
+		selectedItemChanges(itemName,strengthBonus,itemSlot);
+		//Special cases for item dropdown selection
+		if(itemName=='Abyssal bludgeon'){
+			$('#prayerDiv').show();
+		}
+
+		if((itemSlot==='Weapon')||(itemSlot==='2h-weapon')){
+			if((itemName=='Arclight')||(itemName=='Darklight')||(itemName=='Silverlight')){
+				$('#demon').prop('disabled', false);
+				var isDisabled = $('#slayerTask').is(':disabled');
+				if(!(isDisabled)){
+					$('#demonSlayerTask').prop('disabled', false);	
+				}
+			}
+			else{
+				$('#demon').prop('disabled', true);
+				$('#demonSlayerTask').prop('disabled', true);
+			}
+		}
+		if(itemSlot==='Neck'){
+			if((itemName=='Salve amulet')||(itemName=='Salve amulet (e)')||(itemName=='Salve amulet (ei)')){
+				$('#undead').prop('disabled', false);
+			}
+			else{
+				$('#undead').prop('disabled', true);
+			}
+		}
+		if(itemSlot==='Head'){
+			if((itemName=='Slayer helmet')||(itemName=='Slayer helmet (i)')){
+				$('#slayerTask').prop('disabled', false);
+				var isDisabled = $('#demon').is(':disabled');
+				if(!(isDisabled)){
+					$('#demonSlayerTask').prop('disabled', false);	
 				}
 
-				if(itemSlot==='Neck'){
-					if((itemName=='Salve amulet')||(itemName=='Salve amulet (e)')||(itemName=='Salve amulet (ei)')){
-						$('#undead').prop('disabled', false);
-					}
-					else{
-						$('#undead').prop('disabled', true);
-					}
-				}
-
-				if(itemSlot==='Head'){
-					if((itemName=='Slayer helmet')||(itemName=='Slayer helmet (i)')){
-						$('#slayerTask').prop('disabled', false);
-					}
-					else{
-						$('#slayerTask').prop('disabled', true);
-					}
-				}
-			});
-		});
+			}
+			else{
+				$('#slayerTask').prop('disabled', true);
+				$('#demonSlayerTask').prop('disabled', true);
+			}
+		}
 	});
 
 	function populateSlot(itemSlot,updateField) {//Gets the items by slot from the DB and assigns them to the dropdown selected
@@ -163,6 +177,9 @@ if(isset($_POST['itemSlot'])){
 		}
 		else{
 			var updateField = '#'+itemSlot+'Slot';
+		}
+		if(itemName!=="Dharok's greataxe"){
+			$("#hpDiv").addClass('hidden');
 		}
 		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
 			$.ajax({

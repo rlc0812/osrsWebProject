@@ -234,16 +234,8 @@ if(isset($_SESSION['u_userID'])){
 						<br>
 						<div class="text-danger hidden" id="attackStyleMessage">Please select an attack style</div>
 						</div>
-						
-						<div id="prayerDiv" class="hidden" style="height: 128px; overflow:auto;">
-						<label for="prayerMissing">Prayer Missing </label><br>
-							<div id="strengthLevelDiv">
-							<input type="text" class="text-center w-75" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
-							<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
-							</div>
 
-
-						<div style="height: 100px; overflow:auto;">
+						<div style="height: 102px; overflow:auto;">
 						<label for="sets">Sets</label><br>
 						<select name="sets" id="sets" class="w-75 text-center">
 							<option selected="selected" id="none">Select item set</option>
@@ -252,6 +244,30 @@ if(isset($_SESSION['u_userID'])){
 							<option id="obsidian">Obsidian</option>
 							<option id="dharok">Dharok's</option>
 						</select><br></div>
+						
+						<div id="prayerDiv" class="hidden" style="height: 102px; overflow:auto;">
+						<label for="prayerMissing">Prayer Missing </label><br>
+							<div id="strengthLevelDiv">
+							<input type="text" class="text-center w-75" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
+							<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
+							</div>
+						
+					<div id="hpDiv" class="container-fluid text-center m-0 hidden" style="height: 102px; overflow:auto;">
+						<div class="row pb-0">
+							<div class="col-6 pb-0">
+								<div id="currentHPDiv">
+								<label for="currentHP">Current HP</label><br>
+								<input type="text" class="text-center w-100" id="currentHP" placeholder="Current"></div>
+							</div>	
+							<div class="col-6">
+								<div id="maxHPDiv">
+								<label for="maxHP">Max HP</label><br>
+								<input type="text" class="text-center w-100" id="maxHP" placeholder="Max"></div>
+							</div>		
+						</div>		
+						<div class="text-danger" id="hpMessage">For Dharok's set</div>			
+					</div>
+				
 			
 			</div>
 		</div>
@@ -294,6 +310,8 @@ if(isset($_SESSION['u_userID'])){
 							<option selected="selected">No type</option>
 							<option id="undead">Undead</option>
 							<option id="slayerTask">Slayer Task</option>
+							<option id="demon">Demon</option>
+							<option id="demonSlayerTask">Demon Slayer Task</option>
 						</select>
 						<br></div>
 				</div>

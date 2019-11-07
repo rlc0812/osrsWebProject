@@ -1,6 +1,8 @@
 //Disable drop down values for monster type
 $('#undead').prop('disabled', true);
 $('#slayerTask').prop('disabled', true);
+$('#demon').prop('disabled', true);
+$('#demonSlayerTask').prop('disabled', true);
 
 function getRequirements(diary) {
 	table = "#table"+diary;
@@ -101,8 +103,8 @@ function getCharacterStrength() {
 		});
 	}
 
-function getSpecialAttack(weapon,maxHit,prayerMissing,enemyType) {
-	data = {weapon: weapon, maxHit : maxHit, prayerMissing : prayerMissing,enemyType : enemyType};
+function getSpecialAttack(weapon,maxHit,prayerMissing,maxHP,currentHP,enemyType,setName,berserkerNecklace) {
+	data = {weapon: weapon, maxHit : maxHit, prayerMissing : prayerMissing,maxHP : maxHP,currentHP : currentHP,enemyType : enemyType,setName : setName,berserkerNecklace : berserkerNecklace};
 		$.ajax({
 			type: "POST",
 			url: "maxHitScripts/specialAttacks.php",
@@ -173,9 +175,6 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
 		totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 	}
-	else{
-		//alert('It does not exist');
-	}
 	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
 	document.getElementById('currentStrengthBonus').innerHTML=totalStrength; 
 }
@@ -220,10 +219,13 @@ function calculateMaxHit(){
 	var strengthLevelBool = false;
 	var attackStyleBool = false;
 	var specialAttack = parseFloat('1.00');
-	var prayerMissing = document.getElementById('prayerMissing').value;	
+	var prayerMissing = document.getElementById('prayerMissing').value;
+		var maxHP = parseInt(document.getElementById('maxHP').value);	
+		var currentHP = parseInt(document.getElementById('currentHP').value);	
 	var setName = 'None';
 	var salve=false;
 	var slayerHelm=false;
+	var berserkerNecklace=false;
 	if(strengthLevel==''){
 		document.getElementById('strengthLevelMessage').innerHTML = 'Please enter a number 1-99';
 	}
@@ -330,7 +332,6 @@ function calculateMaxHit(){
 			}
 			weapon = weapon.substr(0, weapon.indexOf(':'));
 
-			
 			if(weapon=='Dragon hunter lance'){
 				if(enemyType=='Undead'){
 					enemyText='When fighting an undead dragon';
@@ -347,8 +348,15 @@ function calculateMaxHit(){
 					enemyText='When fighting undead enemies';
 				}
 				else if(enemyType=='Slayer Task'){
-					enemyText='When fighting a slayer assignment.';
+					enemyText='When fighting a slayer assignment';
 				}
+				else if(enemyType=='Demon Slayer Task'){
+					enemyText='When fighting a demon slayer assignment';
+				}
+				else if(enemyType=='Demon'){
+					enemyText='When fighting a demon';
+				}
+
 				else{
 					enemyText="";
 				}
@@ -374,6 +382,9 @@ function calculateMaxHit(){
 		}
 		else if(neck==="Salve amulet: +0"){
 			salveBonus = parseFloat('1.15')
+		}
+		else if(neck==="Berserker necklace: +7"){
+			berserkerNecklace = true;
 		}
 
 		//Helmet percent bonus
@@ -415,6 +426,48 @@ function calculateMaxHit(){
 				otherBonus +=parseFloat(0.10);
 			}
 		}
+		else if(helm==='Obsidian helmet: +3')//Need to check to see if the obsidian set is chosen
+		{
+			if($('#BodyPlaceholder').length > 0){//If the div exists
+				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			}
+			else{
+				var body = 'None';
+			}
+
+			if($('#LegsPlaceholder').length > 0){//If the div exists
+				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			}
+			else{
+				var legs = 'None';
+			}
+
+			if((body==='Obsidian platebody: +3')&&(legs==='Obsidian platelegs: +1'))
+			{	
+				setName='obsidian';
+			}
+		}
+		else if((helm==="Dharok's helm: +0")&&(weapon))//Need to check to see if the obsidian set is chosen
+		{
+			if($('#BodyPlaceholder').length > 0){//If the div exists
+				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			}
+			else{
+				var body = 'None';
+			}
+
+			if($('#LegsPlaceholder').length > 0){//If the div exists
+				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			}
+			else{
+				var legs = 'None';
+			}
+
+			if((body==="Dharok's platebody: +0")&&(legs==="Dharok's platelegs: +0")&&(weapon==="Dharok's greataxe"))
+			{	
+				setName="dharok's";
+			}
+		}
 			//Calculate effective strength
 			effectiveStrength = Math.floor((strengthLevel+boost)*prayer);
 			effectiveStrength += attackStyle;
@@ -425,8 +478,14 @@ function calculateMaxHit(){
 			if(enemyType=="Undead"){
 				maxHit = Math.floor(maxHit * salveBonus);
 			}
-			if(enemyType=="Slayer Task"){
+			if((enemyType=="Slayer Task")||(enemyType=="Demon Slayer Task")){
 				maxHit = Math.floor(maxHit * slayerBonus);
+			}
+			if(((enemyType=='Demon')||(enemyType=="Demon Slayer Task"))&&(weapon=='Arclight')){
+				maxHit = Math.floor(maxHit * 1.70);
+			}
+			if(((enemyType=='Demon')||(enemyType=="Demon Slayer Task"))&&((weapon=='Darklight')||(weapon=='Silverlight'))){
+				maxHit = Math.floor(maxHit * 1.60);
 			}
 			document.getElementById('currentMaxHit').innerHTML=maxHit;//Update max hit element
 
@@ -440,9 +499,8 @@ function calculateMaxHit(){
 			}
 			showElement('#maxHit');
 			showElement('#maxHitSpec');
-
 			if(weapon){//If weapon is selected calc weapon spec
-				getSpecialAttack(weapon,maxHit,prayerMissing,enemyType);
+				getSpecialAttack(weapon,maxHit,prayerMissing,maxHP,currentHP,enemyType,setName,berserkerNecklace);
 			}
 
 	}
@@ -453,6 +511,7 @@ function calculateMaxHit(){
 
 //Item Sets
 $(document).ready(function () {//Grabs the values for the selected set to be assigned to the associated slots by calling selectedItemChanges
+
 	$(function(){
 		$("#sets").change(function () {
 		var set = this.value;
@@ -478,6 +537,7 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 			selectedItemChanges("Dharok's platebody",'0','Body');
 			selectedItemChanges("Dharok's platelegs",'0','Legs');
 			selectedItemChanges("Dharok's greataxe",'105','2h-weapon');
+			$("#hpDiv").removeClass('hidden');
 		}
 
 		});

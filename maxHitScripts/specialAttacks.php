@@ -110,9 +110,12 @@ if (isset($_POST['weapon'], $_POST['maxHit'])){
 	$weapon = $_POST['weapon'];
 	$maxHit = $_POST['maxHit'];
 	$prayerMissing = $_POST['prayerMissing'];
+	$maxHP = $_POST['maxHP'];
+	$currentHP = $_POST['currentHP'];
+	$setName = $_POST['setName'];
+	$berserkerNecklace=$_POST['berserkerNecklace'];
 	$specName = $specialAttack[$weapon]["specialName"];
 	$enemyType = strtolower($_POST['enemyType']);
-z
 	if(array_key_exists($weapon,$specialAttack)){
 
 		if($weapon=='Abyssal bludgeon'){//Special cases
@@ -140,6 +143,35 @@ z
 			displayHit($maxHit,$specName,$weapon);
 		}
 
+	}
+	else if(($weapon=='Tzhaar-ket-om')||($weapon=='Tzhaar-ket-em')||($weapon=='Toktz-xil-ak')||($weapon=='Toktz-mej-tal')||($weapon=='Toktz-xil-ek')){
+		if(($setName=="obsidian")&&($berserkerNecklace==='true')){
+			$maxHit=floor($maxHit*1.30);
+			displayHit($maxHit,'With 1.3x obsidian boost',$weapon);
+		}
+		else if($setName=="obsidian"){
+			$maxHit=floor($maxHit*1.10);
+			displayHit($maxHit,'With 1.1x obsidian boost',$weapon);
+		}
+		else if($berserkerNecklace==='true'){
+			$maxHit=floor($maxHit*1.20);
+			displayHit($maxHit,'With 1.2x obsidian boost',$weapon);
+		}
+	}
+	elseif(($weapon=="Dharok's greataxe")&&($setName=="dharok's")){//Special cases
+		if((!(is_numeric($maxHP))) || ($maxHP < 10) || ($maxHP=='') || ($maxHP > 99)){
+			$maxHP=99;
+		}		
+		if((!(is_numeric($currentHP))) || ($maxHP < 0) || ($maxHP=='')){
+			$currentHP=1;
+		}		
+		if(($maxHP > 99)||($currentHP>$maxHP)){
+			$currentHP=$maxHP;
+		}
+		echo 'At <div class="text-danger d-inline">'.$currentHP.'</div> of <div class="text-danger d-inline">'.$maxHP.'</div> hitpoints</br>';
+		$dharokBonus=(1+($maxHP-$currentHP)/100*$maxHP/100);
+		$maxHit=floor($maxHit*$dharokBonus);
+		displayHit($maxHit,"With Dharok's set effect",$weapon);
 	}
 	else{
 		echo 'This weapon has no special attack';
