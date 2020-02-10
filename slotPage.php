@@ -100,100 +100,100 @@ if(isset($_SESSION['u_userID'])){
 			<h1 class="pt-1 text-center">Item Stats by Slot</h1>
 			<ul class="list-group pl-5 pt-0 pr-5">
 
-				<li class="list-group-item" id="Weapon" onclick="displayStats(this.id);">One Handed Weapons</li>
-				<div class="container-fluid" id="WeaponContainer">
+				<li class="list-group-item" id="weapon" onclick="displayStats(this.id);">One Handed Weapons</li>
+				<div class="container-fluid" id="weaponContainer">
 				<?php
-					echo'<table id="WeaponTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="weaponTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="Two_handed_Weapon" onclick="displayStats(this.id);">Two Handed Weapons</li>
-				<div class="container-fluid" id="Two_handed_WeaponContainer">
+				<li class="list-group-item" id="2h" onclick="displayStats(this.id);">Two Handed Weapons</li>
+				<div class="container-fluid" id="2hContainer">
 				<?php
-					echo'<table id="Two_handed_WeaponTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="2hTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="Cape" onclick="displayStats(this.id);">Capes</li>
-				<div class="container-fluid" id="CapeContainer">
+				<li class="list-group-item" id="cape" onclick="displayStats(this.id);">Capes</li>
+				<div class="container-fluid" id="capeContainer">
 				<?php
-					echo'<table id="CapeTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="capeTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="Shield" onclick="displayStats(this.id);">Shields</li>
-				<div class="container-fluid" id="ShieldContainer">
+				<li class="list-group-item" id="shield" onclick="displayStats(this.id);">Shields</li>
+				<div class="container-fluid" id="shieldContainer">
 				<?php
-					echo'<table id="ShieldTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="shieldTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 
 
-				<li class="list-group-item" id="Ring" onclick="displayStats(this.id);">Rings</li>
-				<div class="container-fluid" id="RingContainer">
+				<li class="list-group-item" id="ring" onclick="displayStats(this.id);">Rings</li>
+				<div class="container-fluid" id="ringContainer">
 				<?php
-					echo'<table id="RingTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="ringTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="Neck" onclick="displayStats(this.id);">Neck slot</li>
-				<div class="container-fluid" id="NeckContainer">
+				<li class="list-group-item" id="neck" onclick="displayStats(this.id);">Neck slot</li>
+				<div class="container-fluid" id="neckContainer">
 				<?php
-					echo'<table id="NeckTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
-					echo'</table>';
-				 ?>
-				</div>
-				
-				<li class="list-group-item" id="Hands" onclick="displayStats(this.id);">Hands</li>
-				<div class="container-fluid" id="HandsContainer">
-				<?php
-					echo'<table id="HandsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
-					echo'</table>';
-				 ?>
-				</div>
-
-				<li class="list-group-item" id="Ammunition" onclick="displayStats(this.id);">Ammunition slot</li>
-				<div class="container-fluid" id="AmmunitionContainer">
-				<?php
-					echo'<table id="AmmunitionTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
-					echo'</table>';
-				 ?>
-				</div>
-
-				<li class="list-group-item" id="Head" onclick="displayStats(this.id);">Head slot</li>
-				<div class="container-fluid" id="HeadContainer">
-				<?php
-					echo'<table id="HeadTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
-					echo'</table>';
-				 ?>
-				</div>
-
-				<li class="list-group-item" id="Body" onclick="displayStats(this.id);">Body slot</li>
-				<div class="container-fluid" id="BodyContainer">
-				<?php
-					echo'<table id="BodyTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
-					echo'</table>';
-				 ?>
-				</div>
-
-				<li class="list-group-item" id="Legs" onclick="displayStats(this.id);">Legs slot</li>
-				<div class="container-fluid" id="LegsContainer">
-				<?php
-					echo'<table id="LegsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="neckTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 				
-				<li class="list-group-item" id="Feet" onclick="displayStats(this.id);">Foot slot</li>
-				<div class="container-fluid p-0" id="FeetContainer">
+				<li class="list-group-item" id="hands" onclick="displayStats(this.id);">Hands</li>
+				<div class="container-fluid" id="handsContainer">
 				<?php
-					echo'<table id="FeetTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="handsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'</table>';
+				 ?>
+				</div>
+
+				<li class="list-group-item" id="ammo" onclick="displayStats(this.id);">Ammunition slot</li>
+				<div class="container-fluid" id="ammoContainer">
+				<?php
+					echo'<table id="ammoTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'</table>';
+				 ?>
+				</div>
+
+				<li class="list-group-item" id="head" onclick="displayStats(this.id);">Head slot</li>
+				<div class="container-fluid" id="headContainer">
+				<?php
+					echo'<table id="headTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'</table>';
+				 ?>
+				</div>
+
+				<li class="list-group-item" id="body" onclick="displayStats(this.id);">Body slot</li>
+				<div class="container-fluid" id="bodyContainer">
+				<?php
+					echo'<table id="bodyTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'</table>';
+				 ?>
+				</div>
+
+				<li class="list-group-item" id="legs" onclick="displayStats(this.id);">Legs slot</li>
+				<div class="container-fluid" id="legsContainer">
+				<?php
+					echo'<table id="legsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'</table>';
+				 ?>
+				</div>
+				
+				<li class="list-group-item" id="feet" onclick="displayStats(this.id);">Foot slot</li>
+				<div class="container-fluid p-0" id="feetContainer">
+				<?php
+					echo'<table id="feetTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
