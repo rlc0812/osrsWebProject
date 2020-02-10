@@ -3,7 +3,7 @@
 echo "Ran";
 
 include('../connect.inc');
-$curl = curl_init('https://storage.googleapis.com/osbuddy-exchange/summary.json');
+$curl = curl_init('https://rsbuddy.com/exchange/summary.json');
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_FAILONERROR, true);
 
