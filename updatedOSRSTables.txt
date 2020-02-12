@@ -240,7 +240,7 @@ questItem boolean,
 releaseDate varchar(16),
 duplicate boolean,
 examine text,
-icon text,wikiName text,wikiURL text,PRIMARY KEY (ID));
+icon blob,wikiName text,wikiURL text,PRIMARY KEY (ID));
 
 
 

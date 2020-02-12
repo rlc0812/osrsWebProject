@@ -13,7 +13,6 @@ function checkIfExists($key,array $array){
 	}
 }
 
-//$curl = curl_init('https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-json-slot/items-2h.json');
 $curl = curl_init('https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-complete.json');
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_FAILONERROR, true);
@@ -38,7 +37,7 @@ $array= json_decode($curl_response, true);
 
 $conn = connectToDb();
 
-foreach($array as $item){
+//Prepared statements for insertion
 	$stmt=$conn->prepare("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 	ON DUPLICATE KEY UPDATE
 	name=VALUES(name),
@@ -73,6 +72,78 @@ foreach($array as $item){
 	{
 		die('prepare() failed '.htmlspecialchars($conn->error));
 	}
+
+	$stmt2=$conn->prepare("INSERT INTO equipment VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	ON DUPLICATE KEY UPDATE
+	name=VALUES(name),
+	stabAttack=VALUES(stabAttack),
+	slashAttack=VALUES(slashAttack),
+	crushAttack=VALUES(crushAttack),
+	magicAttack=VALUES(magicAttack),
+	rangeAttack=VALUES(rangeAttack),
+	stabDefence=VALUES(stabDefence),
+	slashDefence=VALUES(slashDefence),
+	crushDefence=VALUES(crushDefence),
+	magicDefence=VALUES(magicDefence),
+	rangeDefence=VALUES(rangeDefence),
+	meleeStrength=VALUES(meleeStrength),
+	rangeStrength=VALUES(rangeStrength),
+	magicStrength=VALUES(magicStrength),
+	prayer=VALUES(prayer),
+	itemSlot=VALUES(itemSlot),
+	requirementAttack=VALUES(requirementAttack),
+	requirementStrength=VALUES(requirementStrength),
+	requirementHitPoints=VALUES(requirementHitPoints),
+	requirementRanged=VALUES(requirementRanged),
+	requirementMagic=VALUES(requirementMagic),
+	requirementDefence=VALUES(requirementDefence),
+	requirementPrayer=VALUES(requirementPrayer);
+	");
+	if(false===$stmt2)
+	{
+		die('prepare() failed '.htmlspecialchars($conn->error));
+	}
+
+	$stmt3=$conn->prepare("INSERT INTO weapons VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	ON DUPLICATE KEY UPDATE
+	name=VALUES(name),
+	attackSpeed=VALUES(attackSpeed),
+	weaponType=VALUES(weaponType),
+	combatStyle1=VALUES(combatStyle1),
+	attackType1=VALUES(attackType1),
+	attackStyle1=VALUES(attackStyle1),
+	experience1=VALUES(experience1),
+	boosts1=VALUES(boosts1),
+	combatStyle2=VALUES(combatStyle2),
+	attackType2=VALUES(attackType2),
+	attackStyle2=VALUES(attackStyle2),
+	experience2=VALUES(experience2),
+	boosts2=VALUES(boosts2),
+	combatStyle3=VALUES(combatStyle3),
+	attackType3=VALUES(attackType3),
+	attackStyle3=VALUES(attackStyle3),
+	experience3=VALUES(experience3),
+	boosts3=VALUES(boosts3),
+	combatStyle4=VALUES(combatStyle4),
+	attackType4=VALUES(attackType4),
+	attackStyle4=VALUES(attackStyle4),
+	experience4=VALUES(experience4),
+	boosts4=VALUES(boosts4),
+	combatStyle5=VALUES(combatStyle5),
+	attackType5=VALUES(attackType5),
+	attackStyle5=VALUES(attackStyle5),
+	experience5=VALUES(experience5),
+	boosts5=VALUES(boosts5)
+	");
+	if(false===$stmt3)
+	{
+		die('prepare() failed '.htmlspecialchars($conn->error));
+	}
+
+foreach($array as $item){
+	//echo($item['name']);
+	$item['icon']=(base64_decode($item['icon']));
+
 	$rc = $stmt->bind_param('isiiiiiiiiiiiiiiiiidiisissss',$item['id'],$item['name'],$item['incomplete'],$item['members'],$item['tradeable'],$item['tradeable_on_ge'],$item['stackable'],$item['noted'],$item['noteable'],$item['linked_id_item'],$item['linked_id_noted'],$item['linked_id_placeholder'],$item['placeholder'],$item['equipable'],$item['equipable_by_player'],$item['equipable_weapon'],$item['cost'],$item['lowalch'],$item['highalch'],$item['weight'],$item['buy_limit'],$item['quest_item'],$item['release_date'],$item['duplicate'],$item['examine'],$item['icon'],$item['wiki_name'],$item['wiki_url']);
 	if(false===$rc)
 	{
@@ -86,8 +157,7 @@ foreach($array as $item){
 		die('insert() failed '.htmlspecialchars($stmt->error));
 	}
 
-	if($item['equipable']==='true'){
-
+	if($item['equipable']=='true'){
 		//need to check requirements if they exist before insertion
 		if(!($item['equipment']['requirements']===NULL)){
 			$requirementAttack=checkIfExists('attack',$item['equipment']['requirements']);	
@@ -108,39 +178,9 @@ foreach($array as $item){
 			$requirementPrayer=NULL;	
 		}
 		
-		$stmt2=$conn->prepare("INSERT INTO equipment VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-		ON DUPLICATE KEY UPDATE
-		name=VALUES(name),
-		stabAttack=VALUES(stabAttack),
-		slashAttack=VALUES(slashAttack),
-		crushAttack=VALUES(crushAttack),
-		magicAttack=VALUES(magicAttack),
-		rangeAttack=VALUES(rangeAttack),
-		stabDefence=VALUES(stabDefence),
-		slashDefence=VALUES(slashDefence),
-		crushDefence=VALUES(crushDefence),
-		magicDefence=VALUES(magicDefence),
-		rangeDefence=VALUES(rangeDefence),
-		meleeStrength=VALUES(meleeStrength),
-		rangeStrength=VALUES(rangeStrength),
-		magicStrength=VALUES(magicStrength),
-		prayer=VALUES(prayer),
-		itemSlot=VALUES(itemSlot),
-		requirementAttack=VALUES(requirementAttack),
-		requirementStrength=VALUES(requirementStrength),
-		requirementHitPoints=VALUES(requirementHitPoints),
-		requirementRanged=VALUES(requirementRanged),
-		requirementMagic=VALUES(requirementMagic),
-		requirementDefence=VALUES(requirementDefence),
-		requirementPrayer=VALUES(requirementPrayer);
-		");
-		if(false===$stmt2)
-		{
-			die('prepare() failed '.htmlspecialchars($conn->error));
-		}
-		$rc = $stmt2->bind_param('isiiiiiiiiiiiiiisiiiiiii',$item['id'],$item['name'],$item['equipment']['attack_stab'],$item['equipment']['attack_slash'],$item['equipment']['attack_crush'],$item['equipment']['attack_magic'],$item['equipment']['attack_ranged'],$item['equipment']['defence_stab'],$item['equipment']['defence_slash'],$item['equipment']['defence_crush'],$item['equipment']['defence_magic'],$item['equipment']['defence_ranged'],$item['equipment']['melee_strength'],$item['equipment']['ranged_strength'],$item['equipment']['magic_damage'],$item['equipment']['prayer'],$item['equipment']['slot'],$requirementAttack,$requirementStrength,$requirementHitPoints,$requirementRanged,$requirementMagic,$requirementDefence,$requirementPrayer);
+		$rc2 = $stmt2->bind_param('isiiiiiiiiiiiiiisiiiiiii',$item['id'],$item['name'],$item['equipment']['attack_stab'],$item['equipment']['attack_slash'],$item['equipment']['attack_crush'],$item['equipment']['attack_magic'],$item['equipment']['attack_ranged'],$item['equipment']['defence_stab'],$item['equipment']['defence_slash'],$item['equipment']['defence_crush'],$item['equipment']['defence_magic'],$item['equipment']['defence_ranged'],$item['equipment']['melee_strength'],$item['equipment']['ranged_strength'],$item['equipment']['magic_damage'],$item['equipment']['prayer'],$item['equipment']['slot'],$requirementAttack,$requirementStrength,$requirementHitPoints,$requirementRanged,$requirementMagic,$requirementDefence,$requirementPrayer);
 		
-		if(false===$rc)
+		if(false===$rc2)
 		{
 			die('bind_param() failed '.htmlspecialchars($stmt2->error));
 		}
@@ -192,43 +232,8 @@ foreach($array as $item){
 			}
 		}
 		
-			$stmt3=$conn->prepare("INSERT INTO weapons VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-			ON DUPLICATE KEY UPDATE
-			name=VALUES(name),
-			attackSpeed=VALUES(attackSpeed),
-			weaponType=VALUES(weaponType),
-			combatStyle1=VALUES(combatStyle1),
-			attackType1=VALUES(attackType1),
-			attackStyle1=VALUES(attackStyle1),
-			experience1=VALUES(experience1),
-			boosts1=VALUES(boosts1),
-			combatStyle2=VALUES(combatStyle2),
-			attackType2=VALUES(attackType2),
-			attackStyle2=VALUES(attackStyle2),
-			experience2=VALUES(experience2),
-			boosts2=VALUES(boosts2),
-			combatStyle3=VALUES(combatStyle3),
-			attackType3=VALUES(attackType3),
-			attackStyle3=VALUES(attackStyle3),
-			experience3=VALUES(experience3),
-			boosts3=VALUES(boosts3),
-			combatStyle4=VALUES(combatStyle4),
-			attackType4=VALUES(attackType4),
-			attackStyle4=VALUES(attackStyle4),
-			experience4=VALUES(experience4),
-			boosts4=VALUES(boosts4),
-			combatStyle4=VALUES(combatStyle5),
-			attackType4=VALUES(attackType5),
-			attackStyle4=VALUES(attackStyle5),
-			experience4=VALUES(experience5),
-			boosts4=VALUES(boosts5)
-			");
-			if(false===$stmt3)
-			{
-				//die('prepare() failed '.htmlspecialchars($conn->error));
-			}
-			$rc = $stmt3->bind_param('isissssssssssssssssssssssssss',
-			$item['id'],$item['name'],$item['weapon']['attack_speed'],$item['weapon']['Weapon_type'],
+			$rc3 = $stmt3->bind_param('isissssssssssssssssssssssssss',
+			$item['id'],$item['name'],$item['weapon']['attack_speed'],$item['weapon']['weapon_type'],
 			$item['weapon']['stances']['0']['combat_style'],
 			$item['weapon']['stances']['0']['attack_type'],
 			$item['weapon']['stances']['0']['attack_style'],
@@ -254,9 +259,9 @@ foreach($array as $item){
 			$item['weapon']['stances']['4']['attack_style'],
 			$item['weapon']['stances']['4']['experience'],
 			$item['weapon']['stances']['4']['boosts']);
-			if(false===$rc)
+			if(false===$rc3)
 			{
-				//die('bind_param() failed '.htmlspecialchars($conn->error));
+				die('bind_param() failed '.htmlspecialchars($stmt3->error));
 			}
 
 			if($stmt3->execute()){
@@ -272,3 +277,4 @@ mysqli_close($conn);
 
 
 ?>
+
