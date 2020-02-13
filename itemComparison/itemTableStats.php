@@ -59,7 +59,7 @@ weapons.combatStyle1,weapons.attackType1,weapons.attackStyle1,weapons.experience
                 <tr>
                     <td>'.$itemID.'</td>
                     <td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
-                    <td>'.$itemName.'</td>';
+                    <td class="itemText">'.$itemName.'</td>';
 		    if(($itemSlot==='weapon')||($itemSlot==='2h')){
 			       echo'<td>'.$weaponType.'</td>';
 			}

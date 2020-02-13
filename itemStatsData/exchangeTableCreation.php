@@ -69,7 +69,7 @@ while ($stmt->fetch()) {
 	echo'
 
 	<tr>
-	<th>'.$name.'</th>
+	<td class="itemText">'.$name.'</td>
 	<td>'.$members.'</td>
 	<td>'.number_format(intval($store)).'</td>
 	<td>'.number_format(intval($buyAvg)).'</td>

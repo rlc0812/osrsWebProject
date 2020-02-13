@@ -217,18 +217,43 @@ function displayStats(itemSlot) {
 			success: function(data) {
 			$("#"+itemSlot+"Table").removeClass('hidden');	
 			$("#"+itemSlot+"Table").html(data);
-			$("#"+itemSlot+"Table").DataTable( {
-				columnDefs: [ {
-					targets: [ 0 ],
-					orderData: [ 0, 1 ]
-				}, {
-					targets: [ 1 ],
-					orderData: [ 1, 0 ]
-				}, {
-					targets: [ 4 ],
-					orderData: [ 4, 0 ]
-				} ]
-			} );
+			if((itemSlot=='weapon')||(itemSlot=='2h')){
+				$("#"+itemSlot+"Table").DataTable( {
+					columnDefs: [ {
+						targets: [ 0 ],
+						orderData: [ 2 ]
+					}, {
+						targets: [ 1 ],
+						orderData: [ 1, 0 ]
+					}, {
+						targets: [ 4 ],
+						orderData: [ 4, 0 ]
+					}, {
+						"orderSequence": ["desc", "asc"], "targets": [ 4,6,7,8,9,10,11,12,13,14,15,16,17,18 ]
+					}  ]
+				});
+			}
+
+			else
+			{
+				$("#"+itemSlot+"Table").DataTable( {
+					columnDefs: [ {
+						targets: [ 0 ],
+						orderData: [ 2 ]
+					}, {
+						targets: [ 1 ],
+						orderData: [ 1, 0 ]
+					}, {
+						targets: [ 4 ],
+						orderData: [ 4, 0 ]
+					}, {
+						"orderSequence": ["desc", "asc"], "targets": [ 3,4,5,6,7,8,9,10,11,12,13,14,15,16 ]
+					}  ]
+				});
+			}
+
+			
+
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				     alert(xhr.status);
