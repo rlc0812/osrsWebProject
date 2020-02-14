@@ -26,7 +26,7 @@ weapons.combatStyle1,weapons.attackType1,weapons.attackStyle1,weapons.experience
             <thead>
                 <tr>
 		    <th>ID</th>
-                    <th>Icon</th>
+                    <th class="no-sort">Icon</th>
                     <th>Item Name</th>';
     if(($itemSlot==='weapon')||($itemSlot==='2h')){
                echo'<th>Category</th>';

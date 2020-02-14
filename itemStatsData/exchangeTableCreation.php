@@ -2,13 +2,17 @@
 <!DOCTYPE html> 
 <html lang="en-US">
 <head>
-<link rel="stylesheet" type="text/css" href="test.css">
 </head>
 </html>
 <?php
 
 function getItemList($type,$limit){
-	include_once('../connect.inc');
+	if(file_exists('connect.inc')){
+		include_once('connect.inc');
+	}
+	if(file_exists('../connect.inc')){
+		include_once('../connect.inc');
+	}
 
 	$conn = connectToDb();
 	if($type=='buyAverage'){
@@ -43,7 +47,7 @@ function getItemList($type,$limit){
 
 echo'
 <div class="table-responsive pb-5 text-center">
-<table id="example" class="table-striped table-dark table-sm w-100">
+<table id="alchemyTable" class="table-striped table-dark table-sm w-100">
 	<tr class="bg-dark">
 		<th>Name</th>
 		<th>Members</th>
@@ -92,7 +96,12 @@ echo'
 
 
 if((isset($_POST['type'])) && (isset($_POST['limit']))){
-	include_once('../connect.inc');
+	if(file_exists('connect.inc')){
+		include_once('connect.inc');
+	}
+	if(file_exists('../connect.inc')){
+		include_once('../connect.inc');
+	}
 	$conn = connectToDb();
 	$type = mysqli_real_escape_string($conn,$_POST['type']);
 	$limit = mysqli_real_escape_string($conn,$_POST['limit']);

@@ -38,55 +38,55 @@ include('itemStatsData/exchangeTableCreation.php');
 	<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<div class="collapse navbar-collapse" id="navbarMobile">
-		<ul class="nav navbar-nav">
-		<li class="nav-item">
-		<a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-		</li>
+<div class="collapse navbar-collapse" id="navbarMobile">
+        <ul class="nav navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="loginPage.php">Login</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="registrationPage.php">Registration</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        </li>
+	<li class="nav-item">
+        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
+        </li>
+    </ul>
+        <?php
+        if(isset($_SESSION['u_userID'])){
+            echo '
 
-		<li class="nav-item">
-		<a class="nav-link" href="loginPage.php">Login</a>
-		</li>
-
-		<li class="nav-item">
-		<a class="nav-link" href="accountManagement/registrationPage.php">Registration</a>
-		</li>
-		<li class="nav-item">
-		<a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-		</li>
-		<li class="nav-item">
-		<a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-		</li>
-		<li class="nav-item">
-		<a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-		</li>
-		<li class="nav-item active">
-		<a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-		</li>
-		<li class="nav-item">
-		<a class="nav-link" href="alchScripts/alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-		</li>
-		<li class="nav-item">
-		<a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
-		</li>
-		<li class="nav-item">
-  		<a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).webp">Clue Scroll Requirements</a>
- 		</li>
-
-	</ul>
-		<?php
-		if(isset($_SESSION['u_userID'])){
-			echo '
-
-			<div class="text-left">
-			<form action="accountManagement/logout.inc.php" method="POST">
-			<button type="submit" name="submit" class="submit btn-primary">Log Out</button>
-			</form>
-			</div>
-		';
-		}
-		?>
-	</div>
+            <div class="text-left">
+            <form action="accountManagement/logout.inc.php" method="POST">
+            <button type="submit" name="submit" class="submit btn-primary" >Log Out</button>
+            </form>
+            </div>
+        ';
+        }
+        ?>
+</div>
 </nav>
 
 <?php
@@ -124,7 +124,7 @@ if(isset($_SESSION['u_userID'])){
  	<div class="row">
  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="columnbuyQuantity">
  			<h3 class="pt-3 text-center">Most Purchased Items</h3>
-  			<div class="container-fluid p-0" id="containerbuyQuantity">
+  			<div class="container-fluid p-0" id="containerbuyQuantity"><p>test</p>
   				<?php
 					getItemList('buyQuantity',10);
   				?>
@@ -144,7 +144,7 @@ function loadMore(type,limit) {
 var type=type;
 		$.ajax({
 			type: "POST",
-			url: "itemStatsData/exchangeTableCreation.php",
+			url: "exchangeTableCreation.php",
 			data: 'type='+type+'&limit='+limit,
 			cache: false,
 			success: function(data) {
@@ -187,29 +187,5 @@ function search() {
        				 alert(thrownError);
 			}
 		});
-	}
-function orderBy(columnName,searchValue) {
-	// AJAX code to display more items character
-		$.ajax({
-			type: "POST",
-			url: "itemStatsData/sortItems.php",
-			data: 'columnName='+columnName+'&searchValue='+searchValue,
-			cache: false,
-			success: function(data) {
-			$("#idSearch").html(data);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				       alert(xhr.status);
-       				 alert(thrownError);
-			}
-		});
-	}
-function emptyId(clearValue)
-{
-	$('#'+clearValue).hide();
-	$('#searchBtn').show();
-	$('#search').show();
-	$('#resetBtn').hide();
 }
-
 </script>

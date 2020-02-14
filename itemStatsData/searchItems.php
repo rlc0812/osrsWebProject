@@ -1,21 +1,40 @@
 <?php
 if(isset($_POST['item'])&&(!(empty(trim($_POST['item']))))){
-include_once('../connect.inc');
+	if(file_exists('connect.inc')){
+		include_once('connect.inc');
+	}
+	if(file_exists('../connect.inc')){
+		include_once('../connect.inc');
+	}
 $conn = connectToDb();
 	$item = mysqli_real_escape_string($conn,$_POST['item']);
 	$item = trim($item);
-	$stmt=$conn->prepare("SELECT * from exchange WHERE name LIKE concat('%', ?, '%')");
+	$stmt=$conn->prepare("SELECT 
+	exchange.itemID,
+	exchange.name,
+	exchange.members,
+	exchange.ShopPrice,
+	exchange.buyAverage,
+	exchange.buyQuantity,
+	exchange.sellAverage,
+	exchange.sellQuantity,
+	exchange.overallAverage,
+	exchange.overallQuantity,
+	items.icon,
+	items.buyLimit
+	FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) 
+	WHERE exchange.name LIKE concat('%', ?, '%')");
 	$stmt->bind_param('s',$item);
 	$stmt->execute();
-//	$result=$stmt->get_result();
-//	if($result){
-	$stmt->bind_result($itemId, $name,$members,$store,$buyAvg,$buyQt,$sellAvg,$sellQt,$overAvg,$overQt);
+	$stmt->bind_result($itemID,$name,$members,$store,$buyAvg,$buyQt,$sellAvg,$sellQt,$overAvg,$overQt,$icon,$buyLimit);
 echo '
-
             <thead>
                 <tr>
+                    <th>ID</th>	
+                    <th class="no-sort">Icon</th>	    
                     <th>Name</th>
                     <th>Members</th>
+                    <th>Buy Limit</th>
                     <th>Sell General Store</th>
                     <th>Buy Average</th>
                     <th>Buy Quantity</th>
@@ -38,8 +57,11 @@ echo '
 		}
 		echo'
 		<tr>
-		<td>'.$name.'</td>
+		<td>'.$itemID.'</td>
+                <td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
+		<td class="itemText">'.$name.'</td>
 		<td>'.$members.'</td>
+		<td>'.number_format(intval($buyLimit)).'</td>
 		<td>'.number_format(intval($store)).'</td>
 		<td>'.number_format(intval($buyAvg)).'</td>
 		<td>'.number_format(intval($buyQt)).'</td>
