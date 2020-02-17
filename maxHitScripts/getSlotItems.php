@@ -4,9 +4,18 @@ if(isset($_POST['itemSlot'])){
 	$itemSlot = $_POST['itemSlot'];
 	if ($itemSlot == 'WeaponMenu'){
 		echo '<div class="container-fluid w-60">';
-			echo '<input type="radio" value="Weapon" name="selectOption1">One handed weapon </br>';
-			echo '<input type="radio" value="2h" name="selectOption1">Two handed weapon';
+			/*
+			echo'
+			<div id="selectOption1" name="selectOption1" class="btn-group btn-group-toggle" data-toggle="buttons">
+				<label class="btn btn-primary darkBg">
+				<input type="radio" value="Weapon" name="weapon" id="option1" autocomplete="off"><div class="itemText2">One handed weapon</div>
+				</label>	
+				<label class="btn btn-primary darkBg">
+				<input type="radio" value="2h" name="weapon" id="option2"autocomplete="off"><div class="itemText2">Two handed weapon</div>
+				</label>	
+			</div>';
 			echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
+			*/
 		echo '</div>';
 	}
 	else{
@@ -32,7 +41,7 @@ if(isset($_POST['itemSlot'])){
 			getStrengthBonus($itemSlot);
 			
 		}
-		elseif($itemSlot == 'Weapon'){
+		/*elseif($itemSlot == 'Weapon'){
 			echo '<option>Select item: Weapon</option>';
 			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
@@ -40,7 +49,7 @@ if(isset($_POST['itemSlot'])){
 		elseif($itemSlot == '2h'){
 			echo '<option>Select item: 2h</option>';
 			echo '<option id="None" value="0">None</option>';
-			getStrengthBonus($itemSlot);
+			getStrengthBonus($itemSlot);*/
 		}
 		elseif($itemSlot == 'Body'){
 			echo '<option>Select item: Body</option>';
@@ -93,21 +102,16 @@ if(isset($_POST['itemSlot'])){
 
 <script type="text/javascript">
 
-	$(document).ready(function () {
-		$(function(){
-			$('input[type=radio][name=selectOption1]').change(function () {
-				var itemSlot = this.value;
-				if(itemSlot==='Weapon'){
-					populateSlot(itemSlot,'#selectMenu2');
-				}
-
-				if(itemSlot==='2h'){
-					populateSlot(itemSlot,'#selectMenu2');
-				}
-			});
-		});
-	});
-
+$('#selectOption1 .btn').on('click', function(event) {
+	console.log($(this).find('input').val());
+	var itemSlot = $(this).find('input').val();
+	if(itemSlot==='Weapon'){
+		populateSlot(itemSlot,'#selectMenu2');
+	}
+	if(itemSlot==='2h'){
+		populateSlot(itemSlot,'#selectMenu2');
+	}
+});
 
 	$("#selectOption2").change(function () {
 		var strengthBonus = this.value;
