@@ -5,7 +5,7 @@ if(isset($_POST['itemSlot'])){
 	if ($itemSlot == 'WeaponMenu'){
 		echo '<div class="container-fluid w-60">';
 			echo '<input type="radio" value="Weapon" name="selectOption1">One handed weapon </br>';
-			echo '<input type="radio" value="Two_handed_weapon" name="selectOption1">Two handed weapon';
+			echo '<input type="radio" value="2h" name="selectOption1">Two handed weapon';
 			echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
 		echo '</div>';
 	}
@@ -20,10 +20,12 @@ if(isset($_POST['itemSlot'])){
 		}
 		elseif($itemSlot == 'Cape'){
 			echo '<option>Select item: Cape</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Neck'){
 			echo '<option>Select item: Neck</option>';
+			echo '<option id="None" value="0">None</option>';
 			echo '<option id="Salve amulet" value="0">Salve amulet</option>';
 			echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
 			echo '<option id="Salve amulet (ei)" value="0">Salve amulet (ei)</option>';
@@ -32,40 +34,47 @@ if(isset($_POST['itemSlot'])){
 		}
 		elseif($itemSlot == 'Weapon'){
 			echo '<option>Select item: Weapon</option>';
-			echo '<option id="Dragon hunter lance" value="70">Dragon hunter lance</option>';	
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
-		elseif($itemSlot == 'Two_handed_weapon'){
-			echo '<option>Select item: 2h-weapon</option>';
+		elseif($itemSlot == '2h'){
+			echo '<option>Select item: 2h</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Body'){
 			echo '<option>Select item: Body</option>';
+			echo '<option id="None" value="0">None</option>';
 			echo '<option id="Void knight top" value="0">Void knight top</option>';	
 			echo '<option id="Elite void top" value="0">Elite void top</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Shield'){
 			echo '<option>Select item: Shield</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Legs'){
 			echo '<option>Select item: Legs</option>';
+			echo '<option id="None" value="0">None</option>';
 			echo '<option id="Void knight robe" value="0">Void knight robe</option>';	
 			echo '<option id="Elite void robe" value="0">Elite void robe</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Hands'){
 			echo '<option>Select item: Hands</option>';
+			echo '<option id="None" value="0">None</option>';
 			echo '<option id="Void knight gloves" value="0">Void knight gloves</option>';	
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Feet'){
 			echo '<option>Select item: Feet</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Ring'){
 			echo '<option>Select item: Ring</option>';
+			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
 		}
 
@@ -78,7 +87,6 @@ if(isset($_POST['itemSlot'])){
 
 
 ?>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -93,7 +101,7 @@ if(isset($_POST['itemSlot'])){
 					populateSlot(itemSlot,'#selectMenu2');
 				}
 
-				if(itemSlot==='Two_handed_weapon'){
+				if(itemSlot==='2h'){
 					populateSlot(itemSlot,'#selectMenu2');
 				}
 			});
@@ -114,7 +122,7 @@ if(isset($_POST['itemSlot'])){
 			$('#prayerDiv').show();
 		}
 
-		if((itemSlot==='Weapon')||(itemSlot==='2h-weapon')){
+		if((itemSlot==='Weapon')||(itemSlot==='2h')){
 			if((itemName=='Arclight')||(itemName=='Darklight')||(itemName=='Silverlight')){
 				$('#demon').prop('disabled', false);
 				var isDisabled = $('#slayerTask').is(':disabled');
@@ -172,7 +180,7 @@ if(isset($_POST['itemSlot'])){
 	}
 
 	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
-		if (itemSlot=='2h-weapon'){
+		if (itemSlot=='2h'){
 			var updateField = '#WeaponSlot';
 		}
 		else{
@@ -196,8 +204,42 @@ if(isset($_POST['itemSlot'])){
 						alert(thrownError);
 				}
 			});
+			if(itemName=='None'){
+				$(updateField+'ImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
+			}
+			else{
+				$(updateField+'ImageDiv').addClass("darkBg border-left border-right border-top border-dark");
+			}
 			updateTotalStrength(strengthBonus,itemSlot);
+			updateIcon(itemName,itemSlot);
 	}
+
+	function updateIcon(itemNameIcon,itemSlot) {
+		if (itemSlot=='2h'){
+			var updateField = '#WeaponSlotImageDiv';
+		}
+		else{
+			var updateField = '#'+itemSlot+'SlotImageDiv';
+		}
+		console.log(updateField);
+		//$(updateField).empty();
+		data = {itemNameIcon: itemNameIcon,itemSlot: itemSlot};
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/updateSelectedItem.php",
+				data: data,
+				cache: false,
+
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+				}
+			});
+	}
+
 
 </script>
 

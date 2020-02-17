@@ -8,7 +8,7 @@ function tableCreation ($characterStats,$charNum){
 			{
 
 				echo '
-				<h3 class="text-center">Character '.$charNum.' has not been registered.</h3>
+				<h3 class="text-center">Character '.$charNum.' not specified.</h3>
 				</div>';
 				return NULL;
 			}
@@ -49,18 +49,18 @@ function tableCreation ($characterStats,$charNum){
 			}
 			elseif(($characterStats[27]>=30)&&($characterStats[28]==1)&&($characterStats[29]>=40)){
 				if($characterStats[27]>=50){//50 or greater attack
-					echo '<th colspan="2">Build: 1 Defence Pure </th>';
-					echo '<th><img src="images/item_icons/zamorak_halo.png"></th>';
+					echo '<th>Build:</th>';
+					echo '<td class="text-center" colspan="2"> 1 Defence Pure <img src="images/item_icons/zamorak_halo.png"></td>';
 				}
 				else{
-					echo '<th colspan="2">Build: Baby Pure </th>';
-					echo '<th><img src="images/item_icons/iron_full_helm.png"></th>';
+					echo '<th>Build:</th>';
+					echo '<td colspan="2">Baby Pure <img src="images/item_icons/iron_full_helm.png"></td>';
 
 				}
 			}
 			elseif(($characterStats[28]==42)&&($characterStats[31]>=70)){
-				echo '<th colspan="2">Build: Void Pure </th>';
-				echo '<th><img src="images/item_icons/void_ranger_helm.png"></th>';
+				echo '<th>Build:</th>';
+				echo '<td colspan="2">Void Pure <img src="images/item_icons/void_ranger_helm.png"></td>';
 			}
 			elseif(($characterStats[28]==70)||($characterStats[28]>=75)){
 				echo '<th>Build:</th>
@@ -88,9 +88,29 @@ function tableCreation ($characterStats,$charNum){
 				echo '<th>Build:</th>
 				<td class="text-center" colspan="2">Main/NA</td>';
 			}
+			/*
+			//For the change character type button
+			echo'<th><div class="dropdown">
+			  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Account Type
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(153px, 38px, 0px);">
+				<a class="dropdown-item selected"><img src="https://oldschool.runescape.wiki/images/8/8c/HiScores_icon.png?99743" width="15" height="16">Normal Account</a>
+				<a class="dropdown-item"><img src="https://oldschool.runescape.wiki/images/0/09/Ironman_chat_badge.png?a0a83" width="15" height="16">Ironman</a>
+				<a class="dropdown-item"><img src="https://oldschool.runescape.wiki/images/b/b8/Hardcore_ironman_chat_badge.png?a1753" width="15" height="16">Hardcore Ironman</a>
+			  </div>
+			</div></th>';*/
+			
+			
+			
 			switch($charNum)//To allow the same buttons to hold different values
 			{
 				case 1:
+					echo '<td class="text-center">
+						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/8/8c/HiScores_icon.png?99743" width="15" height="16"></a>
+						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/0/09/Ironman_chat_badge.png?a0a83" width="15" height="16"></a>
+						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/b/b8/Hardcore_ironman_chat_badge.png?a1753" width="15" height="16"></a>
+						</td>';
 					echo '<th class="text-right"><button type="button" class="btn btn-danger" onclick="dropCharacter(1);">&times;</button></th>';
 					break;
 				case 2:
@@ -105,6 +125,7 @@ function tableCreation ($characterStats,$charNum){
 			}
 			echo '</tr>';
 			
+			
 			echo '<tr class="border-bottom">';
 				echo '<th><img src="images/Combat.png"></th>';
 				echo '<th>Combat:</th>';
@@ -113,6 +134,7 @@ function tableCreation ($characterStats,$charNum){
 				echo '<td>'.$combatArray[1].'</td>';
 				echo "<td><u>Lvl.99:</u> ".$count99.'</td>';
 			echo '</tr>';
+
 
 			echo '<tr>';
 			echo '<th scope="col">Icon</th>';
@@ -154,7 +176,7 @@ function tableCreation ($characterStats,$charNum){
 				else{
 					echo '<td>' .number_format($characterStats[$i+50]).'</td>';
 				}
-				if($i!==1){
+				if(($i!==1)&&($characterStats[$i+50]!=='200000000')){
 					echo '<td>' .number_format($expToLevel).'</td>';
 				}
 				else{echo '<td>N/A</td>';}

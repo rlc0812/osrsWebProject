@@ -132,16 +132,63 @@ $rankArray = array(
 	'Runecraft' => $highScoreValues[21],
 	'Hunter' => $highScoreValues[22],
 	'Construction' => $highScoreValues[23],
-	'Bounty Hunter - Hunter' => $highScoreValues[24],
-	'Bounty Hunter - Rogue' => $highScoreValues[25],
-	//LMS rank is [26]
+		//UNKNOWN at [24]
+	'Bounty Hunter - Hunter' => $highScoreValues[25],
+	'Bounty Hunter - Rogue' => $highScoreValues[26],
 	'All Clues' => $highScoreValues[27],
 	'Beginner Clues' => $highScoreValues[28],
 	'Easy Clues' => $highScoreValues[29],
 	'Medium Clues' => $highScoreValues[30],
 	'Hard Clues' => $highScoreValues[31],
 	'Elite Clues' => $highScoreValues[32],
-	'Master Clues' => $highScoreValues[33]
+	'Master Clues' => $highScoreValues[33],
+		//LMS rank is [34]
+	//Boss highscores come after [34]
+	/*
+	'Abyssal Sire'=> $highScoreValues[35],
+	'Alchemical Hydra'=> $highScoreValues[36],
+	'Barrows Chests'=> $highScoreValues[37],
+	'Bryophyta'=> $highScoreValues[38],
+	'Callisto'=> $highScoreValues[39],
+	'Cerberus'=> $highScoreValues[40],
+	'Chambers of Xeric'=> $highScoreValues[41],
+	'Chambers of Xeric Challenge Mode'=> $highScoreValues[42],
+	'Chaos Elemental'=> $highScoreValues[43],
+	'Chaos Fanatic'=> $highScoreValues[44],
+	'Commander Zilyana'=> $highScoreValues[45],
+	'Corporeal Beast'=> $highScoreValues[46],
+	'Dagannoth Prime'=> $highScoreValues[47],
+	'Dagannoth Rex'=> $highScoreValues[48],
+	'Dagannoth Supreme'=> $highScoreValues[49],
+	'Crazy Archaelogist'=> $highScoreValues[50],
+	'Deranged Archaelogist'=> $highScoreValues[51],
+	'General Graardor'=> $highScoreValues[52],
+	'Giant Mole'=> $highScoreValues[53],
+	'Grotesque Guardians'=> $highScoreValues[54],
+	'Hespori'=> $highScoreValues[55],
+	'Kalphite Queen'=> $highScoreValues[56],
+	'King Black Dragon'=> $highScoreValues[57],
+	'Kraken'=> $highScoreValues[58],
+	"Kree'Arra"=> $highScoreValues[59],
+	"K'ril Tsutsaroth"=> $highScoreValues[60],
+	'Mimic'=> $highScoreValues[61],
+	'Obor'=> $highScoreValues[62],
+	'Sarachnis'=> $highScoreValues[63],
+	'Scorpia'=> $highScoreValues[64],
+	'Skotizo'=> $highScoreValues[65]
+	'The Gauntlet'=> $highScoreValues[66],
+	'The Corrupted Gauntlet'=> $highScoreValues[67],
+	'Theatre of Blood'=> $highScoreValues[68],
+	'Thermonuclear Smoke Devil'=> $highScoreValues[69],
+	'TzKal-Zuk'=> $highScoreValues[70],
+	'TzTok-Jad'=> $highScoreValues[71],
+	'Venenatis'=> $highScoreValues[72],
+	"Vet'ion"=> $highScoreValues[73],
+	'Vorkath'=> $highScoreValues[74],
+	'Wintertodt'=> $highScoreValues[75],
+	'Zalcano'=> $highScoreValues[76],
+	'Zulrah'=> $highScoreValues[77]
+	*/
 	);
 	/*
 	foreach($rankArray as $arrayTest)

@@ -48,28 +48,28 @@ function getRequirements(diary) {
        				 alert(thrownError);
 			}
 		});
-	}
-
+	}	
+	
 function populateSlot(itemSlot,updateField) {
-	data = {itemSlot: itemSlot};
-	//updateField = '#itemSlotField';
-		$.ajax({
-			type: "POST",
-			url: "maxHitScripts/getSlotItems.php",
-			data: data,
-			cache: false,
-
-			success: function(data) {
-			$(updateField).html(data);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				       alert(xhr.status);
-       				 alert(thrownError);
-			}
-		});
-		$('#maxHitSpec').hide();
-		$('#maxHitSpec').hide();
-	}
+		data = {itemSlot: itemSlot};
+		//updateField = '#itemSlotField';
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/getSlotItems.php",
+				data: data,
+				cache: false,
+	
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						   alert(xhr.status);
+							alert(thrownError);
+				}
+			});
+			$('#maxHitSpec').hide();
+			$('#maxHitSpec').hide();
+		}
 
 function getCharacterStrength() {
 	if (document.getElementById('radioChar1').checked) {
@@ -124,20 +124,22 @@ function getSpecialAttack(weapon,maxHit,prayerMissing,maxHP,currentHP,enemyType,
 
 function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called after each item is added and completely recalculated in-case items are rechosen
 	totalStrength = document.getElementById('currentStrengthBonus').innerHTML;
-	if(itemSlot=='2h-weapon')//Cannot have a shield with a 2h weapon
+	if(itemSlot=='2h')//Cannot have a shield with a 2h weapon
 	{
 		if(document.getElementById('WeaponPlaceholder')){
 			strengthToSubtract = document.getElementById('WeaponPlaceholder').innerHTML;
-			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(" +")+1);
 			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 		}
 		if(document.getElementById('ShieldPlaceholder')){
 			subtractShieldBonus = document.getElementById('ShieldPlaceholder').innerHTML;
-			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(":")+3);
+			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(" +")+1);
 			totalStrength = parseInt(totalStrength) - parseInt(subtractShieldBonus);
 		}
 		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
 		$('#ShieldSlot').addClass('text-danger');
+		$('#ShieldSlotImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
+		$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png");
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();
 	}
@@ -145,13 +147,15 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
 	{
 		$('#ShieldSlot').removeClass('text-danger');
-		if(document.getElementById('2h-weaponPlaceholder')){
-			//var test = document.getElementById('2h-weaponPlaceholder');
-			subtract2HandedBonus = document.getElementById('2h-weaponPlaceholder').innerHTML;
-			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(":")+3);
+		if(document.getElementById('2hPlaceholder')){
+			//var test = document.getElementById('2hPlaceholder');
+			subtract2HandedBonus = document.getElementById('2hPlaceholder').innerHTML;
+			subtract2HandedBonus = subtract2HandedBonus.substring(subtract2HandedBonus.indexOf(" +")+1);
 
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
 			$('#WeaponSlot').text('None');
+			$('#WeaponSlotImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
+			$('#2hIcon').attr("src","images/slot_images/Weapon_slot.png");
 		}
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();
@@ -159,20 +163,20 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 	if(itemSlot=='Weapon')
 	{
 		$('#ShieldSlot').removeClass('text-danger');
-		if(document.getElementById('2h-weaponPlaceholder')){
-			strengthToSubtract = document.getElementById('2h-weaponPlaceholder').innerHTML;
-			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+		if(document.getElementById('2hPlaceholder')){
+			strengthToSubtract = document.getElementById('2hPlaceholder').innerHTML;
+			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(" +")+1);
 			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 			$('#ShieldSlot').text('None');
+			$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png");
 		}
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();
 	}
 
-
 	if(document.getElementById(itemSlot+'Placeholder')){//This slot has already been selected so we need to subtract the prior strength value
 		strengthToSubtract = document.getElementById(itemSlot+'Placeholder').innerHTML;
-		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(":")+3);
+		strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(" +")+1);
 		totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 	}
 	totalStrength = parseInt(totalStrength) + parseInt(strengthBonus);
@@ -220,8 +224,8 @@ function calculateMaxHit(){
 	var attackStyleBool = false;
 	var specialAttack = parseFloat('1.00');
 	var prayerMissing = document.getElementById('prayerMissing').value;
-		var maxHP = parseInt(document.getElementById('maxHP').value);	
-		var currentHP = parseInt(document.getElementById('currentHP').value);	
+	var maxHP = parseInt(document.getElementById('maxHP').value);	
+	var currentHP = parseInt(document.getElementById('currentHP').value);	
 	var setName = 'None';
 	var salve=false;
 	var slayerHelm=false;
@@ -317,17 +321,17 @@ function calculateMaxHit(){
 			break;
 		}		
 
-		if(($('#WeaponPlaceholder').length == 0)&&($('#2h-weaponPlaceholder').length == 0)){//Calculate special attack max hit
+		if(($('#WeaponPlaceholder').length == 0)&&($('#2hPlaceholder').length == 0)){//Calculate special attack max hit
 			//alert('there is no weapon');
 		}
 		else{
 			if($('#WeaponPlaceholder').length > 0){
 				var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
 			}
-			if($('#2h-weaponPlaceholder').length > 0){
-				var weapon=document.getElementById('2h-weaponPlaceholder').innerHTML;
+			if($('#2hPlaceholder').length > 0){
+				var weapon=document.getElementById('2hPlaceholder').innerHTML;
 			}
-			if(weapon=='Dragon hunter lance: +70'){
+			if(weapon=='Dragon hunter lance +70'){
 				otherBonus+=0.20;
 			}
 			weapon = weapon.substr(0, weapon.indexOf(':'));
@@ -376,14 +380,14 @@ function calculateMaxHit(){
 			var neck = 'None';
 		}
 		
-		if((neck==="Salve amulet (e): +0")||(neck==="Salve amulet (ei): +0"))
+		if((neck==="Salve amulet (e) +0")||(neck==="Salve amulet (ei) +0"))
 		{	
 			salveBonus= parseFloat('1.20');
 		}
-		else if(neck==="Salve amulet: +0"){
+		else if(neck==="Salve amulet +0"){
 			salveBonus = parseFloat('1.15')
 		}
-		else if(neck==="Berserker necklace: +7"){
+		else if(neck==="Berserker necklace +7"){
 			berserkerNecklace = true;
 		}
 
@@ -395,10 +399,10 @@ function calculateMaxHit(){
 			var helm = 'None';
 		}
 
-		if(helm==='Slayer helmet: +0'){
+		if(helm==='Slayer helmet +0'){
 			slayerBonus = parseFloat('1.1667');	
 		}
-		else if(helm==='Void melee helm: +0')//Need to check to see if the void melee set is chosen
+		else if(helm==='Void melee helm +0')//Need to check to see if the void melee set is chosen
 		{
 			if($('#HandsPlaceholder').length > 0){//If the div exists
 				var gloves = document.getElementById('HandsPlaceholder').innerHTML; 
@@ -421,12 +425,12 @@ function calculateMaxHit(){
 				var legs = 'None';
 			}
 
-			if((gloves==='Void knight gloves: +0')&&((body==='Void knight top: +0')||(body==='Elite void top: +0'))&&((legs==='Void knight robe: +0')||(legs==='Elite void robe: +0')))
+			if((gloves==='Void knight gloves +0')&&((body==='Void knight top +0')||(body==='Elite void top +0'))&&((legs==='Void knight robe +0')||(legs==='Elite void robe +0')))
 			{	
 				otherBonus +=parseFloat(0.10);
 			}
 		}
-		else if(helm==='Obsidian helmet: +3')//Need to check to see if the obsidian set is chosen
+		else if(helm==='Obsidian helmet +3')//Need to check to see if the obsidian set is chosen
 		{
 			if($('#BodyPlaceholder').length > 0){//If the div exists
 				var body = document.getElementById('BodyPlaceholder').innerHTML;
@@ -442,12 +446,12 @@ function calculateMaxHit(){
 				var legs = 'None';
 			}
 
-			if((body==='Obsidian platebody: +3')&&(legs==='Obsidian platelegs: +1'))
+			if((body==='Obsidian platebody +3')&&(legs==='Obsidian platelegs +1'))
 			{	
 				setName='obsidian';
 			}
 		}
-		else if((helm==="Dharok's helm: +0")&&(weapon))//Need to check to see if the obsidian set is chosen
+		else if((helm==="Dharok's helm +0")&&(weapon))//Need to check to see if the obsidian set is chosen
 		{
 			if($('#BodyPlaceholder').length > 0){//If the div exists
 				var body = document.getElementById('BodyPlaceholder').innerHTML;
@@ -463,7 +467,7 @@ function calculateMaxHit(){
 				var legs = 'None';
 			}
 
-			if((body==="Dharok's platebody: +0")&&(legs==="Dharok's platelegs: +0")&&(weapon==="Dharok's greataxe"))
+			if((body==="Dharok's platebody +0")&&(legs==="Dharok's platelegs +0")&&(weapon==="Dharok's greataxe"))
 			{	
 				setName="dharok's";
 			}
@@ -536,7 +540,7 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 			selectedItemChanges("Dharok's helm",'0','Head');
 			selectedItemChanges("Dharok's platebody",'0','Body');
 			selectedItemChanges("Dharok's platelegs",'0','Legs');
-			selectedItemChanges("Dharok's greataxe",'105','2h-weapon');
+			selectedItemChanges("Dharok's greataxe",'105','2h');
 			$("#hpDiv").removeClass('hidden');
 		}
 
@@ -547,14 +551,15 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 
 ////////////////////////////////////////////////////////////////////////////////////////////////Get Slot Items.php
 
-
+/*
 	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
-		if (itemSlot=='2h-weapon'){
+		if (itemSlot=='2h'){
 			var updateField = '#WeaponSlot';
 		}
 		else{
 			var updateField = '#'+itemSlot+'Slot';
 		}
+	alert('wtf');
 		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
 			$.ajax({
 				type: "POST",
@@ -571,7 +576,32 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 				}
 			});
 			updateTotalStrength(strengthBonus,itemSlot);
+			updateIcon(itemName,itemSlot)
 	}
 
+	function updateIcon(itemNameIcon,itemSlot) {
+		if (itemSlot=='2h'){
+			var updateField = '#WeaponSlot';
+		}
+		else{
+			var updateField = '#'+itemSlot+'SlotImageDiv';
+		}
+		$('#headSlotImageDiv').empty();
+		data = {itemName: itemNameIcon,itemSlot: itemSlot};
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/updateSelectedItem.php",
+				data: data,
+				cache: false,
+
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+				}
+			});
+	}*/
 
 

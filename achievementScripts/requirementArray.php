@@ -16,7 +16,7 @@ function getArray($arrayName){
 
 		$task6 =array("task"=>"Enter the Combat Training Camp which is located North of West Ardougne", "quest"=>"Biohazard", "skill"=>"None", "item"=>"None");
 
-		$task7 =array("task"=>"Have Tindel Marchant identify a rusty sword for you.", "quest"=>"None", "skill"=>"None", "item"=>"Rusty sword (obtained from pickpocketing HAM members, killing Kraken or Crazy archeologist), 100 coins.");
+		$task7 =array("task"=>"Have Tindel Marchant identify a rusty sword for you.", "quest"=>"None", "skill"=>"None", "item"=>"Rusty sword (obtained from pickpocketing HAM members, killing Kraken, HAM guards, or Crazy archeologist), 100 coins.");
 
 		$task8 =array("task"=>"Use the Ardougne lever to teleport into the wilderness", "quest"=>"None", "skill"=>"None", "item"=>"None. Is located directory East of West Ardougne, or west of the castle. Teleports you to 51 wild so do not bring anything you are afraid to lose.");
 
@@ -158,7 +158,7 @@ function getArray($arrayName){
 	
 
 	if($arrayName == "varrockEasy"){
-		$task1 =array("task"=>"Browse Thessalia's store.Have Aubury teleport you to the essence mine. ", "quest"=>"None", "skill"=>"None", "item"=>"None");
+		$task1 =array("task"=>"Browse Thessalia's store.", "quest"=>"None", "skill"=>"None", "item"=>"None");
 		$task2 =array("task"=>"Have Aubury teleport you to the essence mine. ", "quest"=>"Rune Mysteries", "skill"=>"None", "item"=>"None");
 		$task3 =array("task"=>" Make a normal plank at the Sawmill. ", "quest"=>"None", "skill"=>"Mining:15", "item"=>"Any pickaxe");
 		$task4 =array("task"=>"Make a normal plank at the Sawmill. ", "quest"=>"None", "skill"=>"None", "item"=>"100 <i>Coins</i> and 1 <i>Logs</i>");
@@ -174,7 +174,7 @@ function getArray($arrayName){
 		$task14 =array("task"=>"Steal from the tea stall in Varrock. ", "quest"=>"None", "skill"=>"Thieving:5", "item"=>"None");
 
 		$nested = [];
-		for($i=1;$i<11;$i++){
+		for($i=1;$i<15;$i++){
 			array_push($nested,${"task$i"});
 		}
 		$nested['reward']='
@@ -391,7 +391,7 @@ function getArray($arrayName){
 		$task2 =array("task"=>"Cast Ice Barrage against a foe in the Desert. (Must be away from any city) ", "quest"=>"Desert Treasure", "skill"=>"Magic:94", "item"=>"2 <i>Blood rune</i>, 4 <i>Death rune</i>, 6 <i>Water rune</i>");
 		$task3 =array("task"=>"Fletch some <i>Dragon darts</i> at the Bedabin Camp. ", "quest"=>"The Tourist Trap", "skill"=>"Fletching:95", "item"=>"At least 1 <i>Dragon dart tip</i> and 1 <i>Feather</i>. You MUST be standing in one of the tents for this to work. ");
 		$task4 =array("task"=>" Speak to the <i>Kq head</i> in your POH.", "quest"=>"Priest in Peril", "skill"=>"Construction:78", "item"=>"<i>Kq head</i> (must be stuffed by the Taxidermist), 50000 <i>Coins</i>, 2 <i>Mahogany plank</i>, 2 <i>Gold leaf</i.");
-		$task5 =array("task"=>"Steal from the Grand Gold Chest in the final room of Pyramid Plunder", "quest"=>"Started: Icthlarin's Little Helper", "skill"=>"Thieving:91", "item"=>"A <i>Pharaoh's sceptre</i> can be used to enter Pyramid Plunder without starting Icthlarin's Little Helper. Thieving cannot be boosted");
+		$task5 =array("task"=>"Steal from the Grand Gold Chest in the final room of Pyramid Plunder", "quest"=>"Started: Icthlarin's Little Helper", "skill"=>"Thieving:91,No boosts", "item"=>"A <i>Pharaoh's sceptre</i> can be used to enter Pyramid Plunder without starting Icthlarin's Little Helper. Thieving cannot be boosted");
 		$task6 =array("task"=>"Restore at least 85 Prayer points when praying at the altar in Sophanem. ", "quest"=>"Started: Icthlarin's Little Helper", "skill"=>"Prayer:85", "item"=>"None. Cannot be boosted");
 
 		
@@ -523,7 +523,7 @@ function getArray($arrayName){
 		$task1 =array("task"=>"Craft 252 <i>Air runes</i> simultaneously. ", "quest"=>"None", "skill"=>"Runecraft:88", "item"=>"Air tiara and 28 <i>Rune essence</i> or <i>Pure essence</i>");
 		$task2 =array("task"=>"Purchase a <i>White 2h sword</i> from Sir Vyvin. ", "quest"=>"Wanted!", "skill"=>"None ", "item"=>"1,920 <i>Coins</i>, must have killed 1300 Black Knights");
 		$task3 =array("task"=>"Find at least 3 <i>Magic roots</i> at once when digging up your magic tree in Falador. ", "quest"=>"None ", "skill"=>"Farming:91,Woodcutting:75", "item"=>"<i>Magic seed</i>, <i>Spade</i>, any Woodcutting axe");
-		$task4 =array("task"=>"Perform a <i>Cape of Accomplishment</i> or <i>Quest point cape emote</i> at the top of White Knights' Castle. ", "quest"=>"None, or completed all quests", "skill"=>"Any99:99,or,266 Quest points", "item"=>"<i>Cape of Accomplishment</i> or <i>Quest point cape</i> (Cabbage cape or max cape will not work) ");
+		$task4 =array("task"=>"Perform a <i>Cape of Accomplishment</i> or <i>Quest point cape emote</i> at the top of White Knights' Castle. ", "quest"=>"None, or completed all quests", "skill"=>"Any99:99,or,269 Quest points", "item"=>"<i>Cape of Accomplishment</i> or <i>Quest point cape</i> (Cabbage cape or max cape will not work) ");
 		$task5 =array("task"=>"Jump over the strange floor in Taverley Dungeon. ", "quest"=>"None ", "skill"=>"Agility:80", "item"=>"None ");
 		$task6 =array("task"=>"Mix a <i>Saradomin brew</i> in Falador East Bank.", "quest"=>"None ", "skill"=>"Herblore:81", "item"=>"<i>Toadflax potion (unf)</i>, <i>Crushed nest</i>");
 		
@@ -1286,7 +1286,7 @@ function getArray($arrayName){
 		}
 		$nested['reward']='
 		<ul class="pt-2">
-			<li><b>Western banner 4</b><img src="images/untradeable_icons/Western_banner_4.png"/>/li>
+			<li><b>Western banner 4</b><img src="images/untradeable_icons/Western_banner_4.png"/></li>
 		    <li>All hard diary rewards</li>
 		    <li>1 Antique lamp worth 50,000 experience in any skill at or above 70</li>
 		    <li>2 chompy birds will always appear when Chompy bird hunting.</li>

@@ -59,7 +59,7 @@ session_start();
 	<a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
 	</li>
 	<li class="nav-item">
-  <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).webp">Clue Scroll Requirements</a>
+  <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
   </li>
 	
 </ul>
@@ -263,7 +263,7 @@ if(isset($_SESSION['u_userID'])){
 			<td onclick="displayStats('Wilderness_sword_4','1','');">Wilderness sword 4</td>
 		</tr>
 		<tr>
-			<th>Lumbridge diary</th>
+			<th>Kebos diary</th>
 			<td><input type="image" onclick="displayStats('Rada\'s_blessing_1','1','');" src="images/untradeable_icons/Rada's_blessing_1.png" class="mx-auto d-block"/></td>
 			<td onclick="displayStats('Rada\'s_blessing_1','1','');">Rada's blessing 1</td>
 

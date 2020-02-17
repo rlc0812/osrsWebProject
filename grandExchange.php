@@ -124,7 +124,7 @@ if(isset($_SESSION['u_userID'])){
  	<div class="row">
  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="columnbuyQuantity">
  			<h3 class="pt-3 text-center">Most Purchased Items</h3>
-  			<div class="container-fluid p-0" id="containerbuyQuantity"><p>test</p>
+  			<div class="container-fluid p-0" id="containerbuyQuantity">
   				<?php
 					getItemList('buyQuantity',10);
   				?>

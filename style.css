@@ -1,5 +1,6 @@
-
-
+﻿.pointHover {
+	cursor: pointer;!important
+}
 
 @font-face {
 	font-family: 'runescape';
@@ -11,6 +12,10 @@
 
 .itemText{
 	color: #ff9040;
+	font-family: runescape;!important
+}
+
+.itemText2{
 	font-family: runescape;!important
 }
 
@@ -142,6 +147,11 @@ body {
 .grayBg{
     background-color: gray;!important
 }
+
+.darkBg{
+    background-color: #53534f; !important
+}
+
 .attackHeader{
 	background-color: #7b0e0e;
 	color: #e7ec14;

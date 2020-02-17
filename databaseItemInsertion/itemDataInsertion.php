@@ -12,13 +12,14 @@ function checkIfExists($key,array $array){
 		return $array[$key];
 	}
 }
+$url = 'https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-complete.json';
 
-$curl = curl_init('https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-complete.json');
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_FAILONERROR, true);
+$result=file_get_contents($url);
+set_time_limit(0);
+ini_set('memory_limit', '512M');
 
 //Error Check
-if (curl_error($curl)){
+/*if (curl_error($curl)){
 	$error_message = curl_error($curl);
 }
 else{
@@ -32,11 +33,13 @@ echo("Curl failed.");
 }
 if($curl_response == NULL){
 return false;
-}
-$array= json_decode($curl_response, true);
+}*/
+$array= json_decode($result, true);
+
+
+var_dump($array);
 
 $conn = connectToDb();
-
 //Prepared statements for insertion
 	$stmt=$conn->prepare("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 	ON DUPLICATE KEY UPDATE
@@ -141,7 +144,6 @@ $conn = connectToDb();
 	}
 
 foreach($array as $item){
-	//echo($item['name']);
 	$item['icon']=(base64_decode($item['icon']));
 
 	$rc = $stmt->bind_param('isiiiiiiiiiiiiiiiiidiisissss',$item['id'],$item['name'],$item['incomplete'],$item['members'],$item['tradeable'],$item['tradeable_on_ge'],$item['stackable'],$item['noted'],$item['noteable'],$item['linked_id_item'],$item['linked_id_noted'],$item['linked_id_placeholder'],$item['placeholder'],$item['equipable'],$item['equipable_by_player'],$item['equipable_weapon'],$item['cost'],$item['lowalch'],$item['highalch'],$item['weight'],$item['buy_limit'],$item['quest_item'],$item['release_date'],$item['duplicate'],$item['examine'],$item['icon'],$item['wiki_name'],$item['wiki_url']);
@@ -274,7 +276,6 @@ foreach($array as $item){
 	}
 }
 mysqli_close($conn);
-
 
 ?>
 

@@ -66,7 +66,11 @@ if(isset($_POST['itemName'])){
 					}
 
 				echo '</tr>';
-
+				echo '</div>';
+				echo '</table>';
+				
+				echo '<div class="table-responsive">';
+				echo '<table class="table-dark table-sm w-100">';
 				echo '<tr>';
 					echo '<th>Attack bonuses:</th>';
 

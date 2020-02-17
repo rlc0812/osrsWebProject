@@ -73,7 +73,7 @@ function calculateAlchProfit(){
 		echo'
 			<tr>
 				<td>'.$itemID.'</td>
-                   		<td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
+                <td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
 				<td class="itemText">'.$name.'</td>
 				<td>'.$members.'</td>
 				<td>'.$buyLimit.'</td>
