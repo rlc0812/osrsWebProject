@@ -144,7 +144,7 @@ function loadMore(type,limit) {
 var type=type;
 		$.ajax({
 			type: "POST",
-			url: "exchangeTableCreation.php",
+			url: "itemStatsData/exchangeTableCreation.php",
 			data: 'type='+type+'&limit='+limit,
 			cache: false,
 			success: function(data) {

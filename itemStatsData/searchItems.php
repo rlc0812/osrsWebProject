@@ -41,7 +41,7 @@ echo '
                     <th>Sell Average</th>
                     <th>Sell Quantity</th>
                     <th>Overall Average</th>
-                    <th>Overall Quantity</th>
+                    <th>Overall Quantity<`/th>
                 </tr>
             </thead>
             <tbody>
