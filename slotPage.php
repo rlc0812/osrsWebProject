@@ -7,17 +7,29 @@ include('itemComparison/itemTableStats.php');
 <html lang="en-US">
 
 <head>
-<meta name="viewport" content="width=device-width, initial scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <!--Stylesheets for datatables functionality-->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 <!--Stylesheets for bootstrap functionaliy-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<!--Stylesheets for datatables with bootstrap and fixed columns -->
+<link rel="stylesheet" href="css/dataTablesBootstrap4min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+<!--<link rel="stylesheet" href="css/fixedColumnsBootstrap.css">-->
+<!--<script src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>-->
+<!--<link rel="stylesheet" href="css/Bootstrap/css/bootstrap.css">-->
+
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -103,100 +115,101 @@ if(isset($_SESSION['u_userID'])){
 			<h1 class="pt-1 text-center">Item Stats by Slot</h1>
 			<ul class="list-group pl-5 pt-0 pr-5">
 
-				<li class="list-group-item" id="weapon" onclick="displayStats(this.id);">One Handed Weapons</li>
+				<li class="list-group-item firstClick" id="weapon" onclick="displayStats(this.id);">One Handed Weapons</li>
 				<div class="container-fluid" id="weaponContainer">
 				<?php
-					echo'<table id="weaponTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="weaponTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="2h" onclick="displayStats(this.id);">Two Handed Weapons</li>
+				<li class="list-group-item firstClick" id="2h" onclick="displayStats(this.id);">Two Handed Weapons</li>
 				<div class="container-fluid" id="2hContainer">
 				<?php
-					echo'<table id="2hTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="2hTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="cape" onclick="displayStats(this.id);">Capes</li>
+				<li class="list-group-item firstClick" id="cape" onclick="displayStats(this.id);">Capes</li>
 				<div class="container-fluid" id="capeContainer">
 				<?php
-					echo'<table id="capeTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="cableTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="shield" onclick="displayStats(this.id);">Shields</li>
+				<li class="list-group-item firstClick" id="shield" onclick="displayStats(this.id);">Shields</li>
 				<div class="container-fluid" id="shieldContainer">
 				<?php
-					echo'<table id="shieldTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="shieldTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 
 
-				<li class="list-group-item" id="ring" onclick="displayStats(this.id);">Rings</li>
+				<li class="list-group-item firstClick" id="ring" onclick="displayStats(this.id);">Rings</li>
 				<div class="container-fluid" id="ringContainer">
 				<?php
-					echo'<table id="ringTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="ringTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="neck" onclick="displayStats(this.id);">Neck slot</li>
+				<li class="list-group-item firstClick" id="neck" onclick="displayStats(this.id);">Neck slot</li>
 				<div class="container-fluid" id="neckContainer">
 				<?php
-					echo'<table id="neckTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+	
+					echo'<table id="neckTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 				
-				<li class="list-group-item" id="hands" onclick="displayStats(this.id);">Hands</li>
+				<li class="list-group-item firstClick" id="hands" onclick="displayStats(this.id);">Hands</li>
 				<div class="container-fluid" id="handsContainer">
 				<?php
-					echo'<table id="handsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="handsTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="ammo" onclick="displayStats(this.id);">Ammunition slot</li>
+				<li class="list-group-item firstClick" id="ammo" onclick="displayStats(this.id);">Ammunition slot</li>
 				<div class="container-fluid" id="ammoContainer">
 				<?php
-					echo'<table id="ammoTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="ammoTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="head" onclick="displayStats(this.id);">Head slot</li>
+				<li class="list-group-item firstClick" id="head" onclick="displayStats(this.id);">Head slot</li>
 				<div class="container-fluid" id="headContainer">
 				<?php
-					echo'<table id="headTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="headTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="body" onclick="displayStats(this.id);">Body slot</li>
+				<li class="list-group-item firstClick" id="body" onclick="displayStats(this.id);">Body slot</li>
 				<div class="container-fluid" id="bodyContainer">
 				<?php
-					echo'<table id="bodyTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="bodyTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item" id="legs" onclick="displayStats(this.id);">Legs slot</li>
+				<li class="list-group-item firstClick firstClick" id="legs" onclick="displayStats(this.id);">Legs slot</li>
 				<div class="container-fluid" id="legsContainer">
 				<?php
-					echo'<table id="legsTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="legsTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 				
-				<li class="list-group-item" id="feet" onclick="displayStats(this.id);">Foot slot</li>
+				<li class="list-group-item firstClick firstClick" id="feet" onclick="displayStats(this.id);">Foot slot</li>
 				<div class="container-fluid p-0" id="feetContainer">
 				<?php
-					echo'<table id="feetTable" class="table-dark table-striped nopadding table-responsive hidden" style="width:100%">';
+					echo'<table id="feetTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
@@ -211,7 +224,9 @@ if(isset($_SESSION['u_userID'])){
 </div>
 
 <script type="text/javascript">
+
 function displayStats(itemSlot) {
+		//var dataTable;
 		$.ajax({
 			type: "POST",
 			url: "itemComparison/itemTableStats.php",
@@ -220,40 +235,58 @@ function displayStats(itemSlot) {
 			success: function(data) {
 				$("#"+itemSlot+"Table").removeClass('hidden');	
 				$("#"+itemSlot+"Table").html(data);
-				if((itemSlot=='weapon')||(itemSlot=='2h')){
-					$("#"+itemSlot+"Table").DataTable( {
-						order:[[2, "asc"]],
-
-						columnDefs: [ {
-							"orderSequence": ["desc", "asc"], "targets": [ 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 ]
-						},{
-							"targets": 'no-sort', "orderable": false,	
-						  }]
-					});
-				}
-
-				else
-				{
-					$("#"+itemSlot+"Table").DataTable( {
-						order:[[2, "asc"]],
-					
-						columnDefs: [ {
-							"orderSequence": ["desc", "asc"], "targets": [ 3,4,5,6,7,8,9,10,11,12,13,14,15,16 ]
-						}, {
-							"targets": 'no-sort', "orderable": false,	
-						  } ]
-					});
-				}
-
-				
-
+						dataTables(itemSlot);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				     alert(xhr.status);
        				 alert(thrownError);
 			}
 		});
-		showElement(itemSlot)
+
+	}
+
+
+function dataTables(itemSlot){
+		if((itemSlot=='weapon')||(itemSlot=='2h')){
+					var dataTable = $("#"+itemSlot+"Table").DataTable( {
+						scrollY: "300px",
+						scrollX: true,
+						scrollCollapse: false,
+						paging: false,
+						fixedColumns: false,
+						order:[[0, "asc"]],
+
+						columnDefs: [ {
+							"orderSequence": ["desc", "asc"], "targets": [ 4,5,6,7,8,9,10,11,12,13,14,15,16,17 ]
+						},{
+							"targets": 'no-sort', "orderable": false,	
+						  }]
+					});
+					
+					dataTable.columns.adjust().draw();
+					dataTable.draw();
+				}
+				else
+				{	
+					$("#"+itemSlot+"Table").DataTable().destroy();
+					dataTable = $("#"+itemSlot+"Table").DataTable( {
+						scrollY: "300px",
+						scrollX: true,
+						scrollCollapse: false,
+						paging: false,
+						fixedColumns: false,
+						order:[[0, "asc"]],
+					
+						columnDefs: [ {
+							"orderSequence": ["desc", "asc"], "targets": [ 2,3,4,5,6,7,8,9,10,11,12,13,14,15 ]
+						}, {
+							"targets": 'no-sort', "orderable": false,	
+						},  { width: '20%', targets: 0 }]
+					});
+
+					dataTable.columns.adjust().draw();
+					dataTable.draw();
+				}
 	}
 </script>
 
@@ -267,22 +300,38 @@ function scrollToTop()
 }
 function hideElement(itemSlot)
 {
-	$("#"+itemSlot+"Container").hide();
+	$('#'+itemSlot+"Container").hide();
 	$('#'+itemSlot).removeClass('active');
 	$('#'+itemSlot).attr("onclick","showElement(this.id)");
 }
+
 function showElement(itemSlot)
 {
 	$("#"+itemSlot+"Container").show();
+	$('#'+itemSlot).removeClass('hidden');
 	$('#'+itemSlot).addClass('active');	
 	$('#'+itemSlot).attr("onclick","hideElement(this.id)");
+	$('#'+itemSlot).removeClass('firstClick');
 }
+
 function emptyElement(itemSlot)
 {
 	$( "#table"+elementId).empty();
 	$( "#emptybutton"+elementId).hide();
 
 }
+
+$(document).ready(function(){
+	$('body').on('click', '.firstClick', function(){
+		itemSlot=(this.id);
+		$('#'+itemSlot).removeClass('firstClick');
+		showElement(itemSlot);
+		displayStats(itemSlot);
+	});
+});
+
+
+
 </script>
 
 

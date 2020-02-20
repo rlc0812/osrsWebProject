@@ -1,22 +1,69 @@
-﻿.pointHover {
-	cursor: pointer;!important
+﻿table.dataTable thead .sorting::after,
+table.dataTable thead .sorting::before,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_asc::before {
+    display:none;
 }
 
+table.dataTable thead .sorting_desc::after,
+table.dataTable thead .sorting_desc::before {
+    display:none;
+}
+
+table.dataTable thead .sorting {
+   background-image: url(https://datatables.net/media/images/sort_both.png);
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead .sorting_asc {
+   background-image: url(https://datatables.net/media/images/sort_asc.png);
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead .sorting_desc {
+   background-image: url(https://datatables.net/media/images/sort_desc.png);
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead th
+{
+	color: white !important;
+	font-weight: normal !important;
+}
+
+.pointHover {
+	cursor: pointer !important;
+}
+
+table.dataTable thead {background-color:#32383e}
+table.dataTable tbody {
+		color: white !important;
+}
 @font-face {
-	font-family: 'runescape';
+	font-family: "runescape";
 	src: url('fonts/runescape_uf.eot');
 	src: local('☺'), url('fonts/runescape_uf.woff') format('woff'), url('fonts/runescape_uf.ttf') format('truetype'), url('fonts/runescape_uf.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+
+table.dataTable thead {
+	font-weight: normal !important;
+	font-style: normal !important;
 }
 
 .itemText{
 	color: #ff9040;
-	font-family: runescape;!important
+	font-family: runescape;
+	font-weight: normal;
+	font-style: normal;
 }
 
 .itemText2{
-	font-family: runescape;!important
+	font-family: runescape;
 }
 
 
@@ -71,19 +118,22 @@
 	padding: 20px;
 }
 
-table.dataTable tbody tr {
-	background-color: unset; !important
+table.dataTable tbody tr:nth-child(even) {
+	background-color: #2f465f !important;
+}
+table.dataTable tbody tr:nth-child(odd) {
+	background-color: #547370 !important;
 }
 
 .nopadding {
-	padding: 0px;!important
-	margin: 0px;!important
+	padding: 0px !important;
+	margin: 0px !important;
 }
 
 .card{
-	background-color: #631c98;!important
-	color: white;!important
-	border: solid 3px;!important
+	background-color: #631c98 !important;
+	color: white !important;
+	border: solid 3px !important;
 }
 
 .break-table{
@@ -92,10 +142,9 @@ table.dataTable tbody tr {
 	height:450px;
 }
 .btn-primary{
-	color: black;!important
-	padding-left: 50px;!important
-	border: solid;!important
-	text-align:left;!important
+	color: black !important;
+	border: solid !important;
+	text-align:center !important;
 	
 }
 body {
@@ -115,7 +164,7 @@ body {
 }
 
 .breakWord{
-	word-wrap: break-word;!important
+	word-wrap: break-word !important;
 	overflow: hidden;
 	max-width: 400px;
 	width: 50%;
@@ -126,30 +175,30 @@ body {
 }
 
 .statCellColor{
-	background-color: #384047;!important
+	background-color: #384047 !important;
 	display: inline-block;
 	text-align: center;
 }
 
 .whiteBlueTintBg{
-    background-color: #d3d7e2;!important
+    background-color: #d3d7e2 !important;
 }
 
 .blueBg{
-    background-color: #929db7;!important
+    background-color: #929db7 !important;
 }
 .silverBg{
-    background-color: silver;!important
+    background-color: silver !important;
 }
 .whiteBg{
-    background-color: white;!important
+    background-color: white !important;
 }
 .grayBg{
-    background-color: gray;!important
+    background-color: gray !important;
 }
 
 .darkBg{
-    background-color: #53534f; !important
+    background-color: #53534f !important;
 }
 
 .attackHeader{
@@ -163,7 +212,7 @@ body {
 }
 
 .border-primary {
-	border-width: 20px;!important
+	border-width: 20px !important;
 }
 
 .whiteText {
@@ -176,9 +225,8 @@ h1 {
 }
 
 .btn-secondary {
-	position: relative;!important
+	position: relative;
 }
-
 .list-group-item{
 	background-color: #b8daff;
 	font-size: 20px;
@@ -188,11 +236,6 @@ h1 {
 	background-color: #404040;
 	font-size: 22px;
 	color: white;
-}
-
-table {
-  border: solid;!important
-  color: black;!important
 }
 
 li {
@@ -250,8 +293,8 @@ html, body {
 }
 
 .navbar, .footer{
-	background-color: #a9b7d1;!important
-	color: black;!important
+	background-color: #a9b7d1 !important;
+	color: black !important;
 
 }
 nav {

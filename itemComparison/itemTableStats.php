@@ -24,16 +24,15 @@ weapons.combatStyle1,weapons.attackType1,weapons.attackStyle1,weapons.experience
 
     echo'
             <thead>
-                <tr>
-		    <th>ID</th>
-                    <th class="no-sort">Icon</th>
-                    <th>Item Name</th>';
+                <tr class="itemText2 font-weight-normal">
+                    <th>Item Name</th>
+                    <th class="no-sort">Icon</th>';
     if(($itemSlot==='weapon')||($itemSlot==='2h')){
                echo'<th>Category</th>';
 	}
     echo'
                     <th>Stab Attack</th>
-                    <th>Slash Attack</th>1
+                    <th>Slash Attack</th>
                     <th>Crush Attack</th>
                     <th>Magic Attack</th>
                     <th>Ranged Attack</th>
@@ -57,9 +56,8 @@ weapons.combatStyle1,weapons.attackType1,weapons.attackStyle1,weapons.experience
         while ($stmt->fetch()) {
             echo'
                 <tr>
-                    <td>'.$itemID.'</td>
-                    <td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
-                    <td class="itemText">'.$itemName.'</td>';
+				    <td class="itemText">'.$itemName.'</td>
+                    <td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>';
 		    if(($itemSlot==='weapon')||($itemSlot==='2h')){
 			       echo'<td>'.$weaponType.'</td>';
 			}
