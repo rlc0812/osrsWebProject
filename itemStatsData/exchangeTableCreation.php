@@ -33,23 +33,88 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='buyQuantity'){
-		$stmt=$conn->prepare("SELECT * FROM exchange ORDER BY buyQuantity DESC LIMIT ?");
+		$stmt=$conn->prepare("SELECT 
+		exchange.itemID,
+		exchange.name,
+		exchange.members,
+		exchange.ShopPrice,
+		exchange.buyAverage,
+		exchange.buyQuantity,
+		exchange.sellAverage,
+		exchange.sellQuantity,
+		exchange.overallAverage,
+		exchange.overallQuantity,
+		items.icon,
+		items.buyLimit
+		FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) ORDER BY buyQuantity DESC LIMIT ?");
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='sellAverage'){
-		$stmt=$conn->prepare("SELECT * FROM exchange ORDER BY sellAverage DESC LIMIT ?");
+		$stmt=$conn->prepare("SELECT 
+		exchange.itemID,
+		exchange.name,
+		exchange.members,
+		exchange.ShopPrice,
+		exchange.buyAverage,
+		exchange.buyQuantity,
+		exchange.sellAverage,
+		exchange.sellQuantity,
+		exchange.overallAverage,
+		exchange.overallQuantity,
+		items.icon,
+		items.buyLimit
+		FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) ORDER BY sellAverage DESC LIMIT ?");
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='sellQuantity'){
-		$stmt=$conn->prepare("SELECT * FROM exchange ORDER BY sellQuantity DESC LIMIT ?");
+		$stmt=$conn->prepare("SELECT 
+		exchange.itemID,
+		exchange.name,
+		exchange.members,
+		exchange.ShopPrice,
+		exchange.buyAverage,
+		exchange.buyQuantity,
+		exchange.sellAverage,
+		exchange.sellQuantity,
+		exchange.overallAverage,
+		exchange.overallQuantity,
+		items.icon,
+		items.buyLimit
+		FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) ORDER BY sellQuantity DESC LIMIT ?");
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='overallAverage'){
-		$stmt=$conn->prepare("SELECT * FROM exchange ORDER BY overallAverage DESC LIMIT ?");
+		$stmt=$conn->prepare("SELECT 
+		exchange.itemID,
+		exchange.name,
+		exchange.members,
+		exchange.ShopPrice,
+		exchange.buyAverage,
+		exchange.buyQuantity,
+		exchange.sellAverage,
+		exchange.sellQuantity,
+		exchange.overallAverage,
+		exchange.overallQuantity,
+		items.icon,
+		items.buyLimit
+		FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) ORDER BY overallAverage DESC LIMIT ?");
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='overallQuantity'){
-		$stmt=$conn->prepare("SELECT * FROM exchange ORDER BY overallQuantity DESC LIMIT ?");
+		$stmt=$conn->prepare("SELECT 
+		exchange.itemID,
+		exchange.name,
+		exchange.members,
+		exchange.ShopPrice,
+		exchange.buyAverage,
+		exchange.buyQuantity,
+		exchange.sellAverage,
+		exchange.sellQuantity,
+		exchange.overallAverage,
+		exchange.overallQuantity,
+		items.icon,
+		items.buyLimit
+		FROM exchange INNER JOIN items ON (exchange.itemID=items.ID) ORDER BY overallQuantity DESC LIMIT ?");
 		$stmt->bind_param('i', $limit);
 	}
 	$stmt->execute();

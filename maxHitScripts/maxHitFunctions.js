@@ -322,20 +322,19 @@ function calculateMaxHit(){
 		}		
 
 		if(($('#WeaponPlaceholder').length == 0)&&($('#2hPlaceholder').length == 0)){//Calculate special attack max hit
-			//alert('there is no weapon');
+			//there is no weapon
 		}
 		else{
-			if($('#WeaponPlaceholder').length > 0){
-				var weapon=document.getElementById('WeaponPlaceholder').innerHTML;
+			if($('#2hValue').length > 0){
+				var weapon=document.getElementById('2hValue').innerHTML;
 			}
-			if($('#2hPlaceholder').length > 0){
-				var weapon=document.getElementById('2hPlaceholder').innerHTML;
+			if($('#WeaponValue').length > 0){
+				var weapon=document.getElementById('WeaponValue').innerHTML;
 			}
-			if(weapon=='Dragon hunter lance +70'){
+			if(weapon=='Dragon hunter lance'){
 				otherBonus+=0.20;
 			}
-			weapon = weapon.substr(0, weapon.indexOf(':'));
-
+			//weapon = weapon.substr(0, weapon.indexOf(':'));
 			if(weapon=='Dragon hunter lance'){
 				if(enemyType=='Undead'){
 					enemyText='When fighting an undead dragon';
@@ -506,10 +505,7 @@ function calculateMaxHit(){
 			if(weapon){//If weapon is selected calc weapon spec
 				getSpecialAttack(weapon,maxHit,prayerMissing,maxHP,currentHP,enemyType,setName,berserkerNecklace);
 			}
-
 	}
-
-
 }
 
 
@@ -547,61 +543,4 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 		});
 	});
 });
-//
-
-////////////////////////////////////////////////////////////////////////////////////////////////Get Slot Items.php
-
-/*
-	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
-		if (itemSlot=='2h'){
-			var updateField = '#WeaponSlot';
-		}
-		else{
-			var updateField = '#'+itemSlot+'Slot';
-		}
-	alert('wtf');
-		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
-			$.ajax({
-				type: "POST",
-				url: "maxHitScripts/updateSelectedItem.php",
-				data: data,
-				cache: false,
-
-				success: function(data) {
-				$(updateField).html(data);
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-						alert(xhr.status);
-						alert(thrownError);
-				}
-			});
-			updateTotalStrength(strengthBonus,itemSlot);
-			updateIcon(itemName,itemSlot)
-	}
-
-	function updateIcon(itemNameIcon,itemSlot) {
-		if (itemSlot=='2h'){
-			var updateField = '#WeaponSlot';
-		}
-		else{
-			var updateField = '#'+itemSlot+'SlotImageDiv';
-		}
-		$('#headSlotImageDiv').empty();
-		data = {itemName: itemNameIcon,itemSlot: itemSlot};
-			$.ajax({
-				type: "POST",
-				url: "maxHitScripts/updateSelectedItem.php",
-				data: data,
-				cache: false,
-
-				success: function(data) {
-				$(updateField).html(data);
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-						alert(xhr.status);
-						alert(thrownError);
-				}
-			});
-	}*/
-
 

@@ -10,7 +10,7 @@ function updateSelectedItem()
         echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText2">'.$itemName.'</div> +'.$strengthBonus.'</div>';
     }
     else{
-        echo '<div class="darkBg border-left border-right border-bottom border-dark" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText">'.$itemName.'</div> +'.$strengthBonus.'</div>';
+        echo '<div class="darkBg border-left border-right border-bottom border-dark" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText" id="'.$itemSlot.'Value">'.$itemName.'</div> +'.$strengthBonus.'</div>';
     }
     //echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'" class="itemText">'.$itemName.'</div>'.'<div">+'.$strengthBonus.'</div>';
 }
