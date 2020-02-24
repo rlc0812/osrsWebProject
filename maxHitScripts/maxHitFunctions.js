@@ -136,12 +136,15 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			subtractShieldBonus = subtractShieldBonus.substring(subtractShieldBonus.indexOf(" +")+1);
 			totalStrength = parseInt(totalStrength) - parseInt(subtractShieldBonus);
 		}
-		$('#ShieldSlot').text('Unavailable: 2 handed weapon');
-		$('#ShieldSlot').addClass('text-danger');
+		$('#ShieldSlot').text('Unavailable: 2h');
+		$('#ShieldPlaceholder').addClass('text-danger border-left border-right border-bottom border-dark');
 		$('#ShieldSlotImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
-		$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png");
+		$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png")
+           		 .width('32px')
+           		 .height('32px');
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();
+		$('#ShieldSlot').addClass('text-danger');
 	}
 
 	if(itemSlot=='Shield')//Cannot have a 2h weapon with a shield
@@ -155,14 +158,16 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
 			$('#WeaponSlot').text('None');
 			$('#WeaponSlotImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
-			$('#2hIcon').attr("src","images/slot_images/Weapon_slot.png");
+			$('#2hIcon').attr("src","images/slot_images/Weapon_slot.png")
+			.width('32px')
+			.height('32px');
 		}
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();
 	}
 	if(itemSlot=='Weapon')
 	{
-		$('#ShieldSlot').removeClass('text-danger');
+		//$('#ShieldSlot').removeClass('text-danger');
 		if(document.getElementById('2hPlaceholder')){
 			strengthToSubtract = document.getElementById('2hPlaceholder').innerHTML;
 			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(" +")+1);
@@ -372,101 +377,101 @@ function calculateMaxHit(){
 	
 		//Calculate set bonus if any
 
-		if($('#NeckPlaceholder').length > 0){//If the div exists
-			var neck = document.getElementById('NeckPlaceholder').innerHTML;
+		if($('#NeckValue').length > 0){//If the div exists
+			var neck = document.getElementById('NeckValue').innerHTML;
 		}
 		else{
 			var neck = 'None';
 		}
 		
-		if((neck==="Salve amulet (e) +0")||(neck==="Salve amulet (ei) +0"))
+		if((neck==="Salve amulet (e)")||(neck==="Salve amulet (ei)"))
 		{	
 			salveBonus= parseFloat('1.20');
 		}
-		else if(neck==="Salve amulet +0"){
+		else if(neck==="Salve amulet"){
 			salveBonus = parseFloat('1.15')
 		}
-		else if(neck==="Berserker necklace +7"){
+		else if ( (neck==="Berserker necklace")||(neck==="Berserker necklace (or)") ){
 			berserkerNecklace = true;
 		}
 
 		//Helmet percent bonus
-		if($('#HeadPlaceholder').length > 0){//If the div exists
-			var helm = document.getElementById('HeadPlaceholder').innerHTML;
+		if($('#HeadValue').length > 0){//If the div exists
+			var helm = document.getElementById('HeadValue').innerHTML;
 		}
 		else{
 			var helm = 'None';
 		}
 
-		if(helm==='Slayer helmet +0'){
+		if(helm==='Slayer helmet'){
 			slayerBonus = parseFloat('1.1667');	
 		}
-		else if(helm==='Void melee helm +0')//Need to check to see if the void melee set is chosen
+		else if(helm==='Void melee helm')//Need to check to see if the void melee set is chosen
 		{
-			if($('#HandsPlaceholder').length > 0){//If the div exists
-				var gloves = document.getElementById('HandsPlaceholder').innerHTML; 
+			if($('#HandsValue').length > 0){//If the div exists
+				var gloves = document.getElementById('HandsValue').innerHTML; 
 			}
 			else{
 				var gloves = 'None';
 			}
 
-			if($('#BodyPlaceholder').length > 0){//If the div exists
-				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			if($('#BodyValue').length > 0){//If the div exists
+				var body = document.getElementById('BodyValue').innerHTML;
 			}
 			else{
 				var body = 'None';
 			}
 
-			if($('#LegsPlaceholder').length > 0){//If the div exists
-				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			if($('#LegsValue').length > 0){//If the div exists
+				var legs = document.getElementById('LegsValue').innerHTML;
 			}
 			else{
 				var legs = 'None';
 			}
 
-			if((gloves==='Void knight gloves +0')&&((body==='Void knight top +0')||(body==='Elite void top +0'))&&((legs==='Void knight robe +0')||(legs==='Elite void robe +0')))
+			if((gloves==='Void knight gloves')&&((body==='Void knight top')||(body==='Elite void top'))&&((legs==='Void knight robe')||(legs==='Elite void robe')))
 			{	
 				otherBonus +=parseFloat(0.10);
 			}
 		}
-		else if(helm==='Obsidian helmet +3')//Need to check to see if the obsidian set is chosen
+		else if(helm==='Obsidian helmet')//Need to check to see if the obsidian set is chosen
 		{
-			if($('#BodyPlaceholder').length > 0){//If the div exists
-				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			if($('#BodyValue').length > 0){//If the div exists
+				var body = document.getElementById('BodyValue').innerHTML;
 			}
 			else{
 				var body = 'None';
 			}
 
-			if($('#LegsPlaceholder').length > 0){//If the div exists
-				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			if($('#LegsValue').length > 0){//If the div exists
+				var legs = document.getElementById('LegsValue').innerHTML;
 			}
 			else{
 				var legs = 'None';
 			}
 
-			if((body==='Obsidian platebody +3')&&(legs==='Obsidian platelegs +1'))
+			if((body==='Obsidian platebody')&&(legs==='Obsidian platelegs'))
 			{	
 				setName='obsidian';
 			}
 		}
-		else if((helm==="Dharok's helm +0")&&(weapon))//Need to check to see if the obsidian set is chosen
+		else if((helm==="Dharok's helm")&&(weapon))//Need to check to see if the dharok set is chosen
 		{
-			if($('#BodyPlaceholder').length > 0){//If the div exists
-				var body = document.getElementById('BodyPlaceholder').innerHTML;
+			if($('#BodyValue').length > 0){//If the div exists
+				var body = document.getElementById('BodyValue').innerHTML;
 			}
 			else{
 				var body = 'None';
 			}
 
-			if($('#LegsPlaceholder').length > 0){//If the div exists
-				var legs = document.getElementById('LegsPlaceholder').innerHTML;
+			if($('#LegsValue').length > 0){//If the div exists
+				var legs = document.getElementById('LegsValue').innerHTML;
 			}
 			else{
 				var legs = 'None';
 			}
 
-			if((body==="Dharok's platebody +0")&&(legs==="Dharok's platelegs +0")&&(weapon==="Dharok's greataxe"))
+			if((body==="Dharok's platebody")&&(legs==="Dharok's platelegs")&&( (weapon==="Dharok's greataxe") || (weapon==="Dharok's greataxe 100") || (weapon==="Dharok's greataxe 75") || (weapon==="Dharok's greataxe 50") || (weapon==="Dharok's greataxe 25") ))
 			{	
 				setName="dharok's";
 			}
@@ -507,12 +512,90 @@ function calculateMaxHit(){
 			}
 	}
 }
+	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
+		if (itemSlot=='2h'){
+			var updateField = '#WeaponSlot';
+		}
+		else{
+			var updateField = '#'+itemSlot+'Slot';
+		}
+		//Dharok set special cases
+		if(!((itemName=="Dharok's greataxe") || (itemName=="Dharok's greataxe 100") || (itemName=="Dharok's greataxe 75") || (itemName=="Dharok's greataxe 50") || (itemName=="Dharok's greataxe 25"))&&(updateField == '#WeaponSlot') )
+		{
+			$("#hpDiv").addClass('hidden');
+		}
+		else if( (document.getElementById("HeadValue")) && (document.getElementById("BodyValue")) && (document.getElementById("LegsValue")) )
+		{
+			if( (document.getElementById("HeadValue").innerHTML=="Dharok's helm")&&(document.getElementById('BodyValue').innerHTML=="Dharok's platebody")&&(document.getElementById('LegsValue').innerHTML=="Dharok's platelegs") )
+			{
+				$("#hpDiv").removeClass('hidden');
+			}
+		}
+		
+		if( (!(itemName=="Dharok's helm")) && (updateField == '#HeadSlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
+		if( (!(itemName=="Dharok's platelegs")) && (updateField == '#LegsSlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
+		if( (!(itemName=="Dharok's platebody")) && (updateField == '#BodySlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
 
+		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/updateSelectedItem.php",
+				data: data,
+				cache: false,
 
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+				}
+			});
+			if(itemName=='None'){
+				$(updateField+'ImageDiv').removeClass("darkBg border-left border-right border-top border-dark");
+			}
+			else{
+				$(updateField+'ImageDiv').addClass("darkBg border-left border-right border-top border-dark");
+			}
+			updateTotalStrength(strengthBonus,itemSlot);
+			updateIcon(itemName,itemSlot);
+	}
+
+	function updateIcon(itemNameIcon,itemSlot) {
+		if (itemSlot=='2h'){
+			var updateField = '#WeaponSlotImageDiv';
+		}
+		else{
+			var updateField = '#'+itemSlot+'SlotImageDiv';
+		}
+		console.log(updateField);
+		//$(updateField).empty();
+		data = {itemNameIcon: itemNameIcon,itemSlot: itemSlot};
+			$.ajax({
+				type: "POST",
+				url: "maxHitScripts/updateSelectedItem.php",
+				data: data,
+				cache: false,
+
+				success: function(data) {
+				$(updateField).html(data);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+				}
+			});
+	}
 //Item Sets
-$(document).ready(function () {//Grabs the values for the selected set to be assigned to the associated slots by calling selectedItemChanges
 
-	$(function(){
+//Grabs the values for the selected set to be assigned to the associated slots by calling selectedItemChanges
+
 		$("#sets").change(function () {
 		var set = this.value;
 		if(set=='Void'){
@@ -539,8 +622,19 @@ $(document).ready(function () {//Grabs the values for the selected set to be ass
 			selectedItemChanges("Dharok's greataxe",'105','2h');
 			$("#hpDiv").removeClass('hidden');
 		}
-
+		if(set=="Max Strength"){
+			selectedItemChanges("Neitiznot faceguard",'6','Head');
+			selectedItemChanges("Avernic defender",'8','Shield');
+			selectedItemChanges("Infernal cape",'8','Cape');
+			selectedItemChanges("Bandos tassets",'2','Legs');
+			selectedItemChanges("Amulet of torture",'10','Neck');
+			selectedItemChanges("Ferocious gloves",'14','Hands');
+			selectedItemChanges("Ghrazi rapier",'89','Weapon');			
+			selectedItemChanges("Primordial boots",'5','Feet');		
+			selectedItemChanges("Bandos chestplate",'4','Body');	
+			selectedItemChanges("Berserker ring (i)",'8','Ring');				
+		}
 		});
-	});
-});
+
+
 

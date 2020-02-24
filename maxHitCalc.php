@@ -6,9 +6,15 @@ session_start();
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<meta name="viewport" content="width=device-width, initial scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
@@ -58,13 +64,19 @@ session_start();
         <li class="nav-item">
         <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
         </li>
-	<li class="nav-item">
+		<li class="nav-item">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item" id="maxHitNav">
         <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
         </li>
     </ul>
+	<script type="text/javascript">
+    $(document).ready(function() {
+		$('#maxHitNav').addClass('active');
+	});
+
+	</script>
         <?php
         if(isset($_SESSION['u_userID'])){
             echo '
@@ -146,26 +158,29 @@ if(isset($_SESSION['u_userID'])){
 <div class="container blueBg mt-3 mb-3 border border-dark">
 
 	<div class="row pt-5">
-		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 pl-0 ml-0 pr-0 mr-0">
-
-		<h4 class="text-center">Click Slot Icon to Select Item</h4>
-
-			<div class="container-fluid text-center pt-3">
-				<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
-				<map name="equipmentMap">
-					<area class="pointHover" shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');" id="headMap">
-					<area class="pointHover" shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck','#itemSlotField');">
-					<area shape="rect" coords="194,78,262,146" alt="Ammunition">
-					<area class="pointHover" shape="rect" coords="0,156,68,224" alt="Weapon" onclick="populateSlot('WeaponMenu','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="112,156,180,224" alt="Body" onclick="populateSlot('Body','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="224,156,292,224" alt="Shield" onclick="populateSlot('Shield','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="112,236,180,304" alt="Legs" onclick="populateSlot('Legs','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="0,316,68,384" alt="Hands" onclick="populateSlot('Hands','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="112,316,180,384" alt="Feet" onclick="populateSlot('Feet','#itemSlotField');">
-					<area class="pointHover" shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring','#itemSlotField');">
-				</map>
-
+		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0">
+		<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+					<h4 class="text-center">Click Slot Icon to Select Item</h4>
+				</div>
+			</div>
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+				<div class="container-fluid text-center pt-3">
+					<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
+					<map name="equipmentMap">
+						<area class="pointHover" shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');" id="headMap">
+						<area class="pointHover" shape="rect" coords="30,78,98,146" alt="Cape" onclick="populateSlot('Cape','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="112,78,180,146" alt="Neck" onclick="populateSlot('Neck','#itemSlotField');">
+						<area shape="rect" coords="194,78,262,146" alt="Ammunition">
+						<area class="pointHover" shape="rect" coords="0,156,68,224" alt="Weapon" onclick="populateSlot('WeaponMenu','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="112,156,180,224" alt="Body" onclick="populateSlot('Body','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="224,156,292,224" alt="Shield" onclick="populateSlot('Shield','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="112,236,180,304" alt="Legs" onclick="populateSlot('Legs','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="0,316,68,384" alt="Hands" onclick="populateSlot('Hands','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="112,316,180,384" alt="Feet" onclick="populateSlot('Feet','#itemSlotField');">
+						<area class="pointHover" shape="rect" coords="224,316,292,384" alt="Ring" onclick="populateSlot('Ring','#itemSlotField');">
+					</map>
+				</div>
 			</div>
 			
 			<div class="container-fluid text-center">
@@ -177,151 +192,165 @@ if(isset($_SESSION['u_userID'])){
 
 
 
-		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 pl-0 ml-0 pr-0 mr-0">
-		<h4 class="text-center">Current Gear</h4>
-		<div class="container-fluid text-center pt-3">
+		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mt-0 pl-0 ml-0 pr-0 mr-0">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+					<h4 class="text-center">Current Gear</h4>
+				</div>
+			</div>
+			<div class="container-fluid text-center darkBg border-dark border mb-0 pb-0">
 				<div class="row">
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0 ml-0 pr-0 mr-0">
-						<div id="HeadSlotImageDiv"><img src="images/slot_images/Head_slot.png" id="headSlotImage"><br></div><div id="HeadSlot" class="itemText2" value="0">None</div><br>
-						<div id="CapeSlotImageDiv"><img src="images/slot_images/Cape_slot.png" id="capeSlotImage"><br></div><div id="CapeSlot" class="itemText2" value="0">None</div><br>
-						<div id="NeckSlotImageDiv"><img src="images/slot_images/Neck_slot.png" id="neckSlotImage"><br></div><div id="NeckSlot" class="itemText2" value="0">None</div><br>
-						<div id="WeaponSlotImageDiv"><img src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><br></div><div id="WeaponSlot" class="itemText2" value="0">None</div><br>
-						<div id="BodySlotImageDiv"><img src="images/slot_images/Body_slot.png" id="bodySlotImage"><br></div><div id="BodySlot" class="itemText2" value="0">None</div><br>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+						<div id="HeadSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Head_slot.png" id="headSlotImage"><br></div><div id="HeadSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="CapeSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Cape_slot.png" id="capeSlotImage"><br></div><div id="CapeSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="NeckSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Neck_slot.png" id="neckSlotImage"><br></div><div id="NeckSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="WeaponSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><br></div><div id="WeaponSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="BodySlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Body_slot.png" id="bodySlotImage"><br></div><div id="BodySlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
 					</div>
-					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<div id="ShieldSlotImageDiv"><img src="images/slot_images/Shield_slot.png" id="shieldSlotImage"></div><div id="ShieldSlot" class="itemText2" value="0">None</div><br>
-						<div id="LegsSlotImageDiv"><img src="images/slot_images/Legs_slot.png" id="legsSlotImage"></div><div id="LegsSlot" class="itemText2" value="0">None</div><br>
-						<div id="HandsSlotImageDiv"><img src="images/slot_images/Hands_slot.png" id="handsSlotImage"></div><div id="HandsSlot" class="itemText2" value="0">None</div><br>
-						<div id="FeetSlotImageDiv"><img src="images/slot_images/Feet_slot.png" id="feetSlotImage"></div><div id="FeetSlot" class="itemText2" value="0">None</div><br>
-						<div id="RingSlotImageDiv"><img src="images/slot_images/Ring_slot.png" id="ringSlotImage"></div><div id="RingSlot" class="itemText2" value="0">None</div><br>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+						<div id="ShieldSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Shield_slot.png" id="shieldSlotImage"></div><div id="ShieldSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="LegsSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Legs_slot.png" id="legsSlotImage"></div><div id="LegsSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="HandsSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Hands_slot.png" id="handsSlotImage"></div><div id="HandsSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="FeetSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Feet_slot.png" id="feetSlotImage"></div><div id="FeetSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="RingSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Ring_slot.png" id="ringSlotImage"></div><div id="RingSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
 					</div>
-
+				</div>
+			</div>
+			<div class="container-fluid text-center pt-3 darkBg border-dark border">
+				<div class="text-align-center darkBg">
+					<h3 class="itemText2 yellowText">Total Strength Bonus</h3>
+					<h3 class="itemText2 yellowText" id="currentStrengthBonus" value="0">0</h3>
 				</div>
 			</div>
 		</div>
 
-
-		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 pl-0 ml-0 pr-0 mr-0 mt-0 pt-0">
-		<h4 class="text-center">Other Bonuses</h4>
-			<div class="container-fluid text-center mt-3">
-						
-						<div style="height: 95px; overflow:auto;">
-						<label class="itemText2" for="strengthLevel">Strength Level </label><br>
-							<div id="strengthLevelDiv">
-							<input type="text" class="text-center w-75" id="strengthLevel" placeholder="Enter strength"></div>
-							<div class="text-danger" id="strengthLevelMessage"></div>
-							</div>
-					
-
-							<div style="height: 95px; overflow:auto;">
-							<label class="itemText2" for="itemName">Boosts</label><br>
-							<select name="itemName" id="boost" class="w-75 text-center">
-								<option>None</option>
-								<option>Strength potion</option>
-								<option>Super strength potion</option>
-								<option>Combat potion</option>
-								<option>Super combat potion</option>
-								<option>Zamorak brew</option>
-								<option>Overload potion(Nightmare Zone)</option>
-								<option>Overload potion(-)</option>
-								<option>Overload potion(Chambers of Xeric)</option>
-								<option>Overload potion(+)</option>
-							</select><br></div>
-						
-					
-					
-						
-						<div style="height: 95px; overflow:auto;">
-						<label class="itemText2" for="prayer">Prayer</label><br>
-						<select name="prayer" id="prayer" class="w-75 text-center">
-							<option>None</option>
-							<option>Burst of Strength</option>
-							<option>Superhuman Strength</option>
-							<option>Ultimate Strength</option>
-							<option>Chivalry</option>
-							<option>Piety</option>
-						</select><br></div>
-						
-					
-					
-						
-
-						<div style="height: 95px; overflow:auto;">
-						<label class="itemText2" for="attackStyle">Attack Style</label><br>
-						<select name="attackStyle" id="attackStyle" class="w-75 text-center">
-							<option>Select style</option>
-							<option>Accurate</option>
-							<option>Aggressive</option>
-							<option>Controlled</option>
-							<option>Defensive</option>
-						</select>
-						<br>
-						<div class="text-danger hidden" id="attackStyleMessage">Please select an attack style</div>
-						</div>
-
-						<div style="height: 95px; overflow:auto;">
-						<label class="itemText2" for="sets">Item Sets</label><br>
-						<select name="sets" id="sets" class="w-75 text-center">
-							<option selected="selected" id="none">Select item set</option>
-							<option id="void">Void</option>
-							<option id="eliteVoid">Elite Void</option>
-							<option id="obsidian">Obsidian</option>
-							<option id="dharok">Dharok's</option>
-						</select><br></div>
-						
-						<div id="prayerDiv" class="hidden" style="height: 102px; overflow:auto;">
-						<label class="itemText2" for="prayerMissing">Prayer Missing </label><br>
-							<div id="strengthLevelDiv">
-							<input type="text" class="text-center w-75" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
-							<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
-							</div>
-						
-					<div id="hpDiv" class="container-fluid text-center m-0 hidden" style="height: 95px; overflow:auto;">
-						<div class="row pb-0">
-							<div class="col-6 pb-0">
-								<div id="currentHPDiv">
-								<label class="itemText2" for="currentHP">Current HP</label><br>
-								<input type="text" class="text-center w-100" id="currentHP" placeholder="Current"></div>
-							</div>	
-							<div class="col-6">
-								<div id="maxHPDiv">
-								<label class="itemText2" for="maxHP">Max HP</label><br>
-								<input type="text" class="text-center w-100" id="maxHP" placeholder="Max"></div>
-							</div>		
-						</div>		
-						<div class="text-danger" id="hpMessage">For Dharok's set</div>			
-					</div>
-				
-			
+		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mt-0 pt-0">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+					<h4 class="text-center">Other Bonuses</h4>
+				</div>
 			</div>
-		</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
+						<div class="container-fluid text-left mt-3">
+
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<label class="itemText2 m-0" for="strengthLevel">Strength Level </label><br>
+									<div id="strengthLevelDiv">
+									<input type="text" class="form-control" id="strengthLevel" placeholder="Enter strength"></div>
+									<div class="text-danger" id="strengthLevelMessage"></div>
+								</div>
+						
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<label class="itemText2 m-0" for="itemName">Boosts</label><br>
+									<select name="itemName" id="boost" class="form-control w-100 text-center">
+										<option>None</option>
+										<option>Strength potion</option>
+										<option>Super strength potion</option>
+										<option>Combat potion</option>
+										<option>Super combat potion</option>
+										<option>Zamorak brew</option>
+										<option>Overload potion(Nightmare Zone)</option>
+										<option>Overload potion(-)</option>
+										<option>Overload potion(Chambers of Xeric)</option>
+										<option>Overload potion(+)</option>
+									</select>
+								</div>				
+							
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<label class="itemText2 m-0" for="prayer">Prayer</label><br>
+									<select name="prayer" id="prayer" class="form-control">
+										<option>None</option>
+										<option>Burst of Strength</option>
+										<option>Superhuman Strength</option>
+										<option>Ultimate Strength</option>
+										<option>Chivalry</option>
+										<option>Piety</option>
+									</select>
+								</div>
+
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<label class="itemText2 m-0" for="attackStyle">Attack Style</label><br>
+									<select name="attackStyle" id="attackStyle" class="form-control">
+										<option>Select style</option>
+										<option>Accurate</option>
+										<option>Aggressive</option>
+										<option>Controlled</option>
+										<option>Defensive</option>
+									</select>
+								</div>
+								<div class="text-danger hidden" id="attackStyleMessage">Please select an attack style</div>
+
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<label class="itemText2 m-0" for="sets">Item Sets</label><br>
+									<select name="sets" id="sets" class="form-control">
+										<option selected="selected" id="none">Select item set</option>
+										<option id="void">Void</option>
+										<option id="eliteVoid">Elite Void</option>
+										<option id="obsidian">Obsidian</option>
+										<option id="dharok">Dharok's</option>
+										<option id="maxStrength">Max Strength</option>
+									</select>
+								</div>
+							
+							<div id="prayerDiv" class="hidden">
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+								<label class="itemText2" for="prayerMissing">Prayer Missing </label><br>
+									<div id="strengthLevelDiv">
+									<input type="text" class="form-control w-100" id="prayerMissing" placeholder="Enter Missing Prayer Points"></div>
+									<div class="text-danger" id="prayerMissingMessage">For Abyssal bludgeon special</div>
+								</div>
+							</div>
+							
+						<div id="hpDiv" class="container-fluid m-0 hidden">
+							<div class="row pb-0">
+								<div class="col-6 pb-0">
+								<div class="form-group mb-0 mt-2 pb-0 pt-0">
+									<div id="currentHPDiv">
+										<label class="itemText2" for="currentHP">Current HP</label><br>
+										<input type="text" class=" w-100 form-control" id="currentHP" placeholder="Current"></div>
+									</div>	
+								</div>
+								<div class="col-6">
+									<div id="maxHPDiv">
+										<div class="form-group mb-0 mt-2 pb-0 pt-0">
+											<label class="itemText2" for="maxHP">Max HP</label><br>
+											<input type="text" class="form-control w-100" id="maxHP" placeholder="Max"></div>
+										</div>
+									</div>		
+								</div>		
+								<div class="text-danger" id="hpMessage">For Dharok's set</div>			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
 
 	<div class="container border-top border-dark p-4">
 		<div class="row">
-			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="container-fluid text-center h-100 justify-content-center">
-					<div>
-						<h3 class="d-inline">Total strength bonus: </h3>
-						<h3 class="d-inline text-danger" id="currentStrengthBonus" value="0">0</h3>
-					</div>
-						<div style="overflow:auto;" class="pt-3">
-						<label for="enemyType">Select Enemy Type</label><br>
-						<select name="enemyType" id="enemyType" class="w-75 text-center">
-							<option selected="selected">No type</option>
-							<option id="undead">Undead</option>
-							<option id="slayerTask">Slayer Task</option>
-							<option id="demon">Demon</option>
-							<option id="demonSlayerTask">Demon Slayer Task</option>
-						</select>
-						<br></div>
+			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+				<div class="container-fluid h-100 justify-content-center">
+							<div class="form-group mb-0 mt-2 pb-0 pt-0">
+								<label for="enemyType" class="itemText2">Select Enemy Type</label><br>
+								<select name="enemyType" id="enemyType" class="w-100 text-left form-control">
+									<option selected="selected">No type</option>
+									<option id="undead">Undead</option>
+									<option id="slayerTask">Slayer Task</option>
+									<option id="demon">Demon</option>
+									<option id="demonSlayerTask">Demon Slayer Task</option>
+								</select>
+								<br>
+							</div>
 				</div>
 			</div>
-			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="container-fluid text-center">
+			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+				<div class="container-fluid text-center align-center">
 						<button type="button" class= "btn-primary pl-5 pr-5 pt-2 pb-2" onclick="calculateMaxHit();">Calculate hit!</button><br>
 				</div>
 			</div>
-			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
 				<div class="container-fluid text-center">
 						<div class="d-inline" id="enemyText"></div>
 						<div class="hidden" id="maxHit">
@@ -340,10 +369,6 @@ if(isset($_SESSION['u_userID'])){
 
 </div>	
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="maxHitScripts/maxHitFunctions.js"></script>
 

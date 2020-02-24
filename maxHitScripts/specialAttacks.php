@@ -124,7 +124,6 @@
 	$specialAttack["Vesta's spear"]=$spec;
 
 if (isset($_POST['weapon'], $_POST['maxHit'])){
-
 	$weapon = $_POST['weapon'];
 	$maxHit = $_POST['maxHit'];
 	$prayerMissing = $_POST['prayerMissing'];

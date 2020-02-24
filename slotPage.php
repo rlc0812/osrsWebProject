@@ -16,7 +16,6 @@ include('itemComparison/itemTableStats.php');
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 <!--Stylesheets for bootstrap functionaliy-->
-
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
@@ -115,7 +114,7 @@ if(isset($_SESSION['u_userID'])){
 			<h1 class="pt-1 text-center">Item Stats by Slot</h1>
 			<ul class="list-group pl-5 pt-0 pr-5">
 
-				<li class="list-group-item firstClick" id="weapon" onclick="displayStats(this.id);">One Handed Weapons</li>
+				<li class="list-group-item firstClick" id="weapon">One Handed Weapons</li>
 				<div class="container-fluid" id="weaponContainer">
 				<?php
 					echo'<table id="weaponTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -123,7 +122,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="2h" onclick="displayStats(this.id);">Two Handed Weapons</li>
+				<li class="list-group-item firstClick" id="2h">Two Handed Weapons</li>
 				<div class="container-fluid" id="2hContainer">
 				<?php
 					echo'<table id="2hTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -131,15 +130,15 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="cape" onclick="displayStats(this.id);">Capes</li>
+				<li class="list-group-item firstClick" id="cape">Capes</li>
 				<div class="container-fluid" id="capeContainer">
 				<?php
-					echo'<table id="cableTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="capeTable" class="table nowrap table-bordered hidden" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="shield" onclick="displayStats(this.id);">Shields</li>
+				<li class="list-group-item firstClick" id="shield">Shields</li>
 				<div class="container-fluid" id="shieldContainer">
 				<?php
 					echo'<table id="shieldTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -149,7 +148,7 @@ if(isset($_SESSION['u_userID'])){
 
 
 
-				<li class="list-group-item firstClick" id="ring" onclick="displayStats(this.id);">Rings</li>
+				<li class="list-group-item firstClick" id="ring">Rings</li>
 				<div class="container-fluid" id="ringContainer">
 				<?php
 					echo'<table id="ringTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -157,7 +156,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="neck" onclick="displayStats(this.id);">Neck slot</li>
+				<li class="list-group-item firstClick" id="neck">Neck slot</li>
 				<div class="container-fluid" id="neckContainer">
 				<?php
 	
@@ -166,7 +165,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 				
-				<li class="list-group-item firstClick" id="hands" onclick="displayStats(this.id);">Hands</li>
+				<li class="list-group-item firstClick" id="hands">Hands</li>
 				<div class="container-fluid" id="handsContainer">
 				<?php
 					echo'<table id="handsTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -174,7 +173,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="ammo" onclick="displayStats(this.id);">Ammunition slot</li>
+				<li class="list-group-item firstClick" id="ammo">Ammunition slot</li>
 				<div class="container-fluid" id="ammoContainer">
 				<?php
 					echo'<table id="ammoTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -182,7 +181,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="head" onclick="displayStats(this.id);">Head slot</li>
+				<li class="list-group-item firstClick" id="head">Head slot</li>
 				<div class="container-fluid" id="headContainer">
 				<?php
 					echo'<table id="headTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -190,7 +189,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick" id="body" onclick="displayStats(this.id);">Body slot</li>
+				<li class="list-group-item firstClick" id="body">Body slot</li>
 				<div class="container-fluid" id="bodyContainer">
 				<?php
 					echo'<table id="bodyTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -198,7 +197,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 
-				<li class="list-group-item firstClick firstClick" id="legs" onclick="displayStats(this.id);">Legs slot</li>
+				<li class="list-group-item firstClick firstClick" id="legs">Legs slot</li>
 				<div class="container-fluid" id="legsContainer">
 				<?php
 					echo'<table id="legsTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -206,7 +205,7 @@ if(isset($_SESSION['u_userID'])){
 				 ?>
 				</div>
 				
-				<li class="list-group-item firstClick firstClick" id="feet" onclick="displayStats(this.id);">Foot slot</li>
+				<li class="list-group-item firstClick firstClick" id="feet" >Foot slot</li>
 				<div class="container-fluid p-0" id="feetContainer">
 				<?php
 					echo'<table id="feetTable" class="table nowrap table-bordered hidden" style="width:100%">';
@@ -248,6 +247,7 @@ function displayStats(itemSlot) {
 
 function dataTables(itemSlot){
 		if((itemSlot=='weapon')||(itemSlot=='2h')){
+					$("#"+itemSlot+"Table").DataTable().destroy();
 					var dataTable = $("#"+itemSlot+"Table").DataTable( {
 						scrollY: "300px",
 						scrollX: true,
@@ -262,9 +262,9 @@ function dataTables(itemSlot){
 							"targets": 'no-sort', "orderable": false,	
 						  }]
 					});
-					
-					dataTable.columns.adjust().draw();
-					dataTable.draw();
+					setTimeout(function () {
+         			 dataTable.draw();
+  					 }, 200);
 				}
 				else
 				{	
@@ -283,9 +283,9 @@ function dataTables(itemSlot){
 							"targets": 'no-sort', "orderable": false,	
 						},  { width: '20%', targets: 0 }]
 					});
-
-					dataTable.columns.adjust().draw();
-					dataTable.draw();
+					setTimeout(function () {
+         			 dataTable.draw();
+  					 }, 200);
 				}
 	}
 </script>
@@ -329,9 +329,6 @@ $(document).ready(function(){
 		displayStats(itemSlot);
 	});
 });
-
-
-
 </script>
 
 

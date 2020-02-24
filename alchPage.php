@@ -100,7 +100,8 @@ if(isset($_SESSION['u_userID'])){
 			<h1 class="text-center">High Alchemy Table</h1>
 				<div class="container p-0" id="alchContainer">
 				<?php
-					echo'<table id="alchTable" class="table-dark table-striped nopadding table-responsive">';
+					echo'<table id="alchTable" class="table table-bordered" style="width:100%">';
+					echo '<td><div class="itemText2">Please wait while table loads.</div></td>';
 					echo'</table>';
 				 ?>
 				</div>
@@ -111,6 +112,7 @@ if(isset($_SESSION['u_userID'])){
 </body>
 </html>
 
+
 <script type="text/javascript">
 $( document ).ready(function(){
 	var test='test';
@@ -120,17 +122,24 @@ $( document ).ready(function(){
 			data: '&table='+test,
 			cache: false,
 			success: function(data) {
+				$("#alchTable").empty();
 				$("#alchTable").html(data);
-					$("#alchTable").DataTable( {
+					dataTable = $("#alchTable").DataTable( {
 					order:[[9, "desc"]],
-					
+					scrollY: "300px",
+					scrollX: true,
+					scrollCollapse: false,
+					paging: false,
+					fixedColumns: false,
 					columnDefs: [{
 							"orderSequence": ["desc", "asc"], "targets": [ 4,5,6,7,8 ]
 						},{
 							"targets": 'no-sort', "orderable": false,	
 						  }  ]
 				});
-
+				setTimeout(function () {
+         		 dataTable.draw();
+  				 }, 200);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				 alert(xhr.status);

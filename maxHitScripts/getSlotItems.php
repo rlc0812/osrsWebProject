@@ -4,7 +4,7 @@ if(isset($_POST['itemSlot'])){
 	$itemSlot = $_POST['itemSlot'];
 	if ($itemSlot == 'WeaponMenu'){
 		echo '<div class="container-fluid w-60">';
-			/*
+			
 			echo'
 			<div id="selectOption1" name="selectOption1" class="btn-group btn-group-toggle" data-toggle="buttons">
 				<label class="btn btn-primary darkBg">
@@ -15,7 +15,7 @@ if(isset($_POST['itemSlot'])){
 				</label>	
 			</div>';
 			echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
-			*/
+			
 		echo '</div>';
 	}
 	else{
@@ -41,7 +41,7 @@ if(isset($_POST['itemSlot'])){
 			getStrengthBonus($itemSlot);
 			
 		}
-		/*elseif($itemSlot == 'Weapon'){
+		elseif($itemSlot == 'Weapon'){
 			echo '<option>Select item: Weapon</option>';
 			echo '<option id="None" value="0">None</option>';
 			getStrengthBonus($itemSlot);
@@ -49,7 +49,7 @@ if(isset($_POST['itemSlot'])){
 		elseif($itemSlot == '2h'){
 			echo '<option>Select item: 2h</option>';
 			echo '<option id="None" value="0">None</option>';
-			getStrengthBonus($itemSlot);*/
+			getStrengthBonus($itemSlot);
 		}
 		elseif($itemSlot == 'Body'){
 			echo '<option>Select item: Body</option>';
@@ -182,7 +182,7 @@ $('#selectOption1 .btn').on('click', function(event) {
 			});
 		//$('#selectOption2').empty();
 	}
-
+		/*
 	function selectedItemChanges(itemName,strengthBonus,itemSlot) {//This is where the text and str bonuses for slots are updated
 		if (itemSlot=='2h'){
 			var updateField = '#WeaponSlot';
@@ -190,9 +190,32 @@ $('#selectOption1 .btn').on('click', function(event) {
 		else{
 			var updateField = '#'+itemSlot+'Slot';
 		}
-		if(itemName!=="Dharok's greataxe"){
+
+		//Dharok set special cases
+		if(!((itemName=="Dharok's greataxe") || (itemName=="Dharok's greataxe 100") || (itemName=="Dharok's greataxe 75") || (itemName=="Dharok's greataxe 50") || (itemName=="Dharok's greataxe 25"))&&(updateField == '#WeaponSlot') )
+		{
 			$("#hpDiv").addClass('hidden');
 		}
+		else if( (document.getElementById("HeadValue")) && (document.getElementById("BodyValue")) && (document.getElementById("LegsValue")) )
+		{
+			if( (document.getElementById("HeadValue").innerHTML=="Dharok's helm")&&(document.getElementById('BodyValue').innerHTML=="Dharok's platebody")&&(document.getElementById('LegsValue').innerHTML=="Dharok's platelegs") )
+			{
+				$("#hpDiv").removeClass('hidden');
+			}
+		}
+		
+		if( (!(itemName=="Dharok's helm")) && (updateField == '#HeadSlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
+		if( (!(itemName=="Dharok's platelegs")) && (updateField == '#LegsSlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
+		if( (!(itemName=="Dharok's platebody")) && (updateField == '#BodySlot') ){
+			$("#hpDiv").addClass('hidden');
+		}
+
+
+
 		data = {itemName: itemName,strengthBonus: strengthBonus,itemSlot: itemSlot};
 			$.ajax({
 				type: "POST",
@@ -243,7 +266,7 @@ $('#selectOption1 .btn').on('click', function(event) {
 				}
 			});
 	}
-
+*/
 
 </script>
 

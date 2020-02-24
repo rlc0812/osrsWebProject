@@ -7,12 +7,11 @@ function updateSelectedItem()
     $itemSlot = $_POST['itemSlot'];
     $strengthBonus = $_POST['strengthBonus'];
     if($itemName=='None'){
-        echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText2">'.$itemName.'</div> +'.$strengthBonus.'</div>';
+        echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText2 d-inline">'.$itemName.'</div><span class="yellowText"> +'.$strengthBonus.'</span></div>';
     }
     else{
-        echo '<div class="darkBg border-left border-right border-bottom border-dark" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText" id="'.$itemSlot.'Value">'.$itemName.'</div> +'.$strengthBonus.'</div>';
+        echo '<div class="darkBg2 border-left border-right border-bottom border-dark" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText d-inline" id="'.$itemSlot.'Value">'.$itemName.'</div><span class="yellowText"> +'.$strengthBonus.'</span></div>';
     }
-    //echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'" class="itemText">'.$itemName.'</div>'.'<div">+'.$strengthBonus.'</div>';
 }
 
 function updateSelectedIcon()
@@ -28,7 +27,7 @@ function updateSelectedIcon()
     $itemSlot = $_POST['itemSlot'];
 
     if($itemName=='None'){
-        echo'<img src="images/slot_images/'.$itemSlot.'_slot.png"><br>';
+        echo'<img class="mt-1" height="32" width="32" src="images/slot_images/'.$itemSlot.'_slot.png"><br>';
     }
     else{
         $stmt=$conn->prepare("SELECT DISTINCT name,icon FROM items WHERE (name=(?) AND noted=0) LIMIT 1");

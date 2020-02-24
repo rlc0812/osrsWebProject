@@ -1,4 +1,12 @@
-﻿table.dataTable thead .sorting::after,
+﻿.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+table.dataTable thead .sorting::after,
 table.dataTable thead .sorting::before,
 table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_asc::before {
@@ -119,10 +127,10 @@ table.dataTable thead {
 }
 
 table.dataTable tbody tr:nth-child(even) {
-	background-color: #2f465f !important;
+	background-color: #505c69 !important;
 }
 table.dataTable tbody tr:nth-child(odd) {
-	background-color: #547370 !important;
+	background-color: #39536f !important;
 }
 
 .nopadding {
@@ -201,6 +209,10 @@ body {
     background-color: #53534f !important;
 }
 
+.darkBg2{
+    background-color: #63635d !important;
+}
+
 .attackHeader{
 	background-color: #7b0e0e;
 	color: #e7ec14;
@@ -209,6 +221,10 @@ body {
 }
 .blueText{
 	color: #007bff;
+}
+
+.yellowText{
+	color: #FFFF00;
 }
 
 .border-primary {
