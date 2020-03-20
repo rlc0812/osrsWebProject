@@ -18,29 +18,15 @@ curl_close($curl);
 
 if (isset($error_message)) {//Process the error
 echo("Curl failed.");
-
 }
+
 if($curl_response == NULL){
 return false;
-}
-$exploded = explode("{",$curl_response);
-$exploded = str_replace('"','',$exploded);
-$exploded = str_replace('}','',$exploded);
-$itemListArray = [];
-foreach($exploded as $item){
-$newArr = explode(",",$item);
-	foreach($newArr as $value){
-		$value=strstr($value, ':');
-		$value = str_replace(':','',$value);
-		$value = str_replace('false','0',$value);
-		$value = str_replace('true','1',$value);
-		$value = str_replace("\u0027","'",$value);
-		if($value !==""){
-			array_push($itemListArray,$value);
-		}	
-	}
-}
-$itemList = array_chunk($itemListArray,10);
+} 
+
+$curl_response = str_replace('"members":true,','"members":1,',$curl_response);
+$curl_response = str_replace('"members":false,','"members":1,',$curl_response);
+$exchangeArray=json_decode($curl_response,true);
 
 //Execute insert/update
 $conn = connectToDb();
@@ -80,29 +66,27 @@ overallAverage=?,
 overallQuantity=?
 ");
 
-foreach($itemList as $item){
-
-//Case update neither buy nor sell
-if(($item[5]==0)&&($item[7]==0)){
-	$stmt->bind_param('isiiiiiiiiiii',$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9],$item[5],$item[7],$item[9]);
-	$stmt->execute();
-}
-//Case update only buy
-elseif($item[7]==0){
-	$stmt2->bind_param('isiiiiiiiiiiiii',$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9],$item[4],$item[5],$item[7],$item[8],$item[9]);
-	$stmt2->execute();
-}
-//Case update only sell
-elseif($item[5]==0){
-	$stmt3->bind_param('isiiiiiiiiiiiii',$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9],$item[5],$item[6],$item[7],$item[8],$item[9]);
-	$stmt3->execute();
-}
-//Case update all
-else{
-	$stmt4->bind_param('isiiiiiiiiiiiiii',$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9],$item[4],$item[5],$item[6],$item[7],$item[8],$item[9]);
-	$stmt4->execute();
-}
-
+foreach($exchangeArray as $item){
+	//Case update neither buy nor sell
+	if(($item["buy_quantity"]==0)&&($item["sell_quantity"]==0)){
+		$stmt->bind_param('isiiiiiiiiiii',$item["id"],$item["name"],$item["members"],$item["sp"],$item["buy_average"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"],$item["buy_quantity"],$item["sell_quantity"],$item["overall_quantity"]);
+		$stmt->execute();
+	}
+	//Case update only buy
+	elseif($item["sell_quantity"]==0){
+		$stmt2->bind_param('isiiiiiiiiiiiii',$item["id"],$item["name"],$item["members"],$item["sp"],$item["buy_average"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"],$item["buy_average"],$item["buy_quantity"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"]);
+		$stmt2->execute();
+	}
+	//Case update only sell
+	elseif($item["buy_quantity"]==0){
+		$stmt3->bind_param('isiiiiiiiiiiiii',$item["id"],$item["name"],$item["members"],$item["sp"],$item["buy_average"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"]);
+		$stmt3->execute();
+	}
+	//Case update all
+	else{
+		$stmt4->bind_param('isiiiiiiiiiiiiii',$item["id"],$item["name"],$item["members"],$item["sp"],$item["buy_average"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"],$item["buy_average"],$item["buy_quantity"],$item["sell_average"],$item["sell_quantity"],$item["overall_average"],$item["overall_quantity"]);
+		$stmt4->execute();
+	}
 }
 mysqli_close($conn);
 ?>

@@ -19,7 +19,10 @@ if(isset($_POST['itemSlot'])){
 		echo '</div>';
 	}
 	else{
-		echo '<select class="w-60" id="selectOption2">';
+		echo '
+		<div class="row">
+		<div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 text-center">
+		<select class="w-100 form-control" id="selectOption2">';
 		if($itemSlot == 'Head'){
 			echo '<option id="Head">Select item: Head</option>';
 			echo '<option id="None" value="0">None</option>';
@@ -37,7 +40,8 @@ if(isset($_POST['itemSlot'])){
 			echo '<option id="None" value="0">None</option>';
 			echo '<option id="Salve amulet" value="0">Salve amulet</option>';
 			echo '<option id="Salve amulet (e)" value="0">Salve amulet (e)</option>';
-			echo '<option id="Salve amulet (ei)" value="0">Salve amulet (ei)</option>';
+			echo '<option id="Salve amulet(ei)" value="0">Salve amulet(ei)</option>';
+			echo '<option id="Salve amulet(i)" value="0">Salve amulet(i)</option>';		
 			getStrengthBonus($itemSlot);
 			
 		}
@@ -88,7 +92,9 @@ if(isset($_POST['itemSlot'])){
 		}
 
 	echo '<div id="currentSlot" value="'.$itemSlot.'"></div>';
-	echo '</select>';
+	echo '</select>
+		</div>
+		</div>';
 	}
 }
 //For each slot will make a mysql query where strength > 0 and display all options in dropdown with value as the strength bonus so that we can get the str bonus by value getElementById('').value;
@@ -125,7 +131,7 @@ $('#selectOption1 .btn').on('click', function(event) {
 		if(itemName=='Abyssal bludgeon'){
 			$('#prayerDiv').show();
 		}
-
+		/*
 		if((itemSlot==='Weapon')||(itemSlot==='2h')){
 			if((itemName=='Arclight')||(itemName=='Darklight')||(itemName=='Silverlight')){
 				$('#demon').prop('disabled', false);
@@ -140,7 +146,7 @@ $('#selectOption1 .btn').on('click', function(event) {
 			}
 		}
 		if(itemSlot==='Neck'){
-			if((itemName=='Salve amulet')||(itemName=='Salve amulet (e)')||(itemName=='Salve amulet (ei)')){
+			if((itemName=='Salve amulet')||(itemName=='Salve amulet (e)')||(itemName=='Salve amulet(ei)')){
 				$('#undead').prop('disabled', false);
 			}
 			else{
@@ -160,11 +166,11 @@ $('#selectOption1 .btn').on('click', function(event) {
 				$('#slayerTask').prop('disabled', true);
 				$('#demonSlayerTask').prop('disabled', true);
 			}
-		}
+		}*/
 	});
 
 	function populateSlot(itemSlot,updateField) {//Gets the items by slot from the DB and assigns them to the dropdown selected
-		//$('#selectMenu2').empty();
+		$('#selectMenu2').empty();
 		data = {itemSlot: itemSlot};
 			$.ajax({
 				type: "POST",

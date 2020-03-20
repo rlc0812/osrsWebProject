@@ -49,7 +49,7 @@ function getLevels($username){
 	while ($stmt->fetch()) {
 		$levels = array('username'=>$username, 'attack'=>$atk, 'defence'=>$def, 'strength'=>$str ,'hitpoints'=>$hp, 'ranged'=>$range, 'prayer'=>$pray ,'magic'=>$mage);
 	}
-	echo '<input type="text" class="text-center w-75" id="strengthLevel" value="'.$str.'" placeholder="Enter strength">';
+	echo '<input type="text" class="form-control" id="strengthLevel" value="'.$str.'" placeholder="Enter strength">';
 	//return($levels);
 }
 

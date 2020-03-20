@@ -8,7 +8,7 @@ function calculateAlchProfit(){
 	}
 	$conn = connectToDb();
 
-	$stmt=$conn->prepare("SELECT name, buyAverage FROM exchange WHERE name='Nature Rune'");
+	$stmt=$conn->prepare("SELECT exchange.name, exchange.buyAverage, exchange.itemID, items.icon FROM exchange INNER JOIN items on (exchange.itemID=items.ID) WHERE (exchange.name='Nature Rune')");
 	if(false===$stmt)
 	{
 		die('prepare() failed '.htmlspecialchars($conn->error));
@@ -21,7 +21,7 @@ function calculateAlchProfit(){
 		die('select() failed '.htmlspecialchars($stmt->error));
 	}
 
-	$stmt->bind_result($name, $natureRune);
+	$stmt->bind_result($name, $natureRune, $natID, $natIcon);
 
 
 	while ($stmt->fetch()){
@@ -48,7 +48,7 @@ function calculateAlchProfit(){
 
 	echo'
 
-			<thead>
+			<thead class="itemText2">
 			<tr>
 				<th>ID</th>
 				<th class="no-sort">Icon</th>

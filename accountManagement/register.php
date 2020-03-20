@@ -20,13 +20,13 @@ if(isset($_POST['submit']))
 	{
 		//Check for valid first name
 		if(!(preg_match("/^[a-zA-Z]*$/", $first))){
-			header("Location: registrationPage.php?registration=invalid");
+			header("Location: ../registrationPage.php?registration=invalid");
 			exit();
 		}
 		else{
 			//Check for valid email
 			if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-				header("Location: registrationPage.php?registrationPage=email");
+				header("Location: ../registrationPage.php?registrationPage=email");
 				exit();	
 			}
 			else{
@@ -34,7 +34,7 @@ if(isset($_POST['submit']))
 				include_once('usernameBlacklist.php');
 				$blackList = blackList();
 				if(in_array($username,$blackList)){
-					header("Location: registrationPage.php?registration=badusername");
+					header("Location: ../registrationPage.php?registration=badusername");
 					exit();	
 				}
 				else{
@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
 					$stmt->store_result();
 					$resultCheck =($stmt->num_rows);
 					if($resultCheck > 0){
-						header("Location: registrationPage.php?registration=usernametaken");
+						header("Location: ../registrationPage.php?registration=usernametaken");
 						exit();	
 					}
 					else{

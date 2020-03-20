@@ -18,17 +18,16 @@ session_start();
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Max Hit Calculator</Title>
 </head>
-
  
 <body>
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
 <div class="navbar-header">
-<a class="navbar-brand">OsrsBuilds</a>
+<a class="navbar-brand yellowText">Osrs Life</a>
 </div>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,34 +36,34 @@ session_start();
 
 <div class="collapse navbar-collapse" id="navbarMobile">
         <ul class="nav navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" id="indexNav">
         <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginNav">
         <a class="nav-link" href="loginPage.php">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="registrationNav">
         <a class="nav-link" href="registrationPage.php">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="achievementNav">
         <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="pkingBuildsNav">
         <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="equipsNav">
         <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="exchangeNav">
         <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="alchNav">
         <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        <li class="nav-item" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
         </li>
-		<li class="nav-item">
+		<li class="nav-item" id="cluescrollNav">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
         <li class="nav-item" id="maxHitNav">
@@ -75,7 +74,6 @@ session_start();
     $(document).ready(function() {
 		$('#maxHitNav').addClass('active');
 	});
-
 	</script>
         <?php
         if(isset($_SESSION['u_userID'])){
@@ -97,7 +95,7 @@ if(isset($_SESSION['u_userID'])){
 	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
 }
 ?>
-<h2 class="pt-3 text-center">Max Hit Calculator</h2>
+<h1 class="pt-3 text-center itemText2">Max Hit Calculator</h1>
 <?php
 if(isset($_SESSION['u_userID'])){
 	include('maxHitScripts/maxHitQueries.php');
@@ -161,11 +159,11 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0">
 		<div class="row">
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-					<h4 class="text-center">Click Slot Icon to Select Item</h4>
+					<h4 class="text-center itemText2">Click Slot Icon to Select Item</h4>
 				</div>
 			</div>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-				<div class="container-fluid text-center pt-3">
+				<div class="container-fluid text-center">
 					<img class="ml-4" src="images/slot_images/Equipment_slots.png" width="336" height="428" alt="equipment" usemap="#equipmentMap">
 					<map name="equipmentMap">
 						<area class="pointHover" shape="rect" coords="112,0,180,68" alt="Head" onclick="populateSlot('Head','#itemSlotField');" id="headMap">
@@ -186,7 +184,7 @@ if(isset($_SESSION['u_userID'])){
 			<div class="container-fluid text-center">
 				<div name="itemSlotField" id="itemSlotField" class="mr-3">
 				</div>
-				<div id="selectMenu2" name="selectMenu2" class="mr-3"></div>
+				<div id="selectMenu2" name="selectMenu2" class="mr-3 form-group"></div>		
 			</div>
 		</div>
 
@@ -195,28 +193,28 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mt-0 pl-0 ml-0 pr-0 mr-0">
 			<div class="row">
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-					<h4 class="text-center">Current Gear</h4>
+					<h4 class="text-center itemText2">Current Gear</h4>
 				</div>
 			</div>
-			<div class="container-fluid text-center darkBg border-dark border mb-0 pb-0">
+			<div class="container-fluid text-center darkBg border-dark border rounded-top mb-0 pb-0">
 				<div class="row">
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-						<div id="HeadSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Head_slot.png" id="headSlotImage"><br></div><div id="HeadSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="CapeSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Cape_slot.png" id="capeSlotImage"><br></div><div id="CapeSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="NeckSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Neck_slot.png" id="neckSlotImage"><br></div><div id="NeckSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="WeaponSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Weapon_slot.png" id="weaponSlotImage"><br></div><div id="WeaponSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="BodySlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Body_slot.png" id="bodySlotImage"><br></div><div id="BodySlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="HeadSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/head_slot.png" id="headSlotImage"><br></div><div id="HeadSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="CapeSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/cape_slot.png" id="capeSlotImage"><br></div><div id="CapeSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="NeckSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/neck_slot.png" id="neckSlotImage"><br></div><div id="NeckSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="WeaponSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/weapon_slot.png" id="weaponSlotImage"><br></div><div id="WeaponSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="BodySlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/body_slot.png" id="bodySlotImage"><br></div><div id="BodySlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-						<div id="ShieldSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Shield_slot.png" id="shieldSlotImage"></div><div id="ShieldSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="LegsSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Legs_slot.png" id="legsSlotImage"></div><div id="LegsSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="HandsSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Hands_slot.png" id="handsSlotImage"></div><div id="HandsSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="FeetSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Feet_slot.png" id="feetSlotImage"></div><div id="FeetSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
-						<div id="RingSlotImageDiv"><img class="mt-1" height="32" width="32" src="images/slot_images/Ring_slot.png" id="ringSlotImage"></div><div id="RingSlot" class="itemText" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="ShieldSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/shield_slot.png" id="shieldSlotImage"></div><div id="ShieldSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="LegsSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/legs_slot.png" id="legsSlotImage"></div><div id="LegsSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="HandsSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/hands_slot.png" id="handsSlotImage"></div><div id="HandsSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="FeetSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/feet_slot.png" id="feetSlotImage"></div><div id="FeetSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
+						<div id="RingSlotImageDiv" class="border-left border-right border-top border-dark"><img class="mt-1" height="32" width="32" src="images/slot_images/ring_slot.png" id="ringSlotImage"></div><div id="RingSlot" class="itemText border-left border-right border-bottom border-dark" value="0">None<span class="yellowText"> +0</span></div>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid text-center pt-3 darkBg border-dark border">
+			<div class="container-fluid text-center pt-3 darkBg border-dark border-bottom border-right border-left rounded-bottom">
 				<div class="text-align-center darkBg">
 					<h3 class="itemText2 yellowText">Total Strength Bonus</h3>
 					<h3 class="itemText2 yellowText" id="currentStrengthBonus" value="0">0</h3>
@@ -227,13 +225,13 @@ if(isset($_SESSION['u_userID'])){
 		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mt-0 pt-0">
 			<div class="row">
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-					<h4 class="text-center">Other Bonuses</h4>
+					<h4 class="text-center itemText2">Other Bonuses</h4>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-0 ml-0 pr-0 mr-0 mb-0 pb-0">
-						<div class="container-fluid text-left mt-3">
+						<div class="container-fluid text-left mt-3 pr-5 pl-5">
 
 								<div class="form-group mb-0 mt-2 pb-0 pt-0">
 									<label class="itemText2 m-0" for="strengthLevel">Strength Level </label><br>
@@ -309,7 +307,7 @@ if(isset($_SESSION['u_userID'])){
 								<div class="form-group mb-0 mt-2 pb-0 pt-0">
 									<div id="currentHPDiv">
 										<label class="itemText2" for="currentHP">Current HP</label><br>
-										<input type="text" class=" w-100 form-control" id="currentHP" placeholder="Current"></div>
+										<input type="text" class="form-control w-100" id="currentHP" placeholder="Current"></div>
 									</div>	
 								</div>
 								<div class="col-6">
@@ -328,33 +326,37 @@ if(isset($_SESSION['u_userID'])){
 			</div>
 			</div>
 
-	<div class="container border-top border-dark p-4">
+	<div class="container border-top border-dark pt-2 ml-0 mr-0 pl-0 pr-0">
+	<div class="vertical-center">
 		<div class="row">
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-				<div class="container-fluid h-100 justify-content-center">
+				<div class="container-fluid pr-5 pl-5">
 							<div class="form-group mb-0 mt-2 pb-0 pt-0">
-								<label for="enemyType" class="itemText2">Select Enemy Type</label><br>
-								<select name="enemyType" id="enemyType" class="w-100 text-left form-control">
-									<option selected="selected">No type</option>
-									<option id="undead">Undead</option>
-									<option id="slayerTask">Slayer Task</option>
-									<option id="demon">Demon</option>
-									<option id="demonSlayerTask">Demon Slayer Task</option>
-								</select>
+								<div class="row">
+									<div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 text-left">
+										<label for="enemyType" class="itemText2">Select Enemy Type</label><br>
+										<select name="enemyType" id="enemyType" class="w-100 text-left form-control">
+											<option selected="selected">No type</option>
+										</select>
+									</div>
+								</div>
 								<br>
 							</div>
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
 				<div class="container-fluid text-center align-center">
-						<button type="button" class= "btn-primary pl-5 pr-5 pt-2 pb-2" onclick="calculateMaxHit();">Calculate hit!</button><br>
+					<div class="align-self-center">
+						<button type="button" class= "btn-primary pl-5 pr-5 pt-2 pb-2 itemText" onclick="calculateMaxHit();">Calculate Hit!</button><br>
+					</div>
 				</div>
 			</div>
+			
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
 				<div class="container-fluid text-center">
 						<div class="d-inline" id="enemyText"></div>
 						<div class="hidden" id="maxHit">
-						<h3 class="d-inline">Max melee hit:</h3> 
+						<h3 class="itemText2">Max Melee Hit</h3> 
 						<img class="icon" src="images/Red_hitsplat.png">
 						<div class="d-inline maxHitText1Digit text-light" id="currentMaxHit">1</div>
 						</div>
@@ -366,7 +368,7 @@ if(isset($_SESSION['u_userID'])){
 
 		</div>
 	</div>
-
+	</div>
 </div>	
 
 

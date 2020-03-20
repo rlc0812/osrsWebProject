@@ -13,16 +13,16 @@ session_start();
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Useful Untradeables</Title>
 </head>
  
 <body>
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
 <div class="navbar-header">
-<a class="navbar-brand">OsrsBuilds</a>
+<a class="navbar-brand yellowText">Osrs Life</a>
 </div>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,37 +31,37 @@ session_start();
 
 <div class="collapse navbar-collapse" id="navbarMobile">
         <ul class="nav navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" id="indexNav">
         <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginNav">
         <a class="nav-link" href="loginPage.php">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="registrationNav">
         <a class="nav-link" href="registrationPage.php">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="achievementNav">
         <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="pkingBuildsNav">
         <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active" id="equipsNav">
         <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="exchangeNav">
         <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="alchNav">
         <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        <li class="nav-item" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
         </li>
-	<li class="nav-item">
+		<li class="nav-item" id="cluescrollNav">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="maxHitNav">
         <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
         </li>
     </ul>
@@ -89,7 +89,7 @@ if(isset($_SESSION['u_userID'])){
 <div class="container-fluid">
 	<div class="row">
 		<div class ="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 offset-sm-0 col-xs-12 offset-xs-0 p-0">
-			<h1 class="pl-5 pt-1 text-center">Useful Untradeable Equipment</h1>
+			<h1 class="pl-5 pt-1 text-center itemText2">Useful Untradeable Equipment</h1>
 			<ul class="list-group pl-5 pt-0 pr-5">
 			<li class="list-group-item" id="skilling" onclick="showElement(this.id);">Skilling outfits</li>
 			<div class="container-fluid p-0 hidden" id="tableskilling">
@@ -257,17 +257,18 @@ if(isset($_SESSION['u_userID'])){
 							<td><input type="image" onclick="displayStats('Guthix_halo','4','Obtained from the Castle Wars minigame for 75 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');" src="images/untradeable_icons/Guthix_halo.png" class="mx-auto d-block"/></td>
 							<td onclick="displayStats('Guthix_halo','4','Obtained from the Castle Wars minigame for 75 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');">Guthix halo</td>
 						</tr>	
-					
+										
+										<!--
 						<tr>
 						<th>Range armour:</th>
-							<td><input type="image" onclick="displayStats('Decorative_range_top','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');" src="images/untradeable_icons/Decorative_range_top.png" class="mx-auto d-block"/></td>
-							<td onclick="displayStats('Decorative_range_top','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');">Decorative range top</td>
+							<td><input type="image" onclick="displayStats('Decorative_armour','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');" src="images/untradeable_icons/Decorative_range_top.png" class="mx-auto d-block"/></td>
+							<td onclick="displayStats('Decorative_armour','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');">Decorative range top</td>
 
 							<td><input type="image" onclick="displayStats('Decorative_range_legs','4','Obtained from the Castle Wars minigame for 30 Castle wars tickets.');" src="images/untradeable_icons/Decorative_range_legs.png" class="mx-auto d-block"/></td>
-							<td onclick="displayStats('Decorative_range_legs','4','Obtained from the Castle Wars minigame for 30 Castle wars tickets.');">Decorative range legs</td>
+							<td onclick="displayStats('Decorative_armour','4','Obtained from the Castle Wars minigame for 30 Castle wars tickets.');">Decorative range legs</td>
 
-							<td><input type="image" onclick="displayStats('Decorative_range_quiver','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets.');" src="images/untradeable_icons/Decorative_range_quiver.png" class="mx-auto d-block"/></td>
-							<td onclick="displayStats('Decorative_range_quiver','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets.');">Decorative range quiver</td>
+							<td><input type="image" onclick="displayStats('Decorative_armour (quiver)','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets.');" src="images/untradeable_icons/Decorative_range_quiver.png" class="mx-auto d-block"/></td>
+							<td onclick="displayStats('Decorative_armour_(quiver)','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets.');">Decorative range quiver</td>
 						</tr>
 
 						<tr>
@@ -275,12 +276,12 @@ if(isset($_SESSION['u_userID'])){
 							<td><input type="image" onclick="displayStats('Decorative_magic_hat','4','Obtained from the Castle Wars minigame for 20 Castle wars tickets.');" src="images/untradeable_icons/Decorative_magic_hat.png" class="mx-auto d-block"/></td>
 							<td onclick="displayStats('Decorative_magic_hat','4','Obtained from the Castle Wars minigame for 20 Castle wars tickets.');">Decorative magic hat</td>
 
-							<td><input type="image" onclick="displayStats('Decorative_magic_robe_top','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');" src="images/untradeable_icons/Decorative_magic_robe_top.png" class="mx-auto d-block"/></td>
-							<td onclick="displayStats('Decorative_magic_robe_top','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');">Decorative magic robe top</td>
+							<td><input type="image" onclick="displayStats('Decorative_armour','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');" src="images/untradeable_icons/Decorative_magic_robe_top.png" class="mx-auto d-block"/></td>
+							<td onclick="displayStats('Decorative_armour','4','Obtained from the Castle Wars minigame for 40 Castle wars tickets. It is a popular choice amongst 1 defence pures as it does not have a defence requirement and has relatively good stats.');">Decorative magic robe top</td>
 
 							<td><input type="image" onclick="displayStats('Decorative_magic_robe_legs','4','Obtained from the Castle Wars minigame for 30 Castle wars tickets.');" src="images/untradeable_icons/Decorative_magic_robe_legs.png" class="mx-auto d-block"/></td>
 							<td onclick="displayStats('Decorative_magic_robe_legs','4','Obtained from the Castle Wars minigame for 30 Castle wars tickets.');">Decorative magic robe legs</td>
-						</tr>
+						</tr>-->
 					</table>
 				</div>
 				<div id="table4"></div>

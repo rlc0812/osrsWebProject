@@ -7,61 +7,61 @@ session_start();
 
 
 <head>
-<meta name="viewport" content="width=device-width, initial scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Login Page</Title>
 </head>
-
+ 
 <body>
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
-	<div class="navbar-header">
-	<a class="navbar-brand">OsrsBuilds</a>
-	</div>
+<div class="navbar-header">
+<a class="navbar-brand yellowText">Osrs Life</a>
+</div>
 
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-	</button>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
 
 <div class="collapse navbar-collapse" id="navbarMobile">
         <ul class="nav navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" id="indexNav">
         <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" id="loginNav">
         <a class="nav-link" href="loginPage.php">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="registrationNav">
         <a class="nav-link" href="registrationPage.php">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="achievementNav">
         <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="pkingBuildsNav">
         <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="equipsNav">
         <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="exchangeNav">
         <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="alchNav">
         <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        <li class="nav-item" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
         </li>
-	<li class="nav-item">
+		<li class="nav-item" id="cluescrollNav">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="maxHitNav">
         <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
         </li>
     </ul>
@@ -87,13 +87,9 @@ if(isset($_SESSION['u_userID'])){
 }
 ?>
 
-<div class="container whiteText pt-2">
-	<div class="card p-4 ">
-	<p>Welcome:</br>This is a personal project that is currently being worked to provide features for those who play the game Oldschool Runescape.</br> 
-	This website should allow you to create a dashboard of up to 4 characters that you play allowing you to view their stats side by side.</br> 
-	While you navigate through the site you will find various useful features that can aid you while you play Oldschool Runescape.</br>
-	Enjoy!</p>
-	</div>
+<div class="container pt-2 itemText2 text-center">
+    <h2>Welcome!</h2>
+    <h3>If you would like you could create an account so you can link up to 4 character highscores.<br> These characters can be used in various calculations on several of the pages.<br>Enjoy!</h3>
 </div>
 
 <?php
@@ -102,9 +98,9 @@ if(!(isset($_SESSION['u_userID']))){
 	<div class="container-fluid p-3">
 		<div class="row justify-content-center">
 			<div class="col-lg-5 col-md-8 col-sm-10 col-xs-12">
-				<div class="blueBg">
+				<div class="blueBg itemText2">
 
-					<form class="form-horizontal" action="accountManagement/login.inc.php" method="POST">
+					<form class="form-horizontal" action="accountManagement/login.inc.php" method="POST" >
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="username">Username</label>
 							<div class="col-sm-12">
@@ -121,8 +117,8 @@ if(!(isset($_SESSION['u_userID']))){
 
 						<div class="form-group"> 
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button><img src="images/TzTok-Jad.png" class="img-responsive jadPic pl-5">
-								<p class="pt-1">Need an account?<a href="accountManagement/registrationPage.php"></br>Register now!</a></p>
+								<button type="submit" name="submit" id="submit" class="btn btn-primary itemText2">Login</button><img src="images/TzTok-Jad.png" class="img-responsive jadPic pl-5">
+								<p class="pt-1">Need an account?<a href="registrationPage.php"></br>Register now!</a></p>
 							</div>
 						</div>
 					</form>
@@ -134,8 +130,8 @@ if(!(isset($_SESSION['u_userID']))){
 }
 ?>
 <div class="footer">
-<div class="container-fluid text-center">
-		<p>OsrsBuilds</br>
+<div class="container-fluid pt-3 text-center">
+		<p class="itemText2">Osrs Life</br>
 		By Richard Chipman</p>
 </div>
 </div>

@@ -16,6 +16,7 @@ function getItemList($type,$limit){
 
 	$conn = connectToDb();
 	if($type=='buyAverage'){
+		$sortColumn=4;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -33,6 +34,7 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='buyQuantity'){
+		$sortColumn=5;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -50,6 +52,7 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='sellAverage'){
+		$sortColumn=7;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -67,6 +70,7 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='sellQuantity'){
+		$sortColumn=8;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -84,6 +88,7 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='overallAverage'){
+		$sortColumn=9;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -101,6 +106,7 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	if($type=='overallQuantity'){
+		$sortColumn=10;
 		$stmt=$conn->prepare("SELECT 
 		exchange.itemID,
 		exchange.name,
@@ -118,27 +124,30 @@ function getItemList($type,$limit){
 		$stmt->bind_param('i', $limit);
 	}
 	$stmt->execute();
-	$stmt->bind_result($itemId, $name,$members,$store,$buyAvg,$buyQt,$sellAvg,$sellQt,$overAvg,$overQt,$icon,$buyLimit);
+	$stmt->bind_result($itemID, $name,$members,$store,$buyAvg,$buyQt,$sellAvg,$sellQt,$overAvg,$overQt,$icon,$buyLimit);
 
 //$result=$stmt->get_result();
 
 
 echo'
-<div class="table-responsive pb-5 text-center">
-<table id="alchemyTable" class="table-striped table-dark table-sm w-100">
-	<tr class="bg-dark">
-		<th>Icon</th>	
+<table id="'.$type.'Table" class="table nowrap table-bordered text-center" style="width:100%">
+<thead>
+	<tr class="itemText2">
+		<th>ID</th>	
+		<th class="no-sort">Icon</th>	
 		<th>Name</th>	
 		<th>Members</th>
-		<th>Sell General Store</th>
 		<th>Buy Average</th>
-		<th>Buy Limit</th>
 		<th>Buy Quantity</th>
+		<th>Buy Limit</th>
 		<th>Sell Average</th>
 		<th>Sell Quantity</th>
 		<th>Overall Average</th>
 		<th>Overall Quantity</th>
+		<th>Sell General Store</th>
 	</tr>
+</thead>
+<tbody>
 	';
 
 //while ($row = $result->fetch_row()) {
@@ -151,28 +160,27 @@ while ($stmt->fetch()) {
 		$members='No';
 	}
 	echo'
-
 	<tr>
+	<td>'.$itemID.'</td>
 	<td><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>
 	<td class="itemText">'.$name.'</td>
 	<td>'.$members.'</td>
-	<td>'.number_format(intval($store)).'</td>
 	<td>'.number_format(intval($buyAvg)).'</td>
-	<td>'.number_format(intval($buyLimit)).'</td>
 	<td>'.number_format(intval($buyQt)).'</td>
+	<td>'.number_format(intval($buyLimit)).'</td>
 	<td>'.number_format(intval($sellAvg)).'</td>
 	<td>'.number_format(intval($sellQt)).'</td>
 	<td>'.number_format(intval($overAvg)).'</td>
 	<td>'.number_format(intval($overQt)).'</td>
+	<td>'.number_format(intval($store)).'</td>
 	</tr>
 	';
 
 }
 echo'
+</tbody>
 </table>
-<th class="text-left"colspan="9"><button type="button" class="btn btn-dark" onclick="loadMore(\''.$type.'\',\''.$limit.'\');">Load 10 more</button></th>
-
-</div>
+<button type="button" class="btn btn-dark" onclick="loadMore(\''.$type.'\',\''.$limit.'\',\''.$sortColumn.'\');">Load 10 more</button>
 ';
 }
 
@@ -192,4 +200,3 @@ if((isset($_POST['type'])) && (isset($_POST['limit']))){
 }
 
 ?>
-

@@ -25,7 +25,7 @@ if(isset($_POST['diary'])){
 	echo '
 	<div class="container-fluid w-100 p-0 text-left">	
 	<div class="table-responsive">
-	<table class="table-dark table-sm w-100">';
+	<table class="brownTable table-sm w-100">';
 	if(isset($_POST['char'])){
 	echo '
 	<tr class="border">
@@ -34,7 +34,7 @@ if(isset($_POST['diary'])){
 	';
 	}
 	echo'
-	<tr>
+	<tr class="brownHeader">
 	<th class="border-right text-center">Tasks</th>
 	<th class="border-right text-center">Quest(s)</th>
 	<th class="border-right text-center">Skill(s)</th>

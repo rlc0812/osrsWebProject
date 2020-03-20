@@ -106,12 +106,13 @@ function tableCreation ($characterStats,$charNum){
 			switch($charNum)//To allow the same buttons to hold different values
 			{
 				case 1:
-					echo '<td class="text-center">
+					/*echo '<td class="text-center">
 						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/8/8c/HiScores_icon.png?99743" width="15" height="16"></a>
 						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/0/09/Ironman_chat_badge.png?a0a83" width="15" height="16"></a>
 						<a class="btn btn-lg p-1 btn-primary"><img src="https://oldschool.runescape.wiki/images/b/b8/Hardcore_ironman_chat_badge.png?a1753" width="15" height="16"></a>
-						</td>';
-					echo '<th class="text-right"><button type="button" class="btn btn-danger" onclick="dropCharacter(1);">&times;</button></th>';
+						</td>';*/
+					echo '<th class="text-right">
+					<button type="button" class="btn btn-danger" onclick="dropCharacter(1);">&times;</button></th>';
 					break;
 				case 2:
 					echo '<th class="text-right"><button type="button" class="btn btn-danger" onclick="dropCharacter(2);">&times;</button></th>';

@@ -1,9 +1,30 @@
-﻿.dropdown-menu-center {
-    right: auto;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
+﻿/*Brown Table*/
+table.brownTable tr:nth-child(even) {
+	background-color: #564d43;
+	color: white;
+}
+table.brownTable tr:nth-child(odd) {
+	background-color: #3e3730;
+	color: white;
+}
+table.brownTable td{
+	border-bottom: solid 1px;
+	border-top: solid 1px;	
+	border-color: white !important;
+	font-size: 20px !important;
+	overflow-x: auto !important;
+}
+.brownHeader{
+	background-color: #221f1c !important;
+	color: white !important;
+	font-size: 20px !important;
+}
+
+
+
+.vertical-center .row {
+  display: flex;
+  align-items: center;
 }
 
 table.dataTable thead .sorting::after,
@@ -46,7 +67,8 @@ table.dataTable thead th
 	cursor: pointer !important;
 }
 
-table.dataTable thead {background-color:#32383e}
+table.dataTable thead {background-color:#221f1c}
+
 table.dataTable tbody {
 		color: white !important;
 }
@@ -64,14 +86,14 @@ table.dataTable thead {
 }
 
 .itemText{
-	color: #ff9040;
-	font-family: runescape;
-	font-weight: normal;
-	font-style: normal;
+	color: #ff9040 !important;
+	font-family: runescape !important;
+	font-weight: normal !important;
+	font-style: normal !important;
 }
 
 .itemText2{
-	font-family: runescape;
+	font-family: runescape !important;
 }
 
 
@@ -127,10 +149,10 @@ table.dataTable thead {
 }
 
 table.dataTable tbody tr:nth-child(even) {
-	background-color: #505c69 !important;
+	background-color: #564d43 !important;
 }
 table.dataTable tbody tr:nth-child(odd) {
-	background-color: #39536f !important;
+	background-color: #3e3730 !important;
 }
 
 .nopadding {
@@ -224,7 +246,7 @@ body {
 }
 
 .yellowText{
-	color: #FFFF00;
+	color: #FFFF00 !important;
 }
 
 .border-primary {
@@ -247,11 +269,20 @@ h1 {
 	background-color: #b8daff;
 	font-size: 20px;
 	color: black;
+	font-family: runescape;
 }
 .list-group-item:hover{
 	background-color: #404040;
 	font-size: 22px;
 	color: white;
+}
+
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #22568e;
+  border-color: #22568e;
 }
 
 li {
@@ -315,8 +346,7 @@ html, body {
 }
 nav {
 	border-bottom: 2px solid black;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
+
 }
 .table-responsive {
 	overflow-x: auto;
@@ -355,7 +385,7 @@ nav {
 
 #bannerimage {
   width: 100%;
-  height: 135px;
-  background-image: url("images/runescapeBG.png");
-  background-position: center;
+  height: 153px;
+  background-image: url("images/bannercbp.png");
+  border-bottom: solid 2px;
 }

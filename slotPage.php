@@ -33,7 +33,7 @@ include('itemComparison/itemTableStats.php');
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Equipment Tables</Title>
 </head>
  
 <body>
@@ -41,10 +41,10 @@ include('itemComparison/itemTableStats.php');
 
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
 <div class="navbar-header">
-<a class="navbar-brand">OsrsBuilds</a>
+<a class="navbar-brand yellowText">Osrs Life</a>
 </div>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,37 +53,37 @@ include('itemComparison/itemTableStats.php');
 
 <div class="collapse navbar-collapse" id="navbarMobile">
         <ul class="nav navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" id="indexNav">
         <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginNav">
         <a class="nav-link" href="loginPage.php">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="registrationNav">
         <a class="nav-link" href="registrationPage.php">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="achievementNav">
         <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="pkingBuildsNav">
         <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="equipsNav">
         <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="exchangeNav">
         <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="alchNav">
         <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
         </li>
-        <li class="nav-item active">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        <li class="nav-item active" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
         </li>
-	<li class="nav-item">
+		<li class="nav-item" id="cluescrollNav">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="maxHitNav">
         <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
         </li>
     </ul>
@@ -111,7 +111,7 @@ if(isset($_SESSION['u_userID'])){
 <div class="container-fluid">
 	<div class="row">
 		<div class ="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
-			<h1 class="pt-1 text-center">Item Stats by Slot</h1>
+			<h1 class="pt-1 text-center itemText2">Item Stats by Slot</h1>
 			<ul class="list-group pl-5 pt-0 pr-5">
 
 				<li class="list-group-item firstClick" id="weapon">One Handed Weapons</li>

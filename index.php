@@ -7,65 +7,66 @@ error_reporting(E_ALL);
 <html lang="en-US">
 
 <head>
-<meta name="viewport" content="width=device-width, initial scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Home</Title>
 </head>
-
+ 
 <body>
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
-    <div class="navbar-header">
-      <a class="navbar-brand">OsrsBuilds</a>
-    </div>
+<div class="navbar-header">
+<a class="navbar-brand yellowText">Osrs Life</a>
+</div>
 
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-  	</button>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
 
 <div class="collapse navbar-collapse" id="navbarMobile">
         <ul class="nav navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item active" id="indexNav">
         <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="loginNav">
         <a class="nav-link" href="loginPage.php">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="registrationNav">
         <a class="nav-link" href="registrationPage.php">Registration</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="achievementNav">
         <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="pkingBuildsNav">
         <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="equipsNav">
         <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="exchangeNav">
         <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="alchNav">
         <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
+        <li class="nav-item" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
         </li>
-	<li class="nav-item">
+		<li class="nav-item" id="cluescrollNav">
         <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="maxHitNav">
         <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
         </li>
     </ul>
+
         <?php
         if(isset($_SESSION['u_userID'])){
             echo '
@@ -140,7 +141,7 @@ if(isset($_SESSION['u_userID'])){
 		var name = document.getElementById("ign").value;
 		
 		
-		var userID = "<?php echo ($_SESSION['u_userID']); ?>";
+		var userID = "<?php  if(isset($_SESSION['u_userID'])){echo ($_SESSION['u_userID']);} ?>";
 		if (name == '') 
 		{
 			alert("Please enter a username to be added first:");
@@ -169,7 +170,7 @@ if(isset($_SESSION['u_userID'])){
 
 	function dropCharacter(charNum) {
 		var name = 'btn'+charNum;
-		var userID = "<?php echo ($_SESSION['u_userID']); ?>";
+		var userID = "<?php  if(isset($_SESSION['u_userID'])){echo ($_SESSION['u_userID']);} ?>";
 		// AJAX code to drop character
 			$.ajax({
 				type: "POST",

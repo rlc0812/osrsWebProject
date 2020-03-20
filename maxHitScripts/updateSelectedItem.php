@@ -10,7 +10,7 @@ function updateSelectedItem()
         echo '<div id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText2 d-inline">'.$itemName.'</div><span class="yellowText"> +'.$strengthBonus.'</span></div>';
     }
     else{
-        echo '<div class="darkBg2 border-left border-right border-bottom border-dark" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText d-inline" id="'.$itemSlot.'Value">'.$itemName.'</div><span class="yellowText"> +'.$strengthBonus.'</span></div>';
+        echo '<div class="darkBg2" id="'.$itemSlot.'Placeholder" name="'.$itemName.'" value="'.$strengthBonus.'"><div class="itemText d-inline" id="'.$itemSlot.'Value">'.$itemName.'</div><span class="yellowText"> +'.$strengthBonus.'</span></div>';
     }
 }
 
@@ -27,10 +27,10 @@ function updateSelectedIcon()
     $itemSlot = $_POST['itemSlot'];
 
     if($itemName=='None'){
-        echo'<img class="mt-1" height="32" width="32" src="images/slot_images/'.$itemSlot.'_slot.png"><br>';
+        echo'<img class="mt-1 border-left border-right border-top border-dark" height="32" width="32" src="images/slot_images/'.$itemSlot.'_slot.png"><br>';
     }
     else{
-        $stmt=$conn->prepare("SELECT DISTINCT name,icon FROM items WHERE (name=(?) AND noted=0) LIMIT 1");
+        $stmt=$conn->prepare("SELECT DISTINCT name,icon FROM items WHERE (name=(?) AND noted=0 AND equipableByPlayer='1') LIMIT 1");
         if(false===$stmt)
         {
             die('prepare() failed '.htmlspecialchars($conn->error));

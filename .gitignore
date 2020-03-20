@@ -1,13 +1,15 @@
 # Ignore these folders
-
-
+.git
+css
 
 #Ignore these files
-
 config.php
-
 connect.inc
-
+error_log
+error_log_71
+.htaccess
+.ftpquota
 php.ini
-error_log.txt
-error_log71.txt
+5.4.45
+wifi.txt
+phpinfo.php

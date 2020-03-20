@@ -14,16 +14,16 @@ session_start();
 <!--Selfmade stylesheet for LoginPage-->
 <link rel="stylesheet" type="text/css" href="style.css">
 	<meta charset="UTF-8">
-	<title>OSRS Builds</Title>
+	<title>OSRS Life: Pking Builds</Title>
 </head>
-
+ 
 <body>
 <div id="bannerimage"></div>
 
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2">
+<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
 
 <div class="navbar-header">
-<a class="navbar-brand">OsrsBuilds</a>
+<a class="navbar-brand yellowText">Osrs Life</a>
 </div>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,40 +31,41 @@ session_start();
 </button>
 
 <div class="collapse navbar-collapse" id="navbarMobile">
-	<ul class="nav navbar-nav">
-	<li class="nav-item">
-	<a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-	</li>
-
-	<li class="nav-item">
-	<a class="nav-link" href="loginPage.php">Login</a>
-	</li>
-
-	<li class="nav-item">
-	<a class="nav-link" href="accountManagement/registrationPage.php">Registration</a>
-	</li>
-	<li class="nav-item">
-	<a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-	</li>
-	<li class="nav-item active">
-	<a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-	</li>
-	<li class="nav-item">
-	<a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-	</li>
-	<li class="nav-item">
-	<a class="nav-link" href="itemStatsData/grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-	</li>
-	<li class="nav-item">
-	<a class="nav-link" href="alchScripts/alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-	</li>
-	<li class="nav-item">
-	<a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Item Slot Tables</a>
-	</li>
-	<li class="nav-item">
-  	<a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
- 	</li>
-</ul>
+        <ul class="nav navbar-nav">
+        <li class="nav-item" id="indexNav">
+        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
+        </li>
+        <li class="nav-item" id="loginNav">
+        <a class="nav-link" href="loginPage.php">Login</a>
+        </li>
+        <li class="nav-item" id="registrationNav">
+        <a class="nav-link" href="registrationPage.php">Registration</a>
+        </li>
+        <li class="nav-item" id="achievementNav">
+        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
+        </li>
+        <li class="nav-item active" id="pkingBuildsNav">
+        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
+        </li>
+        <li class="nav-item" id="equipsNav">
+        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
+        </li>
+        <li class="nav-item" id="exchangeNav">
+        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
+        </li>
+        <li class="nav-item" id="alchNav">
+        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
+        </li>
+        <li class="nav-item" id="slotNav">
+        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
+        </li>
+		<li class="nav-item" id="cluescrollNav">
+        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
+        </li>
+        <li class="nav-item" id="maxHitNav">
+        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
+        </li>
+    </ul>
 	<?php
 	if(isset($_SESSION['u_userID'])){
 		echo '
@@ -89,7 +90,7 @@ if(isset($_SESSION['u_userID'])){
 	<div class="row">
 		<div class ="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 offset-sm-0 col-xs-12 offset-xs-0 p-0">
 			<div class ="text-center pl-2 pt-0 pr-2">
-				<h1>Popular PVP Account Builds</h1>
+				<h1 class="itemText2">Popular PVP Account Builds</h1>
 				<ul class="list-group">
 					<li class="list-group-item list-group-item-primary" id="Berserker" onclick="getPkBuild('Berserker Pure',this.id);">Berserker Pure</li>
 					<div id="tableBerserker"></div>
@@ -115,10 +116,10 @@ if(isset($_SESSION['u_userID'])){
 					<div class="text-left" id="tableObby"></div>
 				</ul>
 
-				<h1 class="pt-5"><img src="images/hitsplat.jpg" class="hitsplatPic"><b>Powerful PVP Weapons</b><img src="images/hitsplat.jpg" class="hitsplatPic"></h1>
+				<h1 class="pt-5 itemText2"><img src="images/hitsplat.jpg" class="hitsplatPic">Powerful PVP Weapons<img src="images/hitsplat.jpg" class="hitsplatPic"></h1>
 
-				<h2>Primary Weapons</h2>
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">75 Attack</b></h3>
+				<h2 class="itemText2">Primary Weapons</h2>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">75 Attack</h3>
 			
 				<div class="list-group">
 					<button type="button" id="Ghrazi_rapier" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Ghrazi rapier</button>
@@ -131,7 +132,7 @@ if(isset($_SESSION['u_userID'])){
 					<div id="tableElder_maul"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">70 Attack</b></h3>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">70 Attack</h3>
 				<div class="list-group">
 					<button type="button" id="Dharok&#039;s_greataxe" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Dharok's greataxe</button>
 					<div id="tableDharoks_greataxe"></div>
@@ -143,13 +144,13 @@ if(isset($_SESSION['u_userID'])){
 					<div id="tableSaradomin_sword"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">65 Attack</b></h3>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">65 Attack</h3>
 				<div class="list-group">
 					<button type="button" id="Leaf-bladed_battleaxe" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Leaf-bladed battleaxe</button>
 					<div id="tableLeaf-bladed_battleaxe"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">60 Attack</b></h3>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">60 Attack</h3>
 				<div class="list-group">
 					<button type="button" id="Dragon_scimitar" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Dragon scimitar</button>
 					<div id="tableDragon_scimitar"></div>
@@ -159,7 +160,7 @@ if(isset($_SESSION['u_userID'])){
 					<div id="tableDragon_2h_sword"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">50 Attack</b></h3></u>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">50 Attack</h3></u>
 				<div class="list-group">
 					<button type="button" id="Granite_hammer" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Granite hammer</button>
 					<div id="tableGranite_hammer"></div>
@@ -167,7 +168,7 @@ if(isset($_SESSION['u_userID'])){
 					<div id="tableLeaf-bladed_sword"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Attack.png">1 Attack</b></h3></u>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Attack.png">1 Attack</h3></u>
 				<div class="list-group">
 					<button type="button" id="Slayer&#039;s_staff" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Slayer staff</button>
 					<div id="tableSlayers_staff"></div>
@@ -179,7 +180,7 @@ if(isset($_SESSION['u_userID'])){
 					<div id="tableTzhaar-ket-om"></div>
 				</div>
 
-				<h3 class="pt-4"><b><img class="pb-1" src="images/ability_icons/Ranged.png">Ranged</b></h3></u>
+				<h3 class="pt-4 itemText2"><img class="pb-1" src="images/ability_icons/Ranged.png">Ranged</h3></u>
 				<div class="list-group">
 					<button type="button" id="Magic_shortbow" onclick="displayStats(this.id);" class="list-group-item list-group-item-action">Magic shortbow</button>
 					<div id="tableMagic_shortbow"></div>
