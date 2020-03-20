@@ -1,6 +1,7 @@
 # Ignore these folders
 .git
 css
+backup
 
 #Ignore these files
 config.php
