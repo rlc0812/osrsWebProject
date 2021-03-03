@@ -45,7 +45,6 @@ function calculateAlchProfit(){
 
 	$array = [];
 
-
 	echo'
 
 			<thead class="itemText2">
@@ -69,6 +68,12 @@ function calculateAlchProfit(){
 		$profitLoss = ($highAlch-($natureRune+$buyAvg));
 		if($buyLimit==NULL){
 			$buyLimit="None";
+		}
+		if($members===1){
+			$members='<img src="images/members_icon.png"/>';
+		}
+		elseif($members===0){
+			$members='<img src="images/f2p_icon.png"/>';
 		}
 		echo'
 			<tr>

@@ -74,7 +74,8 @@ function apiPullStats($userChoice){//Function is called to grab stats and organi
 //Base url used for highscores
 $baseUrl = 'https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws?player=';
 //$userChoice = 'Gohan SSJ 2';
-$wholeUrl = ($baseUrl.$userChoice);
+$userChoice2=str_replace(' ','_',$userChoice);
+$wholeUrl = ($baseUrl.$userChoice2);
 //Call the api using CURL
 $curl1 = curl_init();
 curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);

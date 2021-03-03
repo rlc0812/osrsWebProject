@@ -2,6 +2,7 @@
 
 include('../connect.inc');
 
+
 function checkIfExists($key,array $array){
 	if (!(array_key_exists($key,$array))){
 		//echo 'No '.$key.' requirement.|';
@@ -12,6 +13,7 @@ function checkIfExists($key,array $array){
 		return $array[$key];
 	}
 }
+
 $url = 'https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-complete.json';
 
 $result=file_get_contents($url);
@@ -37,14 +39,13 @@ return false;
 $array= json_decode($result, true);
 
 
-var_dump($array);
+//var_dump($array);
 
 $conn = connectToDb();
 //Prepared statements for insertion
-	$stmt=$conn->prepare("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	$stmt=$conn->prepare("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 	ON DUPLICATE KEY UPDATE
 	name=VALUES(name),
-	incomplete=VALUES(incomplete),
 	members=VALUES(members),
 	tradeable=VALUES(tradeable),
 	tradeableOnGE=VALUES(tradeableOnGE),
@@ -146,7 +147,7 @@ $conn = connectToDb();
 foreach($array as $item){
 	$item['icon']=(base64_decode($item['icon']));
 
-	$rc = $stmt->bind_param('isiiiiiiiiiiiiiiiiidiisissss',$item['id'],$item['name'],$item['incomplete'],$item['members'],$item['tradeable'],$item['tradeable_on_ge'],$item['stackable'],$item['noted'],$item['noteable'],$item['linked_id_item'],$item['linked_id_noted'],$item['linked_id_placeholder'],$item['placeholder'],$item['equipable'],$item['equipable_by_player'],$item['equipable_weapon'],$item['cost'],$item['lowalch'],$item['highalch'],$item['weight'],$item['buy_limit'],$item['quest_item'],$item['release_date'],$item['duplicate'],$item['examine'],$item['icon'],$item['wiki_name'],$item['wiki_url']);
+	$rc = $stmt->bind_param('isiiiiiiiiiiiiiiiidiisissss',$item['id'],$item['name'],$item['members'],$item['tradeable'],$item['tradeable_on_ge'],$item['stackable'],$item['noted'],$item['noteable'],$item['linked_id_item'],$item['linked_id_noted'],$item['linked_id_placeholder'],$item['placeholder'],$item['equipable'],$item['equipable_by_player'],$item['equipable_weapon'],$item['cost'],$item['lowalch'],$item['highalch'],$item['weight'],$item['buy_limit'],$item['quest_item'],$item['release_date'],$item['duplicate'],$item['examine'],$item['icon'],$item['wiki_name'],$item['wiki_url']);
 	if(false===$rc)
 	{
 		die('bind_param() failed '.htmlspecialchars($stmt->error));
@@ -158,8 +159,10 @@ foreach($array as $item){
 	else {
 		die('insert() failed '.htmlspecialchars($stmt->error));
 	}
-
-	if($item['equipable']=='true'){
+	if($item['equipable']==true){
+		if($item['name']=='Soul cape'){
+			var_dump($item);
+		}
 		//need to check requirements if they exist before insertion
 		if(!($item['equipment']['requirements']===NULL)){
 			$requirementAttack=checkIfExists('attack',$item['equipment']['requirements']);	
@@ -196,44 +199,73 @@ foreach($array as $item){
 
 		
 		
-		if($item['equipable_weapon']=='true'){//Insert for a weapon
+		if($item['equipable_weapon']==true){//Insert for a weapon
 		//Need to check stances if they exist for insertion
-		if(checkIfExists('4',$item['weapon']['stances'])===NULL){
-			$item['weapon']['stances']['4']['combat_style']=NULL;
-			$item['weapon']['stances']['4']['attack_type']=NULL;
-			$item['weapon']['stances']['4']['attack_style']=NULL;
-			$item['weapon']['stances']['4']['experience']=NULL;
-			$item['weapon']['stances']['4']['boosts']=NULL;
-			if(checkIfExists('3',$item['weapon']['stances'])===NULL){
-				$item['weapon']['stances']['3']['combat_style']=NULL;
-				$item['weapon']['stances']['3']['attack_type']=NULL;
-				$item['weapon']['stances']['3']['attack_style']=NULL;
-				$item['weapon']['stances']['3']['experience']=NULL;
-				$item['weapon']['stances']['3']['boosts']=NULL;
-				if(checkIfExists('2',$item['weapon']['stances'])===NULL){
-					$item['weapon']['stances']['2']['combat_style']=NULL;
-					$item['weapon']['stances']['2']['attack_type']=NULL;
-					$item['weapon']['stances']['2']['attack_style']=NULL;
-					$item['weapon']['stances']['2']['experience']=NULL;
-					$item['weapon']['stances']['2']['boosts']=NULL;
-					if(checkIfExists('1',$item['weapon']['stances'])===NULL){
-						$item['weapon']['stances']['1']['combat_style']=NULL;
-						$item['weapon']['stances']['1']['attack_type']=NULL;
-						$item['weapon']['stances']['1']['attack_style']=NULL;
-						$item['weapon']['stances']['1']['experience']=NULL;
-						$item['weapon']['stances']['1']['boosts']=NULL;
-						if(checkIfExists('0',$item['weapon']['stances'])===NULL){
-							$item['weapon']['stances']['0']['combat_style']=NULL;
-							$item['weapon']['stances']['0']['attack_type']=NULL;
-							$item['weapon']['stances']['0']['attack_style']=NULL;
-							$item['weapon']['stances']['0']['experience']=NULL;
-							$item['weapon']['stances']['0']['boosts']=NULL;
+		
+		if(!(is_null($item['weapon']['stances']))){
+			if(checkIfExists('4',$item['weapon']['stances'])===NULL){
+				$item['weapon']['stances']['4']['combat_style']=NULL;
+				$item['weapon']['stances']['4']['attack_type']=NULL;
+				$item['weapon']['stances']['4']['attack_style']=NULL;
+				$item['weapon']['stances']['4']['experience']=NULL;
+				$item['weapon']['stances']['4']['boosts']=NULL;
+				if(checkIfExists('3',$item['weapon']['stances'])===NULL){
+					$item['weapon']['stances']['3']['combat_style']=NULL;
+					$item['weapon']['stances']['3']['attack_type']=NULL;
+					$item['weapon']['stances']['3']['attack_style']=NULL;
+					$item['weapon']['stances']['3']['experience']=NULL;
+					$item['weapon']['stances']['3']['boosts']=NULL;
+					if(checkIfExists('2',$item['weapon']['stances'])===NULL){
+						$item['weapon']['stances']['2']['combat_style']=NULL;
+						$item['weapon']['stances']['2']['attack_type']=NULL;
+						$item['weapon']['stances']['2']['attack_style']=NULL;
+						$item['weapon']['stances']['2']['experience']=NULL;
+						$item['weapon']['stances']['2']['boosts']=NULL;
+						if(checkIfExists('1',$item['weapon']['stances'])===NULL){
+							$item['weapon']['stances']['1']['combat_style']=NULL;
+							$item['weapon']['stances']['1']['attack_type']=NULL;
+							$item['weapon']['stances']['1']['attack_style']=NULL;
+							$item['weapon']['stances']['1']['experience']=NULL;
+							$item['weapon']['stances']['1']['boosts']=NULL;
+							if(checkIfExists('0',$item['weapon']['stances'])===NULL){
+								$item['weapon']['stances']['0']['combat_style']=NULL;
+								$item['weapon']['stances']['0']['attack_type']=NULL;
+								$item['weapon']['stances']['0']['attack_style']=NULL;
+								$item['weapon']['stances']['0']['experience']=NULL;
+								$item['weapon']['stances']['0']['boosts']=NULL;
+							}	
 						}	
-					}	
-				}				
+					}				
+				}
 			}
 		}
-		
+		else{
+				$item['weapon']['stances']['4']['combat_style']=NULL;
+				$item['weapon']['stances']['4']['attack_type']=NULL;
+				$item['weapon']['stances']['4']['attack_style']=NULL;
+				$item['weapon']['stances']['4']['experience']=NULL;
+				$item['weapon']['stances']['4']['boosts']=NULL;
+					$item['weapon']['stances']['3']['combat_style']=NULL;
+					$item['weapon']['stances']['3']['attack_type']=NULL;
+					$item['weapon']['stances']['3']['attack_style']=NULL;
+					$item['weapon']['stances']['3']['experience']=NULL;
+					$item['weapon']['stances']['3']['boosts']=NULL;
+						$item['weapon']['stances']['2']['combat_style']=NULL;
+						$item['weapon']['stances']['2']['attack_type']=NULL;
+						$item['weapon']['stances']['2']['attack_style']=NULL;
+						$item['weapon']['stances']['2']['experience']=NULL;
+						$item['weapon']['stances']['2']['boosts']=NULL;
+							$item['weapon']['stances']['1']['combat_style']=NULL;
+							$item['weapon']['stances']['1']['attack_type']=NULL;
+							$item['weapon']['stances']['1']['attack_style']=NULL;
+							$item['weapon']['stances']['1']['experience']=NULL;
+							$item['weapon']['stances']['1']['boosts']=NULL;
+								$item['weapon']['stances']['0']['combat_style']=NULL;
+								$item['weapon']['stances']['0']['attack_type']=NULL;
+								$item['weapon']['stances']['0']['attack_style']=NULL;
+								$item['weapon']['stances']['0']['experience']=NULL;
+								$item['weapon']['stances']['0']['boosts']=NULL;
+		}
 			$rc3 = $stmt3->bind_param('isissssssssssssssssssssssssss',
 			$item['id'],$item['name'],$item['weapon']['attack_speed'],$item['weapon']['weapon_type'],
 			$item['weapon']['stances']['0']['combat_style'],

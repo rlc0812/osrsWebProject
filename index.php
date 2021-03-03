@@ -19,77 +19,71 @@ error_reporting(E_ALL);
  
 <body>
 <div id="bannerimage"></div>
-
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
-
-<div class="navbar-header">
-<a class="navbar-brand yellowText">Osrs Life</a>
+<?php
+include_once('nav.php');
+include_once('nav.js');
+?>
 </div>
-
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navbarMobile">
-        <ul class="nav navbar-nav">
-        <li class="nav-item active" id="indexNav">
-        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-        </li>
-        <li class="nav-item" id="loginNav">
-        <a class="nav-link" href="loginPage.php">Login</a>
-        </li>
-        <li class="nav-item" id="registrationNav">
-        <a class="nav-link" href="registrationPage.php">Registration</a>
-        </li>
-        <li class="nav-item" id="achievementNav">
-        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-        </li>
-        <li class="nav-item" id="pkingBuildsNav">
-        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-        </li>
-        <li class="nav-item" id="equipsNav">
-        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-        </li>
-        <li class="nav-item" id="exchangeNav">
-        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-        </li>
-        <li class="nav-item" id="alchNav">
-        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-        </li>
-        <li class="nav-item" id="slotNav">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
-        </li>
-		<li class="nav-item" id="cluescrollNav">
-        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
-        </li>
-        <li class="nav-item" id="maxHitNav">
-        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
-        </li>
-    </ul>
-
-        <?php
-        if(isset($_SESSION['u_userID'])){
-            echo '
-
-            <div class="text-left">
-            <form action="accountManagement/logout.inc.php" method="POST">
-            <button type="submit" name="submit" class="submit btn-primary" >Log Out</button>
-            </form>
-            </div>
-        ';
-        }
-        ?>
-</div>
-</nav>
 
 
 <?php
 if(isset($_SESSION['u_userID'])){
-	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
+	include_once('sessionFunctions/loggedUser.php');
+	welcomeMessage('0');
 }
 else{
-	echo '<h3 class="pt-4 pl-5">Please <a href="loginPage.php">login</a> to add character stats to your account.</br>';
-	echo'<p>You\'ll be automatically redirected in <span id="count">10</span> seconds...</p>';
+?>
+	<div class="container-fluid w-50 mt-5 blueBg border border-dark">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 ">
+				<span class="itemText2 text-center">
+					<h3 class="pt-3">Welcome to OSRS Life.</h3>
+					<h3 class="pt-2">Choose an option below to get started.</h3>
+				</span>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-3 text-center border-top border-right border-dark p-2">
+				<span class="itemText2">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3 p-3">
+							<h2 class="text-center">Existing Users</h2>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3 align-self-center">
+							<h3 class="pt-1 text-left">Have an account.</h3>
+							<a class="btn btn-primary float-left" href="loginPage.php">Login here.</a>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+							<img src="images/Durial321.png" class="img-fluid" style="height:200px;">
+						</div>
+					</div>
+				</span>
+			</div>
+
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-3 text-center border-top border-dark p-2">
+				<span class="itemText2">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-3 p-3">
+							<h2 class="text-center">New Users</h2>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 mt-3 align-self-center">
+						<h3 class="text-left">Need an account?</h3>
+						<a class="btn btn-primary float-left" href="registrationPage.php">Register now!</a>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 mt-3 ">
+						<img src="images/botMan.png" class="img-fluid" style="height:200px;">
+						</div>
+					</div>
+				</span>
+			</div>
+
+
+
+
+		</div>
+	</div>
+
+<?php
 }
 ?>
 
@@ -97,7 +91,7 @@ else{
 if(isset($_SESSION['u_userID'])){
 include('homeScripts/itemApiCall.php');
 echo '
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 itemText2">
 <div class="form-group pl-5 pt-5">
 <input type="text" id="ign" placeholder=" Enter name here:">
 <input class="btn-primary" type="button" id = "addBtn" defaultvalue ="gohan ssj 2" name="submitButton" onclick="passData();" value="Add Character">
@@ -124,7 +118,7 @@ if(isset($_SESSION['u_userID'])){
 	//Display tables on page load
 	$statTableArray = getStats($_SESSION['u_userID']);
 
-	echo '<div class="container-fluid align-center pl-5 pr-5">';
+	echo '<div class="container-fluid align-center blueBg border border-dark pl-5 pr-5 pt-5">';
 	echo '<div class="row" id="tableRow">';
 	tableCreation($statTableArray[0],'1');
 	tableCreation($statTableArray[1],'2');
@@ -197,10 +191,12 @@ if(isset($_SESSION['u_userID'])){
 
 </script>
 
+
 <script type="text/javascript">
 
 window.onload = function(){
-
+addActiveNav('indexNav');
+/*
 (function(){
   var counter = 10;
 
@@ -220,7 +216,7 @@ window.onload = function(){
   }, 1000);
 
 })();
-
+*/
 }
 
 </script>

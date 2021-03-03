@@ -27,7 +27,7 @@ return false;
 $curl_response = str_replace('"members":true,','"members":1,',$curl_response);
 $curl_response = str_replace('"members":false,','"members":1,',$curl_response);
 $exchangeArray=json_decode($curl_response,true);
-
+var_dump($exchangeArray);
 //Execute insert/update
 $conn = connectToDb();
 

@@ -23,78 +23,25 @@ session_start();
  
 <body>
 <div id="bannerimage"></div>
-
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
-
-<div class="navbar-header">
-<a class="navbar-brand yellowText">Osrs Life</a>
+<?php
+include_once('nav.php');
+include_once('nav.js');
+?>
 </div>
-
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navbarMobile">
-        <ul class="nav navbar-nav">
-        <li class="nav-item" id="indexNav">
-        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-        </li>
-        <li class="nav-item" id="loginNav">
-        <a class="nav-link" href="loginPage.php">Login</a>
-        </li>
-        <li class="nav-item" id="registrationNav">
-        <a class="nav-link" href="registrationPage.php">Registration</a>
-        </li>
-        <li class="nav-item" id="achievementNav">
-        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-        </li>
-        <li class="nav-item" id="pkingBuildsNav">
-        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-        </li>
-        <li class="nav-item" id="equipsNav">
-        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-        </li>
-        <li class="nav-item" id="exchangeNav">
-        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-        </li>
-        <li class="nav-item" id="alchNav">
-        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-        </li>
-        <li class="nav-item" id="slotNav">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
-        </li>
-		<li class="nav-item" id="cluescrollNav">
-        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
-        </li>
-        <li class="nav-item" id="maxHitNav">
-        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
-        </li>
-    </ul>
+	<!--Highlight the div-->
 	<script type="text/javascript">
-    $(document).ready(function() {
-		$('#maxHitNav').addClass('active');
-	});
+	window.onload = function(){
+	addActiveNav('maxHitNav');
+	}
 	</script>
-        <?php
-        if(isset($_SESSION['u_userID'])){
-            echo '
-
-            <div class="text-left">
-            <form action="accountManagement/logout.inc.php" method="POST">
-            <button type="submit" name="submit" class="submit btn-primary" >Log Out</button>
-            </form>
-            </div>
-        ';
-        }
-        ?>
-</div>
-</nav>
-
+	
 <?php
 if(isset($_SESSION['u_userID'])){
-	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
+	include_once('sessionFunctions/loggedUser.php');
+	welcomeMessage('3');
 }
 ?>
+
 <h1 class="pt-3 text-center itemText2">Max Hit Calculator</h1>
 <?php
 if(isset($_SESSION['u_userID'])){
@@ -105,49 +52,56 @@ if(isset($_SESSION['u_userID'])){
 	$char3 = $statTableArray[2];
 	$char4 = $statTableArray[3];
 	if(($char1==NULL)&&($char2==NULL)&&($char3==NULL)&&($char4==NULL)){
-	  echo '<h3 class="pt-4 pl-4">You must register a character in order to select strength level by account.</h3>';
-	} else {
-			echo'
-			<div class ="container-fluid text-center pl-5 pt-5">
-			<h3>Please select a character to get strength level</h3>
-			';
-			if($char1!==NULL){
-				echo'
-				<div class="form-check-inline blueBg p-2 border border-dark">
-				<input type="radio" class="form-check-input" id="radioChar1" value ="'.htmlspecialchars($char1).'" name="characterSelection">
-				<label class="form-check-label" for="radioChar1"><b>'.$char1.'</b></label>
-				</div>	
-				';
-			}
-			if($char2!==NULL){
-				echo'
-				<div class="form-check-inline blueBg p-2 border border-dark">
-				<input type="radio" class="form-check-input" id="radioChar2" value ="'.htmlspecialchars($char2).'" name="characterSelection">
-				<label class="form-check-label" for="radioChar2"><b>'.$char2.'</b></label>
-				</div>	
-				';
-			}
-			if($char3!==NULL){
-				echo'
-				<div class="form-check-inline blueBg p-2 border border-dark">
-				<input type="radio" class="form-check-input" id="radioChar3" value ="'.htmlspecialchars($char3).'" name="characterSelection">
-				<label class="form-check-label" for="radioChar3"><b>'.$char3.'</b></label>
-				</div>	
-				';
-			}
-			if($char4!==NULL){
-				echo'
-				<div class="form-check-inline blueBg p-2 border border-dark">
-				<input type="radio" class="form-check-input" id="radioChar4" value ="'.htmlspecialchars($char4).'" name="characterSelection">
-				<label class="form-check-label" for="radioChar4"><b>'.$char4.'</b></label>
-				</div>	
-				';
-			}
-			echo'
-			<button type="button" class="btn-primary" onclick="getCharacterStrength();">Get Strength</button>
-			</div>	
-			';
-		}
+		echo '<h3 class="pt-4 pl-4">You must register a character in home to be able to use the diary calculator</h3>';
+	  } else {
+			  echo'
+			  <div class ="container-fluid text-center pl-5 pt-5">
+			  <h3 class="itemText2">Please select a character to check diary requirements</h3>
+			  ';
+  
+			  echo'
+			  <div class="form-check-inline whiteBlueTintBg p-2 border border-dark">
+			  <input type="radio" class="form-check-input" id="radioChar0" value ="'.htmlspecialchars($char1).'" name="characterSelection" checked>
+			  <label class="form-check-label itemText2" for="radioChar0"><b>Use None</b></label>
+			  </div>	
+		  ';
+			  if($char1!==NULL){
+				  echo'
+				  <div class="form-check-inline whiteBlueTintBg p-2 border border-dark">
+				  <input type="radio" class="form-check-input" id="radioChar1" value ="'.htmlspecialchars($char1).'" name="characterSelection">
+				  <label class="form-check-label itemText2" for="radioChar1"><b>'.$char1.'</b></label>
+				  </div>	
+				  ';
+			  }
+			  if($char2!==NULL){
+				  echo'
+				  <div class="form-check-inline whiteBlueTintBg p-2 border border-dark">
+				  <input type="radio" class="form-check-input" id="radioChar2" value ="'.htmlspecialchars($char2).'" name="characterSelection">
+				  <label class="form-check-label itemText2" for="radioChar2"><b>'.$char2.'</b></label>
+				  </div>	
+				  ';
+			  }
+			  if($char3!==NULL){
+				  echo'
+				  <div class="form-check-inline whiteBlueTintBg p-2 border border-dark">
+				  <input type="radio" class="form-check-input" id="radioChar3" value ="'.htmlspecialchars($char3).'" name="characterSelection">
+				  <label class="form-check-label itemText2" for="radioChar3"><b>'.$char3.'</b></label>
+				  </div>	
+				  ';
+			  }
+			  if($char4!==NULL){
+				  echo'
+				  <div class="form-check-inline whiteBlueTintBg p-2 border border-dark">
+				  <input type="radio" class="form-check-input" id="radioChar4" value ="'.htmlspecialchars($char4).'" name="characterSelection">
+				  <label class="form-check-label itemText2" for="radioChar4"><b>'.$char4.'</b></label>
+				  </div>	
+				  ';
+			  }
+			  echo'
+			  <button type="button" class="btn-primary itemText2" onclick="getCharacterStrength();">Get Strength</button>
+			  </div>	
+			  ';
+		  }
 }
 ?>
 

@@ -18,67 +18,24 @@ session_start();
  
 <body>
 <div id="bannerimage"></div>
-
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
-
-<div class="navbar-header">
-<a class="navbar-brand yellowText">Osrs Life</a>
+<?php
+include_once('nav.php');
+include_once('nav.js');
+?>
 </div>
-
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navbarMobile">
-        <ul class="nav navbar-nav">
-        <li class="nav-item" id="indexNav">
-        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-        </li>
-        <li class="nav-item active" id="loginNav">
-        <a class="nav-link" href="loginPage.php">Login</a>
-        </li>
-        <li class="nav-item" id="registrationNav">
-        <a class="nav-link" href="registrationPage.php">Registration</a>
-        </li>
-        <li class="nav-item" id="achievementNav">
-        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-        </li>
-        <li class="nav-item" id="pkingBuildsNav">
-        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-        </li>
-        <li class="nav-item" id="equipsNav">
-        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-        </li>
-        <li class="nav-item" id="exchangeNav">
-        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-        </li>
-        <li class="nav-item" id="alchNav">
-        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-        </li>
-        <li class="nav-item" id="slotNav">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
-        </li>
-		<li class="nav-item" id="cluescrollNav">
-        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
-        </li>
-        <li class="nav-item" id="maxHitNav">
-        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
-        </li>
-    </ul>
-        <?php
-        if(isset($_SESSION['u_userID'])){
-            echo '
-
-            <div class="text-left">
-            <form action="accountManagement/logout.inc.php" method="POST">
-            <button type="submit" name="submit" class="submit btn-primary" >Log Out</button>
-            </form>
-            </div>
-        ';
-        }
-        ?>
-</div>
-</nav>
+	<!--Highlight the div-->
+	<script type="text/javascript">
+	window.onload = function(){
+	addActiveNav('loginNav');
+	}
+	</script>
+	
+<?php
+if(isset($_SESSION['u_userID'])){
+	include_once('sessionFunctions/loggedUser.php');
+	welcomeMessage('5');
+}
+?>
 <?php
 if(isset($_SESSION['u_userID'])){
 	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
@@ -87,17 +44,16 @@ if(isset($_SESSION['u_userID'])){
 }
 ?>
 
-<div class="container pt-2 itemText2 text-center">
-    <h2>Welcome!</h2>
-    <h3>If you would like you could create an account so you can link up to 4 character highscores.<br> These characters can be used in various calculations on several of the pages.<br>Enjoy!</h3>
-</div>
 
 <?php
 if(!(isset($_SESSION['u_userID']))){
 	echo '
 	<div class="container-fluid p-3">
-		<div class="row justify-content-center">
-			<div class="col-lg-5 col-md-8 col-sm-10 col-xs-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-8 col-sm-10 col-xs-12">
+            <div class="container pt-2 itemText2 text-center">
+            <h2>Welcome back!</h2>
+        </div>
 				<div class="blueBg itemText2">
 
 					<form class="form-horizontal" action="accountManagement/login.inc.php" method="POST" >
@@ -132,7 +88,7 @@ if(!(isset($_SESSION['u_userID']))){
 <div class="footer">
 <div class="container-fluid pt-3 text-center">
 		<p class="itemText2">Osrs Life</br>
-		By Richard Chipman</p>
+		~ <span style="color:red">Richard Chipman</span></p>
 </div>
 </div>
 

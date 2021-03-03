@@ -137,7 +137,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 		$('#ShieldSlot').text('Unavailable: 2h');
 		$('#ShieldPlaceholder').addClass('text-danger border-left border-right border-bottom border-dark');
 		$('#ShieldSlotImageDiv').addClass("darkBg border-left border-right border-top border-dark");
-		$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png")
+		$('#ShieldIcon').attr("src","images/slot_images/shield_slot.png")
            		 .width('32px')
            		 .height('32px');
 		$('#prayerMissing').val("");
@@ -156,7 +156,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			totalStrength = parseInt(totalStrength) - parseInt(subtract2HandedBonus);
 			$('#WeaponSlot').text('None');
 			$('#WeaponSlotImageDiv').addClass("darkBg border-left border-right border-top border-dark");
-			$('#2hIcon').attr("src","images/slot_images/Weapon_slot.png")
+			$('#2hIcon').attr("src","images/slot_images/weapon_slot.png")
 			.width('32px')
 			.height('32px');
 		}
@@ -171,7 +171,7 @@ function updateTotalStrength(strengthBonus, itemSlot) {//Needs to be called afte
 			strengthToSubtract = strengthToSubtract.substring(strengthToSubtract.indexOf(" +")+1);
 			totalStrength = parseInt(totalStrength) - parseInt(strengthToSubtract);
 			$('#ShieldSlot').text('None');
-			$('#ShieldIcon').attr("src","images/slot_images/Shield_slot.png");
+			$('#ShieldIcon').attr("src","images/slot_images/shield_slot.png");
 		}
 		$('#prayerMissing').val("");
 		$('#prayerDiv').hide();

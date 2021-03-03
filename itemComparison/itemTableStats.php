@@ -31,22 +31,22 @@ weapons.combatStyle1,weapons.attackType1,weapons.attackStyle1,weapons.experience
                echo'<th>Category</th>';
 	}
     echo'
-                    <th>Stab Attack</th>
-                    <th>Slash Attack</th>
-                    <th>Crush Attack</th>
-                    <th>Magic Attack</th>
-                    <th>Ranged Attack</th>
-                    <th>Stab Defence</th>
-                    <th>Slash Defence</th>
-                    <th>Crush Defence</th>
-                    <th>Magic Defence</th>
-                    <th>Range Defence</th>
-                    <th>Melee Strength</th>
-                    <th>Range Strength</th>
-                    <th>Magic Strength</th>
+                    <th>Stab Att.</th>
+                    <th>Slash Att.</th>
+                    <th>Crush Att.</th>
+                    <th>Magic Att.</th>
+                    <th>Ranged Att.</th>
+                    <th>Stab Def.</th>
+                    <th>Slash Def.</th>
+                    <th>Crush Def.</th>
+                    <th>Magic Def.</th>
+                    <th>Range Def.</th>
+                    <th>Melee Str.</th>
+                    <th>Range Str.</th>
+                    <th>Magic Str.</th>
                     <th>Prayer</th>';
     if(($itemSlot==='weapon')||($itemSlot==='2h')){
-               echo'<th>Attack Speed</th>';
+               echo'<th>Speed</th>';
 	}
     echo'
                 </tr>

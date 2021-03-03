@@ -1,7 +1,6 @@
 # Ignore these folders
 .git
 css
-backup
 
 #Ignore these files
 config.php
@@ -9,8 +8,7 @@ connect.inc
 error_log
 error_log_71
 .htaccess
-.ftpquota
+.ftpquaota
 php.ini
 5.4.45
 wifi.txt
-phpinfo.php

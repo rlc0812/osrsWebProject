@@ -8,7 +8,6 @@ function tableCreation ($characterStats,$charNum){
 			{
 
 				echo '
-				<h3 class="text-center">Character '.$charNum.' not specified.</h3>
 				</div>';
 				return NULL;
 			}
@@ -42,55 +41,55 @@ function tableCreation ($characterStats,$charNum){
 
 		//BEGIN BUILD CHECKS//Index:27=atk,28=def,29=str,31=ranged
 			if($characterStats[28]==45){
-				echo '<th>Build:</th>
+				echo '<td>Build:</th>
 				<td>Zerker</td>
 				<td><img src="images/item_icons/berserker_helm.png"></td>';
 
 			}
 			elseif(($characterStats[27]>=30)&&($characterStats[28]==1)&&($characterStats[29]>=40)){
 				if($characterStats[27]>=50){//50 or greater attack
-					echo '<th>Build:</th>';
+					echo '<td>Build:</th>';
 					echo '<td class="text-center" colspan="2"> 1 Defence Pure <img src="images/item_icons/zamorak_halo.png"></td>';
 				}
 				else{
-					echo '<th>Build:</th>';
+					echo '<td>Build:</th>';
 					echo '<td colspan="2">Baby Pure <img src="images/item_icons/iron_full_helm.png"></td>';
 
 				}
 			}
 			elseif(($characterStats[28]==42)&&($characterStats[31]>=70)){
-				echo '<th>Build:</th>';
+				echo '<td>Build:</th>';
 				echo '<td colspan="2">Void Pure <img src="images/item_icons/void_ranger_helm.png"></td>';
 			}
 			elseif(($characterStats[28]==70)||($characterStats[28]>=75)){
-				echo '<th>Build:</th>
+				echo '<td>Build:</th>
 				<td class="text-center" colspan="2">Tank/Main <img src="images/item_icons/veracs_helm.png"></td>';
 
 
 			}
 			elseif(($characterStats[27]==1)&&($characterStats[28]==1)&&($characterStats[29]>=50)){
 				echo '<th colspan="2">Build: Obby Mauler </th>';
-				echo '<th><img src="images/item_icons/obby_maul.png"></th>';
+				echo '<td><img src="images/item_icons/obby_maul.png"></th>';
 			}
 			elseif(($characterStats[27]==1)&&($characterStats[28]>=40)&&($characterStats[29]==1)){
 				echo '<th colspan="2">Build: Defence Pure </th>';
-				echo '<th><img src="images/item_icons/Defence.png"></th>';
+				echo '<td><img src="images/item_icons/Defence.png"></th>';
 			}
 			elseif(($characterStats[27]==1)&&($characterStats[28]==1)&&($characterStats[29]==1)){
 				echo '<th colspan="2">Build: Skill Pure </th>';
-				echo '<th><img src="images/item_icons/graceful_hood.png"></th>';
+				echo '<td><img src="images/item_icons/graceful_hood.png"></th>';
 			}
 			elseif(($characterStats[27]>=60)&&($characterStats[28]==20)&&($characterStats[29]>=60)){
 				echo '<th colspan="2">Build: Initiate Pure </th>';
-				echo '<th><img src="images/item_icons/initiate_sallet.png"></th>';
+				echo '<td><img src="images/item_icons/initiate_sallet.png"></th>';
 			}
 			else{
-				echo '<th>Build:</th>
+				echo '<td>Build:</th>
 				<td class="text-center" colspan="2">Main/NA</td>';
 			}
 			/*
 			//For the change character type button
-			echo'<th><div class="dropdown">
+			echo'<td><div class="dropdown">
 			  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				Account Type
 			  </button>
@@ -128,10 +127,10 @@ function tableCreation ($characterStats,$charNum){
 			
 			
 			echo '<tr class="border-bottom">';
-				echo '<th><img src="images/Combat.png"></th>';
-				echo '<th>Combat:</th>';
+				echo '<td><img src="images/Combat.png"></th>';
+				echo '<td>Combat:</th>';
 				echo '<td>'.$combatArray[0].'</td>';
-				echo '<th>Type:</th>';
+				echo '<td>Type:</th>';
 				echo '<td>'.$combatArray[1].'</td>';
 				echo "<td><u>Lvl.99:</u> ".$count99.'</td>';
 			echo '</tr>';
@@ -226,9 +225,9 @@ function tableCreation ($characterStats,$charNum){
 			echo '</tr>';
 
 			echo '<tr>';
-				echo '<th>Type</th>';
-				echo '<th>Rank</th>';	
-				echo '<th>Completed</th>';	
+				echo '<td>Type</th>';
+				echo '<td>Rank</th>';	
+				echo '<td>Completed</th>';	
 			echo '</tr>';
 
 			echo '<tr>';
@@ -282,9 +281,9 @@ function tableCreation ($characterStats,$charNum){
 			echo '</tr>';
 
 			echo '<tr>';
-				echo '<th>Type</th>';
-				echo '<th>Rank</th>';	
-				echo '<th>Kills</th>';	
+				echo '<td>Type</th>';
+				echo '<td>Rank</th>';	
+				echo '<td>Kills</th>';	
 			echo '</tr>';
 
 			echo '<tr>';

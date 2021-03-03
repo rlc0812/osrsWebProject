@@ -1,4 +1,37 @@
-﻿/*Brown Table*/
+﻿table{
+	font-family: runescape !important;	
+	font-weight: normal !important;
+	font-style: normal !important;
+	text-decoration: none !important;
+}
+
+h3 {
+	font-family: runescape;
+}
+
+.btn-oval{
+	width: 30px; 
+	height: 30px; 
+	padding: 0px 0px; 
+	border-radius: 15px; 
+	font-size: 20px; 
+	text-align: center; 
+}
+
+/*Brown Table*/
+
+table.brownTable{
+	font-family: runescape;
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+
+table.brownTable th{
+	font-weight: normal !important;
+	font-style: normal !important;
+	text-decoration: none !important;
+}
+
 table.brownTable tr:nth-child(even) {
 	background-color: #564d43;
 	color: white;
@@ -20,7 +53,17 @@ table.brownTable td{
 	font-size: 20px !important;
 }
 
+.bottomLeft{
+	position: absolute;
+right:    0;
+bottom:   0;
+}
 
+.bottomRight{
+position: absolute;
+left:    0;
+bottom:   0;
+}
 
 .vertical-center .row {
   display: flex;
@@ -34,11 +77,18 @@ table.dataTable thead .sorting_asc::before {
     display:none;
 }
 
+.dataTables_filter {
+	font-family: runescape !important;
+	font-size: 20px !important;
+}
+
 table.dataTable thead .sorting_desc::after,
 table.dataTable thead .sorting_desc::before {
     display:none;
 }
-
+.dataTables_info{
+	font-family: runescape !important;
+}
 table.dataTable thead .sorting {
    background-image: url(https://datatables.net/media/images/sort_both.png);
    background-repeat: no-repeat;
@@ -85,15 +135,23 @@ table.dataTable thead {
 	font-style: normal !important;
 }
 
+runescapeFont{
+	font-family: runescape !important;
+}
+
 .itemText{
 	color: #ff9040 !important;
 	font-family: runescape !important;
 	font-weight: normal !important;
 	font-style: normal !important;
+	text-decoration: none !important;
 }
 
 .itemText2{
 	font-family: runescape !important;
+	font-weight: normal !important;
+	font-style: normal !important;
+	text-decoration: none !important;
 }
 
 
@@ -122,7 +180,9 @@ table.dataTable thead {
     box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
     border-width: 0;
 }
-
+.border-dark{
+	border-width: 3px!important;
+}
 .hidden{
        display:none;
     }
@@ -187,7 +247,7 @@ body {
 	
 }
 .size25px {
-	height:25px;
+	height:22px;
 }
 .maxHeightIcon{
 	max-height: 24px;

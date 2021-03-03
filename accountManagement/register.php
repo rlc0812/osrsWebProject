@@ -20,7 +20,7 @@ if(isset($_POST['submit']))
 	{
 		//Check for valid first name
 		if(!(preg_match("/^[a-zA-Z]*$/", $first))){
-			header("Location: ../registrationPage.php?registration=invalid");
+			header("Location: ../registrationPage.php?registration=invalidname");
 			exit();
 		}
 		else{
@@ -57,6 +57,19 @@ if(isset($_POST['submit']))
 						$stmt->bind_param('ssss',$first,$email,$username,$hashedPassword);
 						$stmt->execute();
 						header("Location: ../loginPage.php?registration=success");
+
+						//Send confirmation email
+						/*
+						$subject = 'Welcome to OSRSLife';
+						$headers = "From: " . strip_tags($_POST['req-email']) . "\r\n";
+						$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
+						$headers .= "CC: susan@example.com\r\n";
+						$headers .= "MIME-Version: 1.0\r\n";
+						$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+						$msg=file_get_contents('welcomeEmail.html');
+						mail($email,$subject,$msg,$headers);
+						*/
 						exit();	
 						
 					}

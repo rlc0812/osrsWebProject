@@ -149,7 +149,7 @@ function displayItemStats($location,$itemID,$icon,$itemName,$members,$tradeable,
 					if(isset($_POST['location'])){
 						echo '<td><button type="button" id="emptybutton1" class="btn btn-secondary" onclick="emptyElement('.$location.');">Hide</button></td>';
 					}
-						echo'<td class="p-2 text-center"><img src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>';
+						echo'<td class="p-2 text-center"><img class="grayBg border border-dark" src="data:image/jpg;base64,'.base64_encode($icon).'"/></td>';
 						echo '<td class="p-2 itemText">' .$itemName.'</td>';
 						echo '<td>Equip slot: ';
 	
@@ -394,32 +394,29 @@ function displayItemStats($location,$itemID,$icon,$itemName,$members,$tradeable,
 					echo'<tr>';
 						echo '<td class="border-top-0">Requirements</br>';
 						if($requirementHitpoints!==NULL){
-							echo 'Hitpoints:'.$requirementHitpoints;
+							echo 'Hitpoints: '.$requirementHitpoints;
 						}
 						if($requirementAttack!==NULL){
-							echo 'Attack:'.$requirementAttack.' ';
+							echo 'Attack: '.$requirementAttack.' ';
 						}
 						if($requirementStrength!==NULL){
-							echo 'Strength:'.$requirementStrength.' ';
+							echo 'Strength: '.$requirementStrength.' ';
 						}
 						if($requirementDefence!==NULL){
-							echo 'Defence:'.$requirementDefence.' ';
+							echo 'Defence: '.$requirementDefence.' ';
 						}
 						if($requirementRanged!==NULL){
-							echo 'Ranged:'.$requirementRanged.' ';
+							echo 'Ranged: '.$requirementRanged.' ';
 						}
 						if($requirementPrayer!==NULL){
-							echo 'Prayer:'.$requirementPrayer.' ';
+							echo 'Prayer: '.$requirementPrayer.' ';
 						}
 						if($requirementMagic!==NULL){
-							echo 'Magic:'.$requirementMagic;
+							echo 'Magic: '.$requirementMagic;
 						}
-						if(($requirementRanged!==NULL)&&($requirementHitpoints!==NULL)&&($requirementAttack!==NULL)&&($requirementStrength!==NULL)&&($requirementDefence!==NULL)&&($requirementPrayer!==NULL)&&($requirementMagic!==NULL))
+						if(($requirementRanged==NULL)&&($requirementHitpoints==NULL)&&($requirementAttack==NULL)&&($requirementStrength==NULL)&&($requirementDefence==NULL)&&($requirementPrayer==NULL)&&($requirementMagic==NULL))
 						{
 							echo'None';
-						}
-						else{
-						echo 'test';	
 						}
 						'</td>';
 						echo '<td class="border-top-0">Weight</br>'.$weight.'kg</td>';

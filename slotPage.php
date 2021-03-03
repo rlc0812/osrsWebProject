@@ -40,71 +40,22 @@ include('itemComparison/itemTableStats.php');
 	
 
 <div id="bannerimage"></div>
-
-<nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md p-0 pl-2 itemText2">
-
-<div class="navbar-header">
-<a class="navbar-brand yellowText">Osrs Life</a>
+<?php
+include_once('nav.php');
+include_once('nav.js');
+?>
 </div>
-
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarMobile" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navbarMobile">
-        <ul class="nav navbar-nav">
-        <li class="nav-item" id="indexNav">
-        <a class="nav-link" href="index.php"><img class="pr-1" src="images/spell_icons/Teleport_to_House_icon.png">Home</a>
-        </li>
-        <li class="nav-item" id="loginNav">
-        <a class="nav-link" href="loginPage.php">Login</a>
-        </li>
-        <li class="nav-item" id="registrationNav">
-        <a class="nav-link" href="registrationPage.php">Registration</a>
-        </li>
-        <li class="nav-item" id="achievementNav">
-        <a class="nav-link" href="achievementDiary.php"><img class="pr-1" src="images/Achievement_Diaries_icon.png">Achievement Diary</a>
-        </li>
-        <li class="nav-item" id="pkingBuildsNav">
-        <a class="nav-link" href="pkingBuilds.php"><img class="pr-1 maxHeightIcon" src="images/item_icons/Dragon_claws.png">Pking Builds</a>
-        </li>
-        <li class="nav-item" id="equipsNav">
-        <a class="nav-link" href="equipsPage.php"><img class="pr-1" src="images/untradeable_icons/Graceful_top.png">Useful Untradeable Items</a>
-        </li>
-        <li class="nav-item" id="exchangeNav">
-        <a class="nav-link" href="grandExchange.php"><img class="pr-1" src="images/coin_icons/Coins_250.png">Exchange</a>
-        </li>
-        <li class="nav-item" id="alchNav">
-        <a class="nav-link" href="alchPage.php"><img class="pr-1" src="images/spell_icons/High_Level_Alchemy_icon.png">High Alchemy Calculator</a>
-        </li>
-        <li class="nav-item active" id="slotNav">
-        <a class="nav-link" href="slotPage.php"><img class="pr-1 maxHeightIcon" src="images/Worn_equipment.png">Equipment Tables</a>
-        </li>
-		<li class="nav-item" id="cluescrollNav">
-        <a class="nav-link" href="cluescroll.php"><img class="pr-1 maxHeightIcon" src="images/untradeable_icons/Clue_scroll_(master).png">Clue Scroll Requirements</a>
-        </li>
-        <li class="nav-item" id="maxHitNav">
-        <a class="nav-link" href="maxHitCalc.php"><img class="pr-1 maxHeightIcon" src="images/Red_hitsplat.png">Max Hit Calculator</a>
-        </li>
-    </ul>
-        <?php
-        if(isset($_SESSION['u_userID'])){
-            echo '
-
-            <div class="text-left">
-            <form action="accountManagement/logout.inc.php" method="POST">
-            <button type="submit" name="submit" class="submit btn-primary" >Log Out</button>
-            </form>
-            </div>
-        ';
-        }
-        ?>
-</div>
-</nav>
-
+	<!--Highlight the div-->
+	<script type="text/javascript">
+	window.onload = function(){
+	addActiveNav('slotNav');
+	}
+	</script>
+	
 <?php
 if(isset($_SESSION['u_userID'])){
-	echo '<h3 class="pt-4 pl-5">Signed in as user: <span class="text-primary">'.$_SESSION['u_firstName'].'</span></h3>';
+	include_once('sessionFunctions/loggedUser.php');
+	welcomeMessage('3');
 }
 ?>
 
@@ -112,36 +63,36 @@ if(isset($_SESSION['u_userID'])){
 	<div class="row">
 		<div class ="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
 			<h1 class="pt-1 text-center itemText2">Item Stats by Slot</h1>
-			<ul class="list-group pl-5 pt-0 pr-5">
+			<ul class="list-group pl-0 pt-0 pr-0">
 
 				<li class="list-group-item firstClick" id="weapon">One Handed Weapons</li>
-				<div class="container-fluid" id="weaponContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="weaponContainer">
 				<?php
-					echo'<table id="weaponTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="weaponTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="2h">Two Handed Weapons</li>
-				<div class="container-fluid" id="2hContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="2hContainer">
 				<?php
-					echo'<table id="2hTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="2hTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="cape">Capes</li>
-				<div class="container-fluid" id="capeContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="capeContainer">
 				<?php
-					echo'<table id="capeTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="capeTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="shield">Shields</li>
-				<div class="container-fluid" id="shieldContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="shieldContainer">
 				<?php
-					echo'<table id="shieldTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="shieldTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
@@ -149,66 +100,66 @@ if(isset($_SESSION['u_userID'])){
 
 
 				<li class="list-group-item firstClick" id="ring">Rings</li>
-				<div class="container-fluid" id="ringContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="ringContainer">
 				<?php
-					echo'<table id="ringTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="ringTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="neck">Neck slot</li>
-				<div class="container-fluid" id="neckContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="neckContainer">
 				<?php
 	
-					echo'<table id="neckTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="neckTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 				
 				<li class="list-group-item firstClick" id="hands">Hands</li>
-				<div class="container-fluid" id="handsContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="handsContainer">
 				<?php
-					echo'<table id="handsTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="handsTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="ammo">Ammunition slot</li>
-				<div class="container-fluid" id="ammoContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="ammoContainer">
 				<?php
-					echo'<table id="ammoTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="ammoTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="head">Head slot</li>
-				<div class="container-fluid" id="headContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="headContainer">
 				<?php
-					echo'<table id="headTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="headTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick" id="body">Body slot</li>
-				<div class="container-fluid" id="bodyContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="bodyContainer">
 				<?php
-					echo'<table id="bodyTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="bodyTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 
 				<li class="list-group-item firstClick firstClick" id="legs">Legs slot</li>
-				<div class="container-fluid" id="legsContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="legsContainer">
 				<?php
-					echo'<table id="legsTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="legsTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
 				
 				<li class="list-group-item firstClick firstClick" id="feet" >Foot slot</li>
-				<div class="container-fluid p-0" id="feetContainer">
+				<div class="container-fluid blueBg pt-3 hidden" id="feetContainer">
 				<?php
-					echo'<table id="feetTable" class="table nowrap table-bordered hidden" style="width:100%">';
+					echo'<table id="feetTable" class="table nowrap table-bordered" style="width:100%">';
 					echo'</table>';
 				 ?>
 				</div>
@@ -232,7 +183,7 @@ function displayStats(itemSlot) {
 			data: '&itemSlot='+itemSlot,
 			cache: false,
 			success: function(data) {
-				$("#"+itemSlot+"Table").removeClass('hidden');	
+				$("#"+itemSlot+"Container").removeClass('hidden');	
 				$("#"+itemSlot+"Table").html(data);
 						dataTables(itemSlot);
 			},
@@ -249,7 +200,7 @@ function dataTables(itemSlot){
 		if((itemSlot=='weapon')||(itemSlot=='2h')){
 					$("#"+itemSlot+"Table").DataTable().destroy();
 					var dataTable = $("#"+itemSlot+"Table").DataTable( {
-						scrollY: "300px",
+						scrollY: "500px",
 						scrollX: true,
 						scrollCollapse: false,
 						paging: false,
@@ -270,7 +221,7 @@ function dataTables(itemSlot){
 				{	
 					$("#"+itemSlot+"Table").DataTable().destroy();
 					dataTable = $("#"+itemSlot+"Table").DataTable( {
-						scrollY: "300px",
+						scrollY: "500px",
 						scrollX: true,
 						scrollCollapse: false,
 						paging: false,
